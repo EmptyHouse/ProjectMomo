@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
     public Transform mainTarget;
     public float cameraLerpSpeed = 25f;
+    public float minimumThresholdDistance = .01f;
 
     private Vector3 cameraOffset;
 
