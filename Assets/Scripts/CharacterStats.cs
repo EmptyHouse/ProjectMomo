@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour {
-    public MovementMechanics movementMechanics;
+    public MovementMechanics movementMechanics { get; set; }
 
     private void Awake()
     {

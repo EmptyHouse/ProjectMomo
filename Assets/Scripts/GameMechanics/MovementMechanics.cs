@@ -67,6 +67,7 @@ public class MovementMechanics : MonoBehaviour {
         }
         Vector2 newVelocityVector = new Vector2(rigid.velocity.x, rigid.velocity.y);
         newVelocityVector.x = Mathf.MoveTowards(rigid.velocity.x, goalSpeed, Time.deltaTime * groundAcceleration);
+        rigid.velocity = newVelocityVector;
     }
 
     /// <summary>
