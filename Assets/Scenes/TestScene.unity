@@ -199,6 +199,9 @@ GameObject:
   m_Component:
   - component: {fileID: 587461945}
   - component: {fileID: 587461946}
+  - component: {fileID: 587461948}
+  - component: {fileID: 587461947}
+  - component: {fileID: 587461949}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -231,11 +234,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64792a47924876c4bb38b81715a4d8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useGravity: 1
+  useGravity: 0
   useTerminalVelocity: 1
   gravityVector: {x: 0, y: -1}
   gravityScale: 1
   terminalVelocity: 10
+--- !u!114 &587461947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587461944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2929adf0721f12549b182a9a1ebceea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &587461948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587461944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c65a13d7f8867449b70b619d4cab81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 920496243}
+  walkingSpeed: 2
+  runningSpeed: 5
+  groundAcceleration: 25
+--- !u!114 &587461949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587461944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99bac75130fd674d86def4279185aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920496241
 GameObject:
   m_ObjectHideFlags: 0
