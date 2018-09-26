@@ -4,8 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(CustomPhysics2D))]
 public class MovementMechanics : MonoBehaviour {
-    private const float Run_Threshold = .6f;
-    private const float Walk_Threshold = .1f;
+    private const float INPUT_THRESHOLD_RUNNING = .6f;
+    private const float INPUT_THRESHOLD_WALKING = .15f;
 
     #region main variables
     [Header("Mono References")]
@@ -18,6 +18,7 @@ public class MovementMechanics : MonoBehaviour {
     public float runningSpeed = 5f;
     [Tooltip("The units per second that our speed will increase")]
     public float groundAcceleration = 25f;
+    public bool isFacingRight;
 
     /// <summary>
     /// The custom physics component reference
@@ -40,7 +41,13 @@ public class MovementMechanics : MonoBehaviour {
     {
         UpdateCurrentSpeedOnGround();
     }
+
+    private void OnValidate()
+    {
+        SetSpriteFlipped(isFacingRight);
+    }
     #endregion monobehaviour methods
+    
     /// <summary>
     /// Sets the horizontal input that will determine the speed that our character will move
     /// </summary>
@@ -57,11 +64,11 @@ public class MovementMechanics : MonoBehaviour {
     private void UpdateCurrentSpeedOnGround()
     {
         float goalSpeed = 0;
-        if (Mathf.Abs(horizontalInput) > Run_Threshold)
+        if (Mathf.Abs(horizontalInput) > INPUT_THRESHOLD_RUNNING)
         {
             goalSpeed = runningSpeed * Mathf.Sign(horizontalInput);
         }
-        else if (Mathf.Abs(horizontalInput) > Walk_Threshold)
+        else if (Mathf.Abs(horizontalInput) > INPUT_THRESHOLD_WALKING)
         {
             goalSpeed = walkingSpeed * Mathf.Sign(horizontalInput);
         }
@@ -70,12 +77,45 @@ public class MovementMechanics : MonoBehaviour {
         rigid.velocity = newVelocityVector;
     }
 
+
     /// <summary>
     /// Flips the character's sprite appropriately based on the input passed through
     /// </summary>
     /// <param name="horizontalInput"></param>
     private void FlipSpriteBasedOnInput(float horizontalInput)
     {
-        
+        if (Mathf.Abs(horizontalInput) < INPUT_THRESHOLD_WALKING)
+        {
+            return;
+        }
+
+        if (horizontalInput < 0 && isFacingRight)
+        {
+            SetSpriteFlipped(false);
+        }
+        else if (horizontalInput > 0 && !isFacingRight)
+        {
+            SetSpriteFlipped(true);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void SetSpriteFlipped(bool spriteFacingright)
+    {
+        this.isFacingRight = spriteFacingright;
+        if (spriteFacingright)
+        {
+            Vector3 currentScale = spriteRenderer.transform.localScale;
+            currentScale.x = Mathf.Abs(currentScale.x);
+            spriteRenderer.transform.localScale = currentScale;
+        }
+        else
+        {
+            Vector3 currentScale = spriteRenderer.transform.localScale;
+            currentScale.x = -Mathf.Abs(currentScale.x); ;
+            spriteRenderer.transform.localScale = currentScale;
+        }
     }
 }

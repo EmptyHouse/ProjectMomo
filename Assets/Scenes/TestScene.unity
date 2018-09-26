@@ -262,9 +262,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 920496243}
-  walkingSpeed: 2
-  runningSpeed: 5
+  walkingSpeed: 8
+  runningSpeed: 16
   groundAcceleration: 25
+  isFacingRight: 1
 --- !u!114 &587461949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +343,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7c834571677fe6c4aa80356b96c3fdcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 19.2, y: 14.87}
