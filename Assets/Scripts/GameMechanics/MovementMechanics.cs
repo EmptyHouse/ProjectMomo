@@ -18,7 +18,17 @@ public class MovementMechanics : MonoBehaviour {
     public float runningSpeed = 5f;
     [Tooltip("The units per second that our speed will increase")]
     public float groundAcceleration = 25f;
+
+    [Header("Sprite Renderer Referneces")]
+    [Tooltip("This indicates what direction our sprite will be facing. This will change based on input")]
     public bool isFacingRight;
+
+    [Header("Jumping Variables")]
+    public float timeToReachJumpApex = 1;
+    public float heightOfJump = 1;
+    public float fastFallScale = 1.7f;
+
+    private float jumpVelocity;
 
     /// <summary>
     /// The custom physics component reference
@@ -44,7 +54,15 @@ public class MovementMechanics : MonoBehaviour {
 
     private void OnValidate()
     {
+        if (!rigid)
+        {
+            rigid = GetComponent<CustomPhysics2D>();
+        }
         SetSpriteFlipped(isFacingRight);
+
+        float gravity = (2 * heightOfJump) / Mathf.Pow(timeToReachJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity) * timeToReachJumpApex;
+        rigid.gravityScale = gravity / CustomPhysics2D.GRAVITY_CONSTANT;
     }
     #endregion monobehaviour methods
     
@@ -118,4 +136,24 @@ public class MovementMechanics : MonoBehaviour {
             spriteRenderer.transform.localScale = currentScale;
         }
     }
+
+
+    #region jumping methods
+    public bool Jump()
+    {
+        if (rigid.isInAir)
+        {
+            //if (doubleJumpAvailable)
+            //{
+            //    rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
+            //    doubleJumpAvailable = false;
+            //    return true;
+            //}
+            return false;
+        }
+        rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
+        return true;
+    }
+    #endregion jumping methods
+
 }

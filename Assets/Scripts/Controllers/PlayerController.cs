@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         characterStats.movementMechanics.SetHorizontalInput(Input.GetAxisRaw(HorizontalInput));
+        if (Input.GetButtonDown("Jump"))
+        {
+            characterStats.movementMechanics.Jump();
+        }
     }
     #endregion monobehaiovur methods
 }
