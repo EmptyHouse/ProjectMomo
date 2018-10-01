@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hurtbox : MonoBehaviour {
+    public MeleeMechanics associatedMeleeMechanics;
+    #region monobehaviour methods
+    private void Awake()
+    {
+        associatedMeleeMechanics.AddAssociateHurtbox(this);
+    }
 
-	
+    private void OnDestroy()
+    {
+        associatedMeleeMechanics.RemoveAssociatedHurtbox(this);
+    }
+    #endregion monobehaviour methods
+
+
 }

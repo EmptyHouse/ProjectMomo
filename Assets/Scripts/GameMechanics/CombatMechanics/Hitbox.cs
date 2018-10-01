@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 
+/// </summary>
 public class Hitbox : MonoBehaviour {
     /// <summary>
     /// 
@@ -11,7 +15,12 @@ public class Hitbox : MonoBehaviour {
     #region monobehaiovur methods
     private void Awake()
     {
-        
+        associateMeleeMechanics.AddAssociatedHitbox(this);
+    }
+
+    private void OnDestroy()
+    {
+        associateMeleeMechanics.RemoveAssociatedHitbox(this);
     }
     #endregion monobehaviour methods
 }
