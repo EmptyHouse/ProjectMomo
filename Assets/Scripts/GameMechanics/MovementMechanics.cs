@@ -24,10 +24,15 @@ public class MovementMechanics : MonoBehaviour {
     public bool isFacingRight;
 
     [Header("Jumping Variables")]
+    [Tooltip("The time it will take for our character to reach the top of their jump")]
     public float timeToReachJumpApex = 1;
+    [Tooltip("The height in units that our character will reach when they perform a jump")]
     public float heightOfJump = 1;
+    [Tooltip("The scale we apply to our character when they are fast falling, typically meaning the player isn't holding down the jump button")]
     public float fastFallScale = 1.7f;
-
+    /// <summary>
+    /// Jump velocity is calculated based on the jump height and time to reach apex
+    /// </summary>
     private float jumpVelocity;
 
     /// <summary>
@@ -118,7 +123,7 @@ public class MovementMechanics : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Sets whether our sprite is facing left or right
     /// </summary>
     private void SetSpriteFlipped(bool spriteFacingright)
     {
@@ -139,6 +144,10 @@ public class MovementMechanics : MonoBehaviour {
 
 
     #region jumping methods
+    /// <summary>
+    /// Method that performs a jump by applying a velocity in the y direction
+    /// </summary>
+    /// <returns></returns>
     public bool Jump()
     {
         if (rigid.isInAir)
