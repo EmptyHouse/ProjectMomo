@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hurtbox : MonoBehaviour {
-    public MeleeMechanics associatedMeleeMechanics;
+    public HitboxManager associatedMeleeMechanics;
     #region monobehaviour methods
     private void Awake()
     {

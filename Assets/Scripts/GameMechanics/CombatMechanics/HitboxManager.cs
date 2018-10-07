@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Generic Melee mechanics. Uses 
 /// </summary>
-public class MeleeMechanics : MonoBehaviour {
+public class HitboxManager : MonoBehaviour {
     [HideInInspector]
     public List<Hitbox> allAssociatedHitboxes = new List<Hitbox>();
     [HideInInspector]

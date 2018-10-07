@@ -7,15 +7,17 @@ using UnityEngine;
 /// do damage to another object. With a typical hitbox, if they are moving fast enough, it is possible
 /// that the hitboxes never interesct. For cases like this, it is best to use a ray hitbox
 /// </summary>
-public class RayHitbox : MonoBehaviour {
+public class RayHitbox : Hitbox {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    #region monobehaviour methods
+    private void Update()
+    {
+        
+    }
+    #endregion monobehaviour methods
+
+    public void CheckHitboxEntered()
+    {
+
+    }
 }

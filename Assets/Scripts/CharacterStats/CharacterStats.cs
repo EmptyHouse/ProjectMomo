@@ -10,7 +10,7 @@ public class CharacterStats : MonoBehaviour {
     private float currentHealth;
 
     public MovementMechanics movementMechanics { get; set; }
-    public MeleeMechanics associateMeleeMechanics { get; set; }
+    public HitboxManager associateMeleeMechanics { get; set; }
 
 
     #region monobehaivour methods

@@ -12,7 +12,7 @@ public class Hitbox : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    private MeleeMechanics associateMeleeMechanics;
+    private HitboxManager associateMeleeMechanics;
 
     #region monobehaiovur methods
     protected virtual void Awake()
