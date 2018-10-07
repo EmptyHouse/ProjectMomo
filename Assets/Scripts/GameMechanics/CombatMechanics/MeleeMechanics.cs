@@ -19,7 +19,10 @@ public class MeleeMechanics : MonoBehaviour {
     #endregion monobehaviour methods
 
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="hitbox"></param>
     public void AddAssociatedHitbox(Hitbox hitbox)
     {
         if (allAssociatedHitboxes.Contains(hitbox))
@@ -30,6 +33,10 @@ public class MeleeMechanics : MonoBehaviour {
         allAssociatedHitboxes.Add(hitbox);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="hitbox"></param>
     public void RemoveAssociatedHitbox(Hitbox hitbox)
     {
         if (!allAssociatedHitboxes.Contains(hitbox))
@@ -40,6 +47,10 @@ public class MeleeMechanics : MonoBehaviour {
         allAssociatedHitboxes.Remove(hitbox);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="hurtbox"></param>
     public void AddAssociateHurtbox(Hurtbox hurtbox)
     {
         if (allAssociatedHurtboxes.Contains(hurtbox))
