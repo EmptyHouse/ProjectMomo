@@ -6,10 +6,18 @@ using UnityEngine;
 /// Generic Melee mechanics. Uses 
 /// </summary>
 public class HitboxManager : MonoBehaviour {
+    /// <summary>
+    /// A list of all the hitboxes connected to this object
+    /// </summary>
     [HideInInspector]
     public List<Hitbox> allAssociatedHitboxes = new List<Hitbox>();
     [HideInInspector]
     public List<Hurtbox> allAssociatedHurtboxes = new List<Hurtbox>();
+    /// <summary>
+    /// A collection of all the hitbox managers that have been intereacted with. This is to ensure that we
+    /// do not hit an object multiple times from just one attack by interacting with multiple hurtboxes
+    /// </summary>
+    private List<HitboxManager> hitboxManagerCollection = new List<HitboxManager>();
 
     #region monobehaviour methods
     private void Awake()
@@ -18,7 +26,7 @@ public class HitboxManager : MonoBehaviour {
     }
     #endregion monobehaviour methods
 
-
+    #region adding and removing hitbox/hurtboxes
     /// <summary>
     /// 
     /// </summary>
@@ -73,4 +81,51 @@ public class HitboxManager : MonoBehaviour {
         }
         allAssociatedHurtboxes.Remove(hurtbox);
     }
+    #endregion adding and removing hitbox/hurtboxes
+
+    #region hitbox manager collection methods
+    /// <summary>
+    /// Before the beginning of a new attack this method should be called to clear
+    /// any previously hit character. That way they can be hit again
+    /// </summary>
+    public void ResetHitboxManagerCollection()
+    {
+        hitboxManagerCollection.Clear();
+    }
+
+    /// <summary>
+    /// Adds a hitbox manager to the the hitboxManagerCollection list. This will be used to ensure that
+    /// we do not hit a target multiple time with the same attack
+    /// </summary>
+    /// <param name="hitboxManager"></param>
+    public void AddHitboxManagerToCollection(HitboxManager hitboxManager)
+    {
+        if (!hitboxManager)
+        {
+            Debug.LogWarning("The hitbox manager that was passed in was null or inactive. Please check what went wrong here.");
+        }
+        if (hitboxManagerCollection.Contains(hitboxManager))
+        {
+            return;
+        }
+        hitboxManagerCollection.Add(hitboxManager);
+    }
+
+    public void RemoveHitboxManagerFromCollection(HitboxManager hitboxManagerToRemove)
+    {
+        if (!hitboxManagerToRemove)
+        {
+            Debug.LogWarning("The hitbox manager that you are trying to remove is null or inactive. This should not be the case. Please double check what may have happened.");
+        }
+    }
+
+    public bool HitboxManagerCollectionContainsHitboxManager(HitboxManager managerToCheck)
+    {
+        if (!managerToCheck)
+        {
+            Debug.LogWarning("The manager you are trying to check is either null or inactive. This should not be the case. Please check what may have gone wrong.");
+        }
+        return hitboxManagerCollection.Contains(managerToCheck);
+    }
+    #endregion hitbox manager collection methods
 }
