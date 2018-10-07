@@ -34,7 +34,6 @@ public class AudioManagement : MonoBehaviour {
     #region monobehaviour methods
     private void Awake()
     {
-        print(AdjustPerceivedVolume(.01f));
     }
     #endregion monobehaviour methods
 
