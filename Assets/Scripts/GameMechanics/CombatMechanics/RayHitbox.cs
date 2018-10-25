@@ -40,6 +40,23 @@ public class RayHitbox : Hitbox {
         Ray2D ray = new Ray2D(new Vector2(position.x, position.y), forwardDirection);
 
         hit = Physics2D.Raycast(ray.origin, ray.direction, rayDistance);
+        if (hit)
+        {
+            Hitbox hitBox = hit.collider.GetComponent<Hitbox>();
+            Hurtbox hurtBox = hit.collider.GetComponent<Hurtbox>();
 
+            if (hitBox)
+            {
+                OnEnteredHitbox(hitBox);
+            }
+            if (hurtBox)
+            {
+                OnEnteredHurtbox(hurtBox);
+            }
+        }
     }
+
+    #region debug methods
+
+    #endregion debug methods
 }

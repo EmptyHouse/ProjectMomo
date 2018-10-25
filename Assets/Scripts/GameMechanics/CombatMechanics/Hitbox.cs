@@ -4,15 +4,15 @@ using UnityEngine;
 
 
 /// <summary>
-/// 
+/// Base class for our hitboxes
 /// </summary>
-[RequireComponent(typeof(Collider2D))]
-public class Hitbox : MonoBehaviour {
+public abstract class Hitbox : MonoBehaviour {
     public bool hitboxActive { get; set; }
+    [System.NonSerialized]
     /// <summary>
     /// 
     /// </summary>
-    private HitboxManager associateMeleeMechanics;
+    public HitboxManager associateMeleeMechanics;
 
     #region monobehaiovur methods
     protected virtual void Awake()
@@ -25,43 +25,7 @@ public class Hitbox : MonoBehaviour {
         associateMeleeMechanics.RemoveAssociatedHitbox(this);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (!hitboxActive)
-        {
-            return;
-        }
-        Hitbox hitbox = collider.GetComponent<Hitbox>();
-        Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
-
-        if (hitbox && hitbox.associateMeleeMechanics != this.associateMeleeMechanics)
-        {
-            OnEnteredHitbox(hitbox);
-        }
-        if (hurtbox && hurtbox.associatedMeleeMechanics != this.associateMeleeMechanics)
-        {
-            OnEnteredHurtbox(hurtbox);
-        }
-    }
-
-    protected virtual void OnTriggerExit2D(Collider2D collider)
-    {
-        if (!hitboxActive)
-        {
-            return;
-        }
-        Hitbox hitbox = collider.GetComponent<Hitbox>();
-        Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
-
-        if (hitbox && hitbox.associateMeleeMechanics != this.associateMeleeMechanics)
-        {
-            OnExitHitbox(hitbox);
-        }
-        if (hurtbox && hurtbox.associatedMeleeMechanics != this.associateMeleeMechanics)
-        {
-            OnExitHurtbox(hurtbox);
-        }
-    }
+    
     #endregion monobehaviour methods
 
     /// <summary>

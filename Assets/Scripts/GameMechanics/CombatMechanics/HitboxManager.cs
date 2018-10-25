@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Generic Melee mechanics. Uses 
+/// Generic Melee mechanics
 /// </summary>
 public class HitboxManager : MonoBehaviour {
     /// <summary>
