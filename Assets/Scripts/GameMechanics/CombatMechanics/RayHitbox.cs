@@ -13,47 +13,78 @@ public class RayHitbox : Hitbox {
     public int rayCount = 2;
     [Tooltip("The length of our raycasts.")]
     public float rayDistance;
+    [Tooltip("The distance between all vector points in the ray origins")]
+    public float raySpread;
     #endregion main variables
     #region monobehaviour methods
     private void Update()
     {
-        
+        RayCheckHitboxEntered();
     }
 
     private void OnValidate()
     {
-        if (rayCount < 1)
+        if (rayCount < 2)
         {
-            rayCount = 1;
+            rayCount = 2;
+        }
+    }
+
+    /// <summary>
+    /// Provices a visual display of our ray hitbox
+    /// </summary>
+    private void OnDrawGizmosSelected()
+    {
+        Vector3 originPoint = transform.position;
+
+        Vector3 topPoint = originPoint + this.transform.up * (raySpread / 2);
+        Vector3 bottomPoint = originPoint - this.transform.up * (raySpread / 2);
+
+        DebugSettings.DrawLine(topPoint, bottomPoint, Color.red);
+
+        Vector3 incrementVector = (bottomPoint - topPoint) / rayCount;
+        for (int i = 0; i < rayCount; i++)
+        {
+            DebugSettings.DrawLineDirection(topPoint + (incrementVector * i), this.transform.right, rayDistance, Color.red);
         }
     }
     #endregion monobehaviour methods
-
     /// <summary>
     /// 
     /// </summary>
     public void RayCheckHitboxEntered()
     {
-        RaycastHit2D hit;
-        Vector3 position = transform.position;
-        Vector3 forwardDirection = transform.right;
-        Ray2D ray = new Ray2D(new Vector2(position.x, position.y), forwardDirection);
+        Vector3 originPoint = transform.position;
+        Vector3 bottomPoint = originPoint - this.transform.up * (raySpread / 2);
+        Vector3 topPoint = originPoint + this.transform.up * (raySpread / 2);
 
-        hit = Physics2D.Raycast(ray.origin, ray.direction, rayDistance);
-        if (hit)
+        Vector3 incrementVector = (bottomPoint - topPoint) / rayCount;
+        
+        for (int i = 0; i < rayCount; i++)
         {
-            Hitbox hitBox = hit.collider.GetComponent<Hitbox>();
-            Hurtbox hurtBox = hit.collider.GetComponent<Hurtbox>();
+            RaycastHit2D hit;
+            Vector3 position = topPoint + incrementVector * i;
+            Vector3 forwardDirection = transform.right;
+            Ray2D ray = new Ray2D(new Vector2(position.x, position.y), forwardDirection);
 
-            if (hitBox)
+            hit = Physics2D.Raycast(ray.origin, ray.direction, rayDistance);
+            if (hit)
             {
-                OnEnteredHitbox(hitBox);
-            }
-            if (hurtBox)
-            {
-                OnEnteredHurtbox(hurtBox);
+                Hitbox hitBox = hit.collider.GetComponent<Hitbox>();
+                Hurtbox hurtBox = hit.collider.GetComponent<Hurtbox>();
+
+                if (hitBox)
+                {
+                    OnEnteredHitbox(hitBox);
+                }
+                if (hurtBox)
+                {
+                    OnEnteredHurtbox(hurtBox);
+                }
             }
         }
+
+        
     }
 
     #region debug methods
