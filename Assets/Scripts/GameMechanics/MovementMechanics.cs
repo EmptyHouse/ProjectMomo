@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CustomPhysics2D))]
 public class MovementMechanics : MonoBehaviour {
+    private const string SPEED_ANIMATION_PARAMETER = "Speed";
     private const float INPUT_THRESHOLD_RUNNING = .6f;
     private const float INPUT_THRESHOLD_WALKING = .15f;
 
@@ -44,12 +45,14 @@ public class MovementMechanics : MonoBehaviour {
     /// The last horizontal input that was passed in
     /// </summary>
     private float horizontalInput;
+    private Animator anim;
     #endregion main variables
 
     #region monobehaivour methods
     private void Awake()
     {
         rigid = GetComponent<CustomPhysics2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -79,6 +82,7 @@ public class MovementMechanics : MonoBehaviour {
     {
         this.horizontalInput = horizontalInput;
         FlipSpriteBasedOnInput(this.horizontalInput);
+        anim.SetFloat(SPEED_ANIMATION_PARAMETER, Mathf.Abs(horizontalInput));
     }
 
     /// <summary>
