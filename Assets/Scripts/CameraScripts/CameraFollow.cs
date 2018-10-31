@@ -45,4 +45,20 @@ public class CameraFollow : MonoBehaviour {
 
         this.transform.position = Vector3.Lerp(currentPosition, goalPosition, Time.deltaTime * cameraLerpSpeed);
     }
+
+    /// <summary>
+    /// Performs a camera shake, based on the desired duration and intsensity desired
+    /// </summary>
+    /// <param name="cameraShakeDuration"></param>
+    /// <param name="cameraShakeIntensity"></param>
+    /// <returns></returns>
+    public IEnumerator CameraShake(float cameraShakeDuration = .1f, float cameraShakeIntensity = 1)
+    {
+        float timeThatHasPassed = 0;
+        while (timeThatHasPassed < cameraShakeDuration)
+        {
+            timeThatHasPassed += Time.deltaTime;
+            yield return null;
+        }
+    }
 }
