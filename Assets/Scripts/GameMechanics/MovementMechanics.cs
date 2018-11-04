@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CustomPhysics2D))]
 public class MovementMechanics : MonoBehaviour {
     private const string SPEED_ANIMATION_PARAMETER = "Speed";
+    private const string IN_AIR_ANIMATION_PARAMETER = "InAir";
+    private const string VERTICAL_SPEED_ANIMATION_PARAMETER = "VerticalSpeed";
     private const float INPUT_THRESHOLD_RUNNING = .6f;
     private const float INPUT_THRESHOLD_WALKING = .15f;
 
@@ -65,6 +67,10 @@ public class MovementMechanics : MonoBehaviour {
     private void Update()
     {
         UpdateCurrentSpeedOnGround();
+        if (rigid.isInAir)
+        {
+            anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
+        }
     }
 
     private void OnValidate()
@@ -195,7 +201,7 @@ public class MovementMechanics : MonoBehaviour {
     /// </summary>
     public void OnGroundedEvent()
     {
-
+        anim.SetBool(IN_AIR_ANIMATION_PARAMETER, false);
         this.currentJumpsAvailable = maxAvailableJumps;
     }
 
@@ -204,6 +210,7 @@ public class MovementMechanics : MonoBehaviour {
     /// </summary>
     public void OnAirborneEvent()
     {
+        anim.SetBool(IN_AIR_ANIMATION_PARAMETER, true);
         this.currentJumpsAvailable--;
     }
     #endregion jumping methods
