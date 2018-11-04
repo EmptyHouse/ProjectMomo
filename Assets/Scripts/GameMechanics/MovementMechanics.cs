@@ -195,13 +195,15 @@ public class MovementMechanics : MonoBehaviour {
     /// </summary>
     public void OnGroundedEvent()
     {
-        print("OnGroundedEvent Called");
+
         this.currentJumpsAvailable = maxAvailableJumps;
     }
 
+    /// <summary>
+    /// This method will be called every time our character is put in the air after being in the grounded state
+    /// </summary>
     public void OnAirborneEvent()
     {
-        print("OnAirborneEventCalled");
         this.currentJumpsAvailable--;
     }
     #endregion jumping methods
