@@ -31,6 +31,9 @@ public class MovementMechanics : MonoBehaviour {
     public float heightOfJump = 1;
     [Tooltip("The scale we apply to our character when they are fast falling, typically meaning the player isn't holding down the jump button")]
     public float fastFallScale = 1.7f;
+    [Tooltip("The number of jumps that our character is allowed to perform. If 0 is set than this character is not allowed to jump in any situation.")]
+    public int maxAvailableJumps = 1;
+    private int currentJumpsAvailable;
     /// <summary>
     /// Jump velocity is calculated based on the jump height and time to reach apex
     /// </summary>
@@ -53,6 +56,10 @@ public class MovementMechanics : MonoBehaviour {
     {
         rigid = GetComponent<CustomPhysics2D>();
         anim = GetComponent<Animator>();
+        currentJumpsAvailable = maxAvailableJumps;
+
+        rigid.OnGroundedEvent += this.OnGroundedEvent;
+        rigid.OnAirborneEvent += this.OnAirborneEvent;
     }
 
     private void Update()
@@ -71,9 +78,20 @@ public class MovementMechanics : MonoBehaviour {
         float gravity = (2 * heightOfJump) / Mathf.Pow(timeToReachJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToReachJumpApex;
         rigid.gravityScale = gravity / CustomPhysics2D.GRAVITY_CONSTANT;
+
+        if (maxAvailableJumps < 0)
+        {
+            maxAvailableJumps = 0;
+        }
+    }
+   
+    private void OnDestroy()
+    {
+        rigid.OnGroundedEvent -= this.OnGroundedEvent;//Make sure to unsubscribe from events to avoid errors and memory leaks
+        rigid.OnAirborneEvent -= this.OnAirborneEvent;
     }
     #endregion monobehaviour methods
-    
+
     /// <summary>
     /// Sets the horizontal input that will determine the speed that our character will move
     /// </summary>
@@ -154,18 +172,37 @@ public class MovementMechanics : MonoBehaviour {
     /// <returns></returns>
     public bool Jump()
     {
-        if (rigid.isInAir)
+        if (!rigid.isInAir)
         {
-            //if (doubleJumpAvailable)
-            //{
-            //    rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
-            //    doubleJumpAvailable = false;
-            //    return true;
-            //}
+            
+        }
+        else if (currentJumpsAvailable > 0)
+        {
+            currentJumpsAvailable--;
+            
+        }
+        else
+        {
             return false;
         }
         rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
         return true;
+    }
+    
+    /// <summary>
+    /// This method will be called any time our character touches the ground after being
+    /// in an in-air state
+    /// </summary>
+    public void OnGroundedEvent()
+    {
+        print("OnGroundedEvent Called");
+        this.currentJumpsAvailable = maxAvailableJumps;
+    }
+
+    public void OnAirborneEvent()
+    {
+        print("OnAirborneEventCalled");
+        this.currentJumpsAvailable--;
     }
     #endregion jumping methods
 

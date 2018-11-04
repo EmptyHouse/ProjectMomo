@@ -83,7 +83,7 @@ public class CustomCollider2D : MonoBehaviour {
             if (!rigid.isInAir)
             {
                 rigid.isInAir = true;
-                rigid.OnPhysicsObjectGrounded();
+                rigid.OnPhysicsOjbectAirborne();
             }
 
         }

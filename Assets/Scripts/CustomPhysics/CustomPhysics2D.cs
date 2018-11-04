@@ -127,8 +127,8 @@ public class CustomPhysics2D : MonoBehaviour {
     /// </summary>
     public void OnPhysicsObjectGrounded()
     {
-        Debug.Log("On Grounded Event");
-        //OnGroundedEvent();
+        //Debug.Log("On Grounded Event");
+        OnGroundedEvent();
     }
 
     /// <summary>
