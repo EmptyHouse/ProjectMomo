@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Attach this to the main camera of our game to follow the current player. This can also be used to follow other assigned targets if necessary
+/// </summary>
 public class CameraFollow : MonoBehaviour {
     public Transform mainTarget;
     public float cameraLerpSpeed = 25f;
     public float minimumThresholdDistance = .01f;
 
     private Vector3 cameraOffset;
+    private Camera associatedCamera;
 
+    #region camera smooth damp
+    public float dampTime = .15f;
+    public Vector3 refVel;
+    #endregion camera smooth damp
     #region monobehaviour methods
     private void Start()
     {
         mainTarget = this.transform.parent;
-        cameraOffset = this.transform.position;
+        cameraOffset = this.transform.position - mainTarget.position;
         this.transform.SetParent(null);
+        associatedCamera = GetComponent<Camera>();
 
         SetUpCamera();
     }
@@ -35,15 +45,13 @@ public class CameraFollow : MonoBehaviour {
     /// </summary>
     private void UpdateCameraPosition()
     {
-        Vector3 goalPosition = mainTarget.position + cameraOffset;
-        Vector3 currentPosition = this.transform.position;
-        if (Vector3.Distance(goalPosition, currentPosition) < minimumThresholdDistance)
+        if (mainTarget)
         {
-            this.transform.position = goalPosition;
-            return; 
+            Vector3 goalPosition = mainTarget.position + cameraOffset;
+            Vector3 point = associatedCamera.WorldToViewportPoint(goalPosition);
+            Vector3 delta = goalPosition - transform.position;
+            transform.position = Vector3.SmoothDamp(transform.position, transform.position + delta, ref refVel, dampTime);
         }
-
-        this.transform.position = Vector3.Lerp(currentPosition, goalPosition, Time.deltaTime * cameraLerpSpeed);
     }
 
     /// <summary>
