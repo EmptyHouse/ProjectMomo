@@ -32,6 +32,11 @@ TextureImporter:
     21300054: MomoTestSprites_1
     21300056: MomoTestSprites_2
     21300058: MomoTestSprites_3
+    21300060: MomoTestSprites_4
+    21300062: MomoTestSprites_5
+    21300064: MomoTestSprites_6
+    21300066: MomoTestSprites_7
+    21300068: MomoTestSprites_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -682,9 +687,9 @@ TextureImporter:
         x: 8
         y: 2127
         width: 33
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 44
+      alignment: 9
+      pivot: {x: 0.49727815, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -703,8 +708,8 @@ TextureImporter:
         y: 2127
         width: 40
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -722,15 +727,115 @@ TextureImporter:
         x: 105
         y: 2127
         width: 35
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: f2149db4401bded41be5052fc1bbc049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MomoTestSprites_4
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2064
+        width: 33
+        height: 41
+      alignment: 9
+      pivot: {x: 0.5175071, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e562fc8d2ce1034eb00832120b51156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MomoTestSprites_5
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 2064
+        width: 31
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5282699, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ba304b06fe2654b9b41e28f0084159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MomoTestSprites_6
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 2064
+        width: 32
+        height: 43
+      alignment: 9
+      pivot: {x: 0.62911534, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0db389834639d640ab88c8b43315509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MomoTestSprites_7
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 2064
+        width: 28
+        height: 43
+      alignment: 9
+      pivot: {x: 0.5930274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b9448ee3186814991ed906064bee62
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MomoTestSprites_8
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 2064
+        width: 30
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5239517, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36842b0ae0cf44d498d0a69779952e6b
       vertices: []
       indices: 
       edges: []
