@@ -37,6 +37,24 @@ TextureImporter:
     21300064: MomoTestSprites_6
     21300066: MomoTestSprites_7
     21300068: MomoTestSprites_8
+    21300070: Momo_Fire_Arrow_00
+    21300072: Momo_Fire_Arrow_01
+    21300074: Momo_Fire_Arrow_02
+    21300076: Momo_Fire_Arrow_03
+    21300078: Momo_Fire_Arrow_04
+    21300080: Momo_Fire_Arrow_05
+    21300082: Crouch_Bow_00
+    21300084: Crouch_Bow_01
+    21300086: Crouch_Bow_02
+    21300088: Crouch_Bow_03
+    21300090: Crouch_Bow_04
+    21300092: Crouch_Bow_05
+    21300094: Crouch_00
+    21300096: Crouch_01
+    21300098: Crouch_02
+    21300100: Crouch_03
+    21300102: Rise_From_Crouch_00
+    21300104: Rise_From_Crouch_01
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -836,6 +854,366 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 36842b0ae0cf44d498d0a69779952e6b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Momo_Fire_Arrow_00
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 3171
+        width: 35
+        height: 46
+      alignment: 9
+      pivot: {x: 0.4999996, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2931900e419e1b1409b3965e3e10b30d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Momo_Fire_Arrow_01
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 3171
+        width: 37
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5000006, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b107f81f0a0988458a071654aab9753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Momo_Fire_Arrow_02
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 3171
+        width: 36
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5194787, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1267549cb185fe4cb9815efc24615f6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Momo_Fire_Arrow_03
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 3171
+        width: 38
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5143529, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f3eb0ad950c9148a6e9e6d5af3632e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Momo_Fire_Arrow_04
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 3171
+        width: 33
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5236109, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8a9e5545524154ca58bb3949853771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Momo_Fire_Arrow_05
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 3171
+        width: 37
+        height: 44
+      alignment: 9
+      pivot: {x: 0.56106895, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 102a15bf92569234cb0f2a1673db9b37
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_Bow_00
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 3044
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4bfe3d2c561c7c499de7c977e6c6f7f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_Bow_01
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 3044
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9b91f4a0b45c7848ae127db18826eac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_Bow_02
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 3044
+        width: 33
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962cf93456db3ab45b18a8228d583a0a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_Bow_03
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 3044
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e1d9690eccd65549b090bf7441529f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_Bow_04
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 3043
+        width: 37
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2c01468d329c2b4cad4992187784b8c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_Bow_05
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 3041
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be58c7360cc1ebd478a10e21898ed949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_00
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 2789
+        width: 29
+        height: 34
+      alignment: 9
+      pivot: {x: 0.50308263, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26da32d276536041870201ea42655bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_01
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 2789
+        width: 28
+        height: 32
+      alignment: 9
+      pivot: {x: 0.51596886, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a13ba3ed03d1c5346b0107e5bc176ae7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_02
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 2789
+        width: 26
+        height: 27
+      alignment: 9
+      pivot: {x: 0.44496652, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a992cf687f269904fb10207ac7a06ba1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crouch_03
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 2789
+        width: 25
+        height: 29
+      alignment: 9
+      pivot: {x: 0.46780518, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d582bec4fea78646b2d04538c030973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rise_From_Crouch_00
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 2726
+        width: 23
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 065b7a32c6d8ea34493533177cd4d6dc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rise_From_Crouch_01
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 2726
+        width: 23
+        height: 37
+      alignment: 9
+      pivot: {x: 0.5482964, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad79646d113d6784d9b1c03f6366a5b2
       vertices: []
       indices: 
       edges: []

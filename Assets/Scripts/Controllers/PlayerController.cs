@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour {
     public const string HorizontalInput = "Horizontal";
+    public const string VerticalInput = "Vertical";
 
     [Tooltip("Reference to the player stats component. This will hold all reference of our character")]
     private CharacterStats characterStats;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         characterStats.movementMechanics.SetHorizontalInput(Input.GetAxisRaw(HorizontalInput));
+        characterStats.movementMechanics.SetVerticalInput(Input.GetAxisRaw(VerticalInput));
         if (Input.GetButtonDown("Jump"))
         {
             characterStats.movementMechanics.Jump();

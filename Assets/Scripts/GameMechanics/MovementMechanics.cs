@@ -6,9 +6,11 @@ using UnityEngine;
 public class MovementMechanics : MonoBehaviour {
     private const string SPEED_ANIMATION_PARAMETER = "Speed";
     private const string IN_AIR_ANIMATION_PARAMETER = "InAir";
+    private const string IS_CROUCHING_PARAMETER = "IsCrouching";
     private const string VERTICAL_SPEED_ANIMATION_PARAMETER = "VerticalSpeed";
     private const float INPUT_THRESHOLD_RUNNING = .6f;
     private const float INPUT_THRESHOLD_WALKING = .15f;
+    private const float CROUCHING_THRESHOLD = .6F;
 
     #region main variables
     [Header("Mono References")]
@@ -50,7 +52,9 @@ public class MovementMechanics : MonoBehaviour {
     /// The last horizontal input that was passed in
     /// </summary>
     private float horizontalInput;
+    private float verticalInput;
     private Animator anim;
+    private bool isCrouching = false;
     #endregion main variables
 
     #region monobehaivour methods
@@ -71,6 +75,18 @@ public class MovementMechanics : MonoBehaviour {
         {
             anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
         }
+        if (!isCrouching && verticalInput < -CROUCHING_THRESHOLD)
+        {
+            isCrouching = true;
+            anim.SetBool(IS_CROUCHING_PARAMETER, isCrouching);
+        }
+        else if(isCrouching && verticalInput > -CROUCHING_THRESHOLD)
+        {
+            isCrouching = false;
+            anim.SetBool(IS_CROUCHING_PARAMETER, isCrouching);
+        }
+
+        
     }
 
     private void OnValidate()
@@ -107,6 +123,16 @@ public class MovementMechanics : MonoBehaviour {
         this.horizontalInput = horizontalInput;
         FlipSpriteBasedOnInput(this.horizontalInput);
         anim.SetFloat(SPEED_ANIMATION_PARAMETER, Mathf.Abs(horizontalInput));
+    }
+
+    /// <summary>
+    /// Sets the vertical input that will effect states that involve vertical movement, such as crouching,
+    /// climbing and fast=falling
+    /// </summary>
+    /// <param name="verticalInput"></param>
+    public void SetVerticalInput(float verticalInput)
+    {
+        this.verticalInput = verticalInput;
     }
 
     /// <summary>
