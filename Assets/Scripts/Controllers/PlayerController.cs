@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour {
     {
         characterStats.movementMechanics.SetHorizontalInput(Input.GetAxisRaw(HorizontalInput));
         characterStats.movementMechanics.SetVerticalInput(Input.GetAxisRaw(VerticalInput));
+        if (Input.GetButtonDown("FireProjectile"))
+        {
+            characterStats.combatMechanics.FireArrowAnimation();
+        }
         if (Input.GetButtonDown("Jump"))
         {
             characterStats.movementMechanics.Jump();

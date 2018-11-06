@@ -55,6 +55,12 @@ TextureImporter:
     21300100: Crouch_03
     21300102: Rise_From_Crouch_00
     21300104: Rise_From_Crouch_01
+    21300106: Arrow_Air_00
+    21300108: Arrow_Air_01
+    21300110: Arrow_Air_02
+    21300112: Arrow_Air_03
+    21300114: Arrow_Air_04
+    21300116: Arrow_Air_05
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1214,6 +1220,126 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ad79646d113d6784d9b1c03f6366a5b2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Air_00
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 3108
+        width: 32
+        height: 45
+      alignment: 9
+      pivot: {x: 0.57399124, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5365d585b2647644c815d04d61ba2cf2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Air_01
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 3108
+        width: 32
+        height: 45
+      alignment: 9
+      pivot: {x: 0.57876444, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39db45dad6d1fca4c839962b179b3a33
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Air_02
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 3108
+        width: 37
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5577999, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e9299a24c1c974fa72f341faec2b29
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Air_03
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 3108
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.6369534, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be97ef141d3cae4b827b9927ff4ce73
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Air_04
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 3108
+        width: 32
+        height: 47
+      alignment: 9
+      pivot: {x: 0.61218023, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62642aeccaada0d4bb2baaa3c64bd959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Air_05
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 3108
+        width: 31
+        height: 45
+      alignment: 9
+      pivot: {x: 0.59362495, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6416a952620e8a34da0efc82520e0c3f
       vertices: []
       indices: 
       edges: []

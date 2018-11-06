@@ -10,18 +10,18 @@ using UnityEngine;
 public class CombatMechanics : MonoBehaviour {
     #region const variables
     private const string PROJECTILE_ANIMATION_TRIGGER = "ProjectileTrigger";
-    private const float TIME_TO_BUFFER = 5f * (1f / 60f);
+    private const float TIME_TO_BUFFER = 7f * (1f / 60f);
     #endregion const variables
 
-    public enum AttackTypes
-    {
-        Projectile,//These are very basic, but perhaps in the future we can expand on these
-        Melee,
-    }
-
     #region main variables
+    /// <summary>
+    /// Associated animator for our character
+    /// </summary>
     private Animator anim;
-    private Dictionary<AttackTypes, float> bufferInputTimer = new Dictionary<AttackTypes, float>();
+    /// <summary>
+    /// This dictionary holds the remaining time left for a buffered input to be active as it 'value' and uses the name of teh animation trigger as its 'key'
+    /// </summary>
+    private Dictionary<string, float> bufferInputTimer = new Dictionary<string, float>();
 
     #endregion main variables
 
@@ -29,6 +29,7 @@ public class CombatMechanics : MonoBehaviour {
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        bufferInputTimer.Add(PROJECTILE_ANIMATION_TRIGGER, 0);
     }
     #endregion monobehaviour methods
 
@@ -39,6 +40,7 @@ public class CombatMechanics : MonoBehaviour {
     public void FireArrowAnimation()
     {
         anim.SetTrigger(PROJECTILE_ANIMATION_TRIGGER);
+        StartCoroutine(BufferCombatAnimationInput(PROJECTILE_ANIMATION_TRIGGER));
     }
     #endregion projectile based combat
 
@@ -49,18 +51,18 @@ public class CombatMechanics : MonoBehaviour {
     /// But would also feel unresponsive if the player did not intendo for the 2nd or 3rd hit in the combo to come through.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator BufferCombatAnimationInput(AttackTypes attackTypeToBuffer)
+    private IEnumerator BufferCombatAnimationInput(string nameOfAttackToBuffer)
     {
-        if (bufferInputTimer[attackTypeToBuffer] > 0)
+        if (bufferInputTimer[nameOfAttackToBuffer] > 0)
         {
             yield break;
         }
-        bufferInputTimer[attackTypeToBuffer] = TIME_TO_BUFFER;
+        bufferInputTimer[nameOfAttackToBuffer] = TIME_TO_BUFFER;
 
-        while (bufferInputTimer[attackTypeToBuffer] > 0)
+        while (bufferInputTimer[nameOfAttackToBuffer] > 0)
         {
             yield return null;
-            bufferInputTimer[attackTypeToBuffer] -= Time.deltaTime;
+            bufferInputTimer[nameOfAttackToBuffer] -= Time.deltaTime;
         }
         anim.ResetTrigger(PROJECTILE_ANIMATION_TRIGGER);
     }

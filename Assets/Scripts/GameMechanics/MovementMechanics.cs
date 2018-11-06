@@ -75,7 +75,8 @@ public class MovementMechanics : MonoBehaviour {
         {
             anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
         }
-        if (!isCrouching && verticalInput < -CROUCHING_THRESHOLD)
+
+        if (!isCrouching && verticalInput <= -CROUCHING_THRESHOLD)
         {
             isCrouching = true;
             anim.SetBool(IS_CROUCHING_PARAMETER, isCrouching);
