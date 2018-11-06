@@ -10,6 +10,7 @@ public class CharacterStats : MonoBehaviour {
     private float currentHealth;
 
     public MovementMechanics movementMechanics { get; set; }
+    public CombatMechanics combatMechanics { get; set; }
     public HitboxManager associateMeleeMechanics { get; set; }
 
 
