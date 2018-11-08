@@ -18,7 +18,6 @@ public class CharacterStats : MonoBehaviour {
     private void Awake()
     {
         movementMechanics = GetComponent<MovementMechanics>();
-        combatMechanics = GetComponent<CombatMechanics>();
         //associateMeleeMechanics = GetComponent<MeleeMechanics>();
         currentHealth = maxHealth;
     }

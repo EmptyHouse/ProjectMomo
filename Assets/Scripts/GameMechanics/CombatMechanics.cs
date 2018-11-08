@@ -14,6 +14,11 @@ public class CombatMechanics : MonoBehaviour {
     #endregion const variables
 
     #region main variables
+    public Projectile currentlySelectedProjectile;
+    public Transform projectileLaunchTransform;
+
+    private CharacterStats associatedCharacterStats;
+
     /// <summary>
     /// Associated animator for our character
     /// </summary>
@@ -30,6 +35,8 @@ public class CombatMechanics : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         bufferInputTimer.Add(PROJECTILE_ANIMATION_TRIGGER, 0);
+        associatedCharacterStats = GetComponent<CharacterStats>();
+        associatedCharacterStats.combatMechanics = this;
     }
     #endregion monobehaviour methods
 
@@ -41,6 +48,14 @@ public class CombatMechanics : MonoBehaviour {
     {
         anim.SetTrigger(PROJECTILE_ANIMATION_TRIGGER);
         StartCoroutine(BufferCombatAnimationInput(PROJECTILE_ANIMATION_TRIGGER));
+    }
+
+    public void ActuallyLaunchProjectile()
+    {
+        Projectile newlyCreatedProjectiled = Instantiate<Projectile>(currentlySelectedProjectile, projectileLaunchTransform.position, projectileLaunchTransform.rotation);
+        newlyCreatedProjectiled.SetupProjectile(associatedCharacterStats);
+        
+        newlyCreatedProjectiled.LaunchProjectile();
     }
     #endregion projectile based combat
 

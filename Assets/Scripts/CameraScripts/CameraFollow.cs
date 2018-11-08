@@ -48,7 +48,7 @@ public class CameraFollow : MonoBehaviour {
         if (mainTarget)
         {
             Vector3 goalPosition = mainTarget.position + cameraOffset;
-            Vector3 point = associatedCamera.WorldToViewportPoint(goalPosition);
+
             Vector3 delta = goalPosition - transform.position;
             transform.position = Vector3.SmoothDamp(transform.position, transform.position + delta, ref refVel, dampTime);
         }
