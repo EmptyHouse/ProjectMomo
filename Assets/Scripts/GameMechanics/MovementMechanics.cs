@@ -162,6 +162,10 @@ public class MovementMechanics : MonoBehaviour {
     /// <param name="horizontalInput"></param>
     private void FlipSpriteBasedOnInput(float horizontalInput)
     {
+        if (rigid.isInAir)
+        {
+            return;
+        }
         if (Mathf.Abs(horizontalInput) < INPUT_THRESHOLD_WALKING)
         {
             return;
