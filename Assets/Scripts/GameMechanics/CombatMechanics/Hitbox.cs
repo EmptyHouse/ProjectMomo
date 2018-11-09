@@ -13,16 +13,22 @@ public abstract class Hitbox : MonoBehaviour {
     /// 
     /// </summary>
     public HitboxManager associateMeleeMechanics;
+    public delegate void HitboxCollisionEnteredEvent(CharacterStats stats, Vector3 pointOfImpact);
+    public event HitboxCollisionEnteredEvent onHitboxCollisionEnteredEvent;
 
     #region monobehaiovur methods
     protected virtual void Awake()
     {
-        associateMeleeMechanics.AddAssociatedHitbox(this);
+        //associateMeleeMechanics.AddAssociatedHitbox(this);
     }
 
     protected virtual void OnDestroy()
     {
-        associateMeleeMechanics.RemoveAssociatedHitbox(this);
+        if (associateMeleeMechanics != null)
+        {
+            associateMeleeMechanics.RemoveAssociatedHitbox(this);
+        }
+        
     }
 
     
@@ -32,16 +38,16 @@ public abstract class Hitbox : MonoBehaviour {
     /// This method will be called anytime 
     /// </summary>
     /// <param name="hitboxThatWasEntered"></param>
-    public void OnEnteredHitbox(Hitbox hitboxThatWasEntered)
+    public virtual void OnEnteredHitbox(Hitbox hitboxThatWasEntered)
     {
-
+        onHitboxCollisionEnteredEvent(null, Vector3.zero);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="hitboxThatWasExited"></param>
-    public void OnExitHitbox(Hitbox hitboxThatWasExited)
+    public virtual void OnExitHitbox(Hitbox hitboxThatWasExited)
     {
 
     }
@@ -50,17 +56,22 @@ public abstract class Hitbox : MonoBehaviour {
     /// 
     /// </summary>
     /// <param name="hurtboxThatWasEntered"></param>
-    public void OnEnteredHurtbox(Hurtbox hurtboxThatWasEntered)
+    public virtual void OnEnteredHurtbox(Hurtbox hurtboxThatWasEntered)
     {
-
+        onHitboxCollisionEnteredEvent(null, Vector3.zero);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="hurtboxThatWasExited"></param>
-    public void OnExitHurtbox(Hurtbox hurtboxThatWasExited)
+    public virtual void OnExitHurtbox(Hurtbox hurtboxThatWasExited)
     {
 
+    }
+
+    public void HitboxEnteredEvent(CharacterStats stats, Vector3 pointOfImpact)
+    {
+        onHitboxCollisionEnteredEvent(stats, pointOfImpact);
     }
 }

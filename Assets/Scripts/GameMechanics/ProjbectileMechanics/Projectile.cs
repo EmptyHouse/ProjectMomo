@@ -12,12 +12,19 @@ public class Projectile : MonoBehaviour {
     /// </summary>
     public CharacterStats associatedCharacterStats { get; set; }
     private CustomPhysics2D rigid;
+    private RayHitbox rayHitbox;
     #endregion main variables
 
     #region monobehaviour methods
     private void Start()
     {
-        
+        rayHitbox = GetComponentInChildren<RayHitbox>();
+        rayHitbox.onHitboxCollisionEnteredEvent += OnProjectileCollision;
+    }
+
+    private void OnDestroy()
+    {
+        rayHitbox.onHitboxCollisionEnteredEvent -= OnProjectileCollision;
     }
     #endregion monobehaviour methods
     #region setup methods
@@ -37,9 +44,22 @@ public class Projectile : MonoBehaviour {
     {
         bool isRight = associatedCharacterStats.movementMechanics.isFacingRight;
         Vector2 forwardVectorNormalized = new Vector2((isRight ? 1 : -1) * this.transform.right.x, this.transform.right.y);
+        Vector3 currentScale = this.transform.localScale;
+        this.transform.localScale = new Vector3((isRight ? 1 : -1) * Mathf.Abs(currentScale.x), currentScale.y, currentScale.z);
         rigid.velocity = forwardVectorNormalized * launchSpeed;
 
     }
     #endregion setup methods
+
+    private void OnProjectileCollision(CharacterStats characterThatWasHit, Vector3 pointOfImpact)
+    {
+        if (!characterThatWasHit)
+        {
+            print("I hit something");
+        }
+        this.transform.position = pointOfImpact - (rayHitbox.transform.position - this.transform.position);
+        rigid.enabled = false;
+        rayHitbox.enabled = false;
+    }
 
 }

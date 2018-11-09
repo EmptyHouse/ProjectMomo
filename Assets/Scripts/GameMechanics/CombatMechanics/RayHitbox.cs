@@ -15,8 +15,14 @@ public class RayHitbox : Hitbox {
     public float rayDistance;
     [Tooltip("The distance between all vector points in the ray origins")]
     public float raySpread;
+    private CustomPhysics2D rigid;
     #endregion main variables
     #region monobehaviour methods
+    private void Start()
+    {
+        rigid = GetComponentInParent<CustomPhysics2D>();
+    }
+
     private void Update()
     {
         RayCheckHitboxEntered();
@@ -59,33 +65,31 @@ public class RayHitbox : Hitbox {
         Vector3 topPoint = originPoint + this.transform.up * (raySpread / 2);
 
         Vector3 incrementVector = (bottomPoint - topPoint) / rayCount;
-        
-        for (int i = 0; i < rayCount; i++)
+
+        RaycastHit2D hit;
+        Vector3 position = transform.position;
+        Vector3 forwardDirection = transform.right;
+        Ray2D ray = new Ray2D(new Vector2(position.x, position.y), rigid.velocity.normalized);
+
+        hit = Physics2D.Raycast(ray.origin, ray.direction, rigid.velocity.magnitude * Time.deltaTime);
+        if (hit)
         {
-            RaycastHit2D hit;
-            Vector3 position = topPoint + incrementVector * i;
-            Vector3 forwardDirection = transform.right;
-            Ray2D ray = new Ray2D(new Vector2(position.x, position.y), forwardDirection);
+            Hitbox hitBox = hit.collider.GetComponent<Hitbox>();
+            Hurtbox hurtBox = hit.collider.GetComponent<Hurtbox>();
 
-            hit = Physics2D.Raycast(ray.origin, ray.direction, rayDistance);
-            if (hit)
+            if (hitBox)
             {
-                Hitbox hitBox = hit.collider.GetComponent<Hitbox>();
-                Hurtbox hurtBox = hit.collider.GetComponent<Hurtbox>();
-
-                if (hitBox)
-                {
-                    OnEnteredHitbox(hitBox);
-                }
-                if (hurtBox)
-                {
-                    OnEnteredHurtbox(hurtBox);
-                }
+                OnEnteredHitbox(hitBox);
             }
+            if (hurtBox)
+            {
+                OnEnteredHurtbox(hurtBox);
+            }
+            HitboxEnteredEvent(null, hit.point);
         }
-
-        
     }
+
+    
 
     #region debug methods
 
