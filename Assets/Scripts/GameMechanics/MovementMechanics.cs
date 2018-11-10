@@ -23,6 +23,8 @@ public class MovementMechanics : MonoBehaviour {
     public float runningSpeed = 5f;
     [Tooltip("The units per second that our speed will increase")]
     public float groundAcceleration = 25f;
+    public float maximumAirSpeed = 8f;
+    public float airAcceleration = 20f;
 
     [Header("Sprite Renderer Referneces")]
     [Tooltip("This indicates what direction our sprite will be facing. This will change based on input")]
@@ -70,7 +72,14 @@ public class MovementMechanics : MonoBehaviour {
 
     private void Update()
     {
-        UpdateCurrentSpeedOnGround();
+        if (rigid.isInAir)
+        {
+            UpdateCurrentSpeedInAir();
+        }
+        else
+        {
+            UpdateCurrentSpeedOnGround();
+        }
         if (rigid.isInAir)
         {
             anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
@@ -105,6 +114,11 @@ public class MovementMechanics : MonoBehaviour {
         if (maxAvailableJumps < 0)
         {
             maxAvailableJumps = 0;
+        }
+
+        if (maximumAirSpeed < 0)
+        {
+            maximumAirSpeed = 0;
         }
     }
    
@@ -153,6 +167,23 @@ public class MovementMechanics : MonoBehaviour {
         Vector2 newVelocityVector = new Vector2(rigid.velocity.x, rigid.velocity.y);
         newVelocityVector.x = Mathf.MoveTowards(rigid.velocity.x, goalSpeed, Time.deltaTime * groundAcceleration);
         rigid.velocity = newVelocityVector;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void UpdateCurrentSpeedInAir()
+    {
+        if (Mathf.Abs(horizontalInput) < INPUT_THRESHOLD_WALKING)
+        {
+            return;
+        }
+        float goalSpeed = Mathf.Sign(horizontalInput) * maximumAirSpeed;
+
+        float updatedXVelocity = rigid.velocity.x;
+        updatedXVelocity = Mathf.MoveTowards(updatedXVelocity, goalSpeed, Time.deltaTime * airAcceleration);
+        Vector2 updatedVectorVelocity = new Vector2(updatedXVelocity, rigid.velocity.y);
+        rigid.velocity = updatedVectorVelocity;
     }
 
 

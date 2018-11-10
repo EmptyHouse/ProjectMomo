@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour {
     {
         if (!characterThatWasHit)
         {
-            print("I hit something");
+            
         }
         this.transform.position = pointOfImpact - (rayHitbox.transform.position - this.transform.position);
         rigid.enabled = false;

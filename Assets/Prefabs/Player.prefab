@@ -327,6 +327,8 @@ MonoBehaviour:
   walkingSpeed: 1
   runningSpeed: 3
   groundAcceleration: 30
+  maximumAirSpeed: 3
+  airAcceleration: 10
   isFacingRight: 1
   timeToReachJumpApex: 0.4
   heightOfJump: 0.7
