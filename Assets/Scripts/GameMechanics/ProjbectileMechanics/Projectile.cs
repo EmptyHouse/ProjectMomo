@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour {
     public CharacterStats associatedCharacterStats { get; set; }
     private CustomPhysics2D rigid;
     private RayHitbox rayHitbox;
+    private SpriteRenderer spriteRenderer;
     #endregion main variables
 
     #region monobehaviour methods
@@ -20,6 +21,15 @@ public class Projectile : MonoBehaviour {
     {
         rayHitbox = GetComponentInChildren<RayHitbox>();
         rayHitbox.onHitboxCollisionEnteredEvent += OnProjectileCollision;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (!spriteRenderer.isVisible)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnDestroy()
@@ -60,6 +70,22 @@ public class Projectile : MonoBehaviour {
         this.transform.position = pointOfImpact - (rayHitbox.transform.position - this.transform.position);
         rigid.enabled = false;
         rayHitbox.enabled = false;
+        StartCoroutine(FadeOutAndDestroy());
     }
 
+
+    private IEnumerator FadeOutAndDestroy()
+    {
+        float timeToFadeOut = 1;
+        float timeThatHasPassed = 0;
+        Color originalColor = spriteRenderer.color;
+        while (timeThatHasPassed < timeToFadeOut)
+        {
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1 - (timeThatHasPassed / timeToFadeOut));
+            timeThatHasPassed += Time.deltaTime;
+            yield return null;
+        }
+        spriteRenderer.color = originalColor;
+        Destroy(this.gameObject);
+    }
 }
