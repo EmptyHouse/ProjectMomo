@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         {
             characterStats.combatMechanics.FireArrowAnimation();
         }
+        if (Input.GetButtonDown("Melee"))
         if (Input.GetButtonDown("Jump"))
         {
             characterStats.movementMechanics.Jump();

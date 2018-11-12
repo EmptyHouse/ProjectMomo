@@ -10,6 +10,7 @@ using UnityEngine;
 public class CombatMechanics : MonoBehaviour {
     #region const variables
     private const string PROJECTILE_ANIMATION_TRIGGER = "ProjectileTrigger";
+    private const string MELEE_ANIMATION_TRIGGER = "MeleeTrigger";
     private const float TIME_TO_BUFFER = 7f * (1f / 60f);
     #endregion const variables
 
@@ -59,7 +60,15 @@ public class CombatMechanics : MonoBehaviour {
     }
     #endregion projectile based combat
 
-
+    #region melee combat methods
+    /// <summary>
+    /// This method should be called whenever our player uses the melee command
+    /// </summary>
+    public void PerformMeleeAnimation()
+    {
+        BufferCombatAnimationInput(MELEE_ANIMATION_TRIGGER);
+    }
+    #endregion melee combat methods
     /// <summary>
     /// This coroutine is used to buffer certain combat commands. This will allow the player seem leniency when trying to read in their
     /// inputs so that it does not require perfect timing. For example a melee combo attack would be very difficult if it required perfect timing
