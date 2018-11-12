@@ -11,7 +11,7 @@ public class CombatMechanics : MonoBehaviour {
     #region const variables
     private const string PROJECTILE_ANIMATION_TRIGGER = "ProjectileTrigger";
     private const string MELEE_ANIMATION_TRIGGER = "MeleeTrigger";
-    private const float TIME_TO_BUFFER = 7f * (1f / 60f);
+    private const float TIME_TO_BUFFER = 12f * (1f / 60f);
     #endregion const variables
 
     #region main variables
@@ -36,6 +36,7 @@ public class CombatMechanics : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         bufferInputTimer.Add(PROJECTILE_ANIMATION_TRIGGER, 0);
+        bufferInputTimer.Add(MELEE_ANIMATION_TRIGGER, 0);
         associatedCharacterStats = GetComponent<CharacterStats>();
         associatedCharacterStats.combatMechanics = this;
     }
@@ -66,7 +67,8 @@ public class CombatMechanics : MonoBehaviour {
     /// </summary>
     public void PerformMeleeAnimation()
     {
-        BufferCombatAnimationInput(MELEE_ANIMATION_TRIGGER);
+        anim.SetTrigger(MELEE_ANIMATION_TRIGGER);
+        StartCoroutine(BufferCombatAnimationInput(MELEE_ANIMATION_TRIGGER));
     }
     #endregion melee combat methods
     /// <summary>
@@ -88,6 +90,6 @@ public class CombatMechanics : MonoBehaviour {
             yield return null;
             bufferInputTimer[nameOfAttackToBuffer] -= Time.deltaTime;
         }
-        anim.ResetTrigger(PROJECTILE_ANIMATION_TRIGGER);
+        anim.ResetTrigger(nameOfAttackToBuffer);
     }
 }
