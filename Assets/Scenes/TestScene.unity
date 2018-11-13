@@ -562,6 +562,25 @@ Prefab:
       propertyPath: airAcceleration
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114834192882531270, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: isFacingRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172056850627624, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114091007850828632, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: offsetFromVelocity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114091007850828632, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: offsetFromVelocity.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
   m_IsPrefabAsset: 0

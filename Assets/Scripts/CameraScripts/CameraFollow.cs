@@ -8,8 +8,10 @@ using UnityEngine;
 /// </summary>
 public class CameraFollow : MonoBehaviour {
     public Transform mainTarget;
-    public float cameraLerpSpeed = 25f;
-    public float minimumThresholdDistance = .01f;
+    private CustomPhysics2D targetRigidbodyPhysics;
+
+    public Vector2 offsetFromVelocity;
+
 
     private Vector3 cameraOffset;
     private Camera associatedCamera;
@@ -22,6 +24,7 @@ public class CameraFollow : MonoBehaviour {
     private void Start()
     {
         mainTarget = this.transform.parent;
+        targetRigidbodyPhysics = mainTarget.GetComponent<CustomPhysics2D>();
         cameraOffset = this.transform.position - mainTarget.position;
         this.transform.SetParent(null);
         associatedCamera = GetComponent<Camera>();
@@ -47,7 +50,8 @@ public class CameraFollow : MonoBehaviour {
     {
         if (mainTarget)
         {
-            Vector3 goalPosition = mainTarget.position + cameraOffset;
+            Vector3 adjustedVelocityOffset = new Vector2(targetRigidbodyPhysics.velocity.x * offsetFromVelocity.x, targetRigidbodyPhysics.velocity.y * offsetFromVelocity.y);
+            Vector3 goalPosition = mainTarget.position + cameraOffset + adjustedVelocityOffset;
 
             Vector3 delta = goalPosition - transform.position;
             transform.position = Vector3.SmoothDamp(transform.position, transform.position + delta, ref refVel, dampTime);
