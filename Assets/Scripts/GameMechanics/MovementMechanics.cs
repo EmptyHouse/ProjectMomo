@@ -39,11 +39,12 @@ public class MovementMechanics : MonoBehaviour {
     public float fastFallScale = 1.7f;
     [Tooltip("The number of jumps that our character is allowed to perform. If 0 is set than this character is not allowed to jump in any situation.")]
     public int maxAvailableJumps = 1;
+    [HideInInspector]
     /// <summary>
     /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character
     /// should not move, mark this value as true
     /// </summary>
-    public bool ignoreInputs { get; set; }
+    public bool ignoreInputs;
     private int currentJumpsAvailable;
     /// <summary>
     /// Jump velocity is calculated based on the jump height and time to reach apex
@@ -140,6 +141,11 @@ public class MovementMechanics : MonoBehaviour {
     /// <param name="horizontalInput"></param>
     public void SetHorizontalInput(float horizontalInput)
     {
+        if (this.ignoreInputs)
+        {
+            horizontalInput = 0;
+        }
+
         this.horizontalInput = horizontalInput;
         FlipSpriteBasedOnInput(this.horizontalInput);
         anim.SetFloat(SPEED_ANIMATION_PARAMETER, Mathf.Abs(horizontalInput));
@@ -152,6 +158,10 @@ public class MovementMechanics : MonoBehaviour {
     /// <param name="verticalInput"></param>
     public void SetVerticalInput(float verticalInput)
     {
+        if(this.ignoreInputs)
+        {
+            verticalInput = 0;
+        }
         this.verticalInput = verticalInput;
     }
 
