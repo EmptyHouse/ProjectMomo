@@ -49,7 +49,7 @@ public class CombatMechanics : MonoBehaviour {
     public void FireArrowAnimation()
     {
         anim.SetTrigger(PROJECTILE_ANIMATION_TRIGGER);
-        StartCoroutine(BufferCombatAnimationInput(PROJECTILE_ANIMATION_TRIGGER));
+        StartCoroutine(BufferCombatAnimationInput(PROJECTILE_ANIMATION_TRIGGER, TIME_TO_BUFFER));
     }
 
     public void ActuallyLaunchProjectile()
@@ -68,7 +68,7 @@ public class CombatMechanics : MonoBehaviour {
     public void PerformMeleeAnimation()
     {
         anim.SetTrigger(MELEE_ANIMATION_TRIGGER);
-        StartCoroutine(BufferCombatAnimationInput(MELEE_ANIMATION_TRIGGER));
+        StartCoroutine(BufferCombatAnimationInput(MELEE_ANIMATION_TRIGGER, TIME_TO_BUFFER));
     }
     #endregion melee combat methods
     /// <summary>
@@ -77,13 +77,15 @@ public class CombatMechanics : MonoBehaviour {
     /// But would also feel unresponsive if the player did not intendo for the 2nd or 3rd hit in the combo to come through.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator BufferCombatAnimationInput(string nameOfAttackToBuffer)
+    private IEnumerator BufferCombatAnimationInput(string nameOfAttackToBuffer, float bufferButtonTime)
     {
         if (bufferInputTimer[nameOfAttackToBuffer] > 0)
         {
+            bufferInputTimer[nameOfAttackToBuffer] = bufferButtonTime;
+
             yield break;
         }
-        bufferInputTimer[nameOfAttackToBuffer] = TIME_TO_BUFFER;
+        bufferInputTimer[nameOfAttackToBuffer] = bufferButtonTime;
 
         while (bufferInputTimer[nameOfAttackToBuffer] > 0)
         {
