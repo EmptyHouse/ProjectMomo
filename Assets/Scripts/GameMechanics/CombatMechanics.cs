@@ -11,7 +11,7 @@ public class CombatMechanics : MonoBehaviour {
     #region const variables
     private const string PROJECTILE_ANIMATION_TRIGGER = "ProjectileTrigger";
     private const string MELEE_ANIMATION_TRIGGER = "MeleeTrigger";
-    private const float TIME_TO_BUFFER = 12f * (1f / 60f);
+    private const float TIME_TO_BUFFER = 20f * (1f / 60f);
     #endregion const variables
 
     #region main variables
