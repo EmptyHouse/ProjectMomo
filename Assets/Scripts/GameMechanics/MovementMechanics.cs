@@ -39,6 +39,11 @@ public class MovementMechanics : MonoBehaviour {
     public float fastFallScale = 1.7f;
     [Tooltip("The number of jumps that our character is allowed to perform. If 0 is set than this character is not allowed to jump in any situation.")]
     public int maxAvailableJumps = 1;
+    /// <summary>
+    /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character
+    /// should not move, mark this value as true
+    /// </summary>
+    public bool ignoreInputs { get; set; }
     private int currentJumpsAvailable;
     /// <summary>
     /// Jump velocity is calculated based on the jump height and time to reach apex
