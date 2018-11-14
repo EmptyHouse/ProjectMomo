@@ -8,20 +8,24 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour {
     [Tooltip("The characters associated time layer. If there is a mechanic dealing with time, this will be applied to all components in our character stats")]
     public CustomTime.TimeLayer characterTimeLayer;
+    [Tooltip("The maximum health that this character will have. Upon starting up, this character will begin with this health")]
     public float maxHealth = 100;
     private float currentHealth;
 
     public MovementMechanics movementMechanics { get; set; }
     public CombatMechanics combatMechanics { get; set; }
-    public HitboxManager associateMeleeMechanics { get; set; }
-    public CustomPhysics2D rigidBody { get; set; }
+    public HitboxManager associatedHitboxManager { get; set; }
+    public CustomPhysics2D customPhysics { get; set; }
 
 
     #region monobehaivour methods
     private void Awake()
     {
         movementMechanics = GetComponent<MovementMechanics>();
-        //associateMeleeMechanics = GetComponent<MeleeMechanics>();
+        combatMechanics = GetComponent<CombatMechanics>();
+        associatedHitboxManager = GetComponent<HitboxManager>();
+        customPhysics = GetComponent<CustomPhysics2D>();
+
         currentHealth = maxHealth;
     }
     #endregion monobheaviour methods
