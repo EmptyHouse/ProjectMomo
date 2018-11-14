@@ -6,12 +6,15 @@ using UnityEngine;
 /// A script that hold references to important behviaours and stats that an object may need to know to interact with a character
 /// </summary>
 public class CharacterStats : MonoBehaviour {
+    [Tooltip("The characters associated time layer. If there is a mechanic dealing with time, this will be applied to all components in our character stats")]
+    public CustomTime.TimeLayer characterTimeLayer;
     public float maxHealth = 100;
     private float currentHealth;
 
     public MovementMechanics movementMechanics { get; set; }
     public CombatMechanics combatMechanics { get; set; }
     public HitboxManager associateMeleeMechanics { get; set; }
+    public CustomPhysics2D rigidBody { get; set; }
 
 
     #region monobehaivour methods
