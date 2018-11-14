@@ -24,6 +24,10 @@ public class CharacterStats : MonoBehaviour {
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();
         associatedHitboxManager = GetComponent<HitboxManager>();
+        if (associatedHitboxManager)
+        {
+            associatedHitboxManager.associatedCharacterStats = this;
+        }
         customPhysics = GetComponent<CustomPhysics2D>();
 
         currentHealth = maxHealth;

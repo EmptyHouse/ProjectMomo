@@ -6,6 +6,15 @@ using UnityEngine;
 /// Generic Melee mechanics
 /// </summary>
 public class HitboxManager : MonoBehaviour {
+    #region enums
+    public enum HitboxLayer
+    {
+        Player,
+        Enemy,
+    }
+    #endregion enums
+    [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
+    public HitboxLayer hitboxLayer;
     /// <summary>
     /// A list of all the hitboxes connected to this object
     /// </summary>
@@ -13,6 +22,7 @@ public class HitboxManager : MonoBehaviour {
     public List<Hitbox> allAssociatedHitboxes = new List<Hitbox>();
     [HideInInspector]
     public List<Hurtbox> allAssociatedHurtboxes = new List<Hurtbox>();
+    public CharacterStats associatedCharacterStats { get; set; }
     /// <summary>
     /// A collection of all the hitbox managers that have been intereacted with. This is to ensure that we
     /// do not hit an object multiple times from just one attack by interacting with multiple hurtboxes
