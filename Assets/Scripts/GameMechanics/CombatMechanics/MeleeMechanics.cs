@@ -15,6 +15,8 @@ public class MeleeMechanics : MonoBehaviour {
     #endregion enums
     [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
     public HitboxLayer hitboxLayer;
+    [Tooltip("A list of melee properties that will be referenced when our hitbox interacts with an enemy hurtbox")]
+    public MeleeProperties[] meleePropertyList = new MeleeProperties[0];
     /// <summary>
     /// A list of all the hitboxes connected to this object
     /// </summary>
@@ -31,9 +33,17 @@ public class MeleeMechanics : MonoBehaviour {
     private List<MeleeMechanics> hitboxManagerCollection = new List<MeleeMechanics>();
 
     #region monobehaviour methods
-    private void Awake()
+    private void OnValidate()
     {
-        
+        for (int i = 0; i < meleePropertyList.Length; i++)
+        {
+            if (meleePropertyList[i] == null)
+            {
+                meleePropertyList[i] = CreateNewMeleeProperties();
+            }
+
+            meleePropertyList[i].attackIDValue = i;
+        }
     }
     #endregion monobehaviour methods
 
@@ -158,17 +168,27 @@ public class MeleeMechanics : MonoBehaviour {
     #endregion melee mechanic events
 
     #region structs
+    public MeleeProperties CreateNewMeleeProperties()
+    {
+        MeleeProperties meleeProperties = new MeleeProperties();
+        meleeProperties.attackName = "Attack_00";
+        meleeProperties.attackIDValue = 0;
+        meleeProperties.damageToBeDealt = 5f;
+        meleeProperties.hitstunInSeconds = 1f;
+        return meleeProperties;
+    }
+
     [System.Serializable]
-    public struct MeleeProperties
+    public class MeleeProperties
     {
         [Tooltip("This is only used visually for players to read or for developers to organize what the name of a move is")]
-        public string attackName;
+        public string attackName = "Attack_00";
         [Tooltip("This is used to identify the value")]
-        public int attackIDValue;
+        public int attackIDValue = 0;
         [Tooltip("The amount of damage we will apply to the enemy that we hit")]
-        public float damageToBeDealt;
-
-        public float hitstunInSeconds;
+        public float damageToBeDealt = 5;
+        [Tooltip("The amount of time in seconds that a character can not carry out any other action")]
+        public float hitstunInSeconds = 1;
         
     }
     #endregion structs
