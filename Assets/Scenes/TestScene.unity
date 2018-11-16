@@ -172,6 +172,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 16103483}
+--- !u!114 &38222860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
+  meleeAttackName: 2
+  meleeAttackDamage: 5
+  hitStunInSeconds: 1
 --- !u!1001 &72426195
 Prefab:
   m_ObjectHideFlags: 0
@@ -344,11 +358,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 536378420}
+--- !u!114 &635832567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
+  meleeAttackName: 1
+  meleeAttackDamage: 5
+  hitStunInSeconds: 1
 --- !u!4 &823680826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 420828557}
+--- !u!114 &910651638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
+  meleeAttackName: 2
+  meleeAttackDamage: 5
+  hitStunInSeconds: 1
 --- !u!1001 &1057669346
 Prefab:
   m_ObjectHideFlags: 0
@@ -449,6 +491,20 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d2b58caa2355443b721e416df10425, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1167410422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
+  meleeAttackName: 0
+  meleeAttackDamage: 5
+  hitStunInSeconds: 1
 --- !u!1001 &1188526597
 Prefab:
   m_ObjectHideFlags: 0
@@ -520,6 +576,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4584264396215106, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -581,9 +642,68 @@ Prefab:
       propertyPath: offsetFromVelocity.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: currentlySelectedMeleeAttack.meleeAttackName
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[1].meleeAttackName
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[2].meleeAttackName
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[3].meleeAttackName
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1167410422}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 635832567}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[2]
+      value: 
+      objectReference: {fileID: 38222860}
+    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+        type: 2}
+      propertyPath: allAvailableMeleeAttacks.Array.data[3]
+      value: 
+      objectReference: {fileID: 910651638}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1555824988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1394378532997922, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1555824987}
+--- !u!114 &1555824989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555824988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b211adc49118a704080c22362a10db17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitboxLayer: 0
+  allAssociatedHitboxes: []
+  allAssociatedHurtboxes: []
 --- !u!1 &1931237902
 GameObject:
   m_ObjectHideFlags: 0

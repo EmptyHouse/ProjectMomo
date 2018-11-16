@@ -8,14 +8,7 @@ using UnityEngine;
 /// located in this script
 /// </summary>
 public class CombatMechanics : MonoBehaviour {
-    #region enums
-    public enum MeleeAttackName
-    {
-        Attack_1,
-        Attack_2,
-        Attack_3,
-    }
-    #endregion enums
+    
 
     #region const variables
     private const string PROJECTILE_ANIMATION_TRIGGER = "ProjectileTrigger";
@@ -38,13 +31,6 @@ public class CombatMechanics : MonoBehaviour {
     /// This dictionary holds the remaining time left for a buffered input to be active as it 'value' and uses the name of teh animation trigger as its 'key'
     /// </summary>
     private Dictionary<string, float> bufferInputTimer = new Dictionary<string, float>();
-
-    #region melee variables
-    public MeleeAttack[] allAvailableMeleeAttacks = new MeleeAttack[0];
-    private MeleeAttack currentlySelectedMeleeAttack;
-    private Dictionary<MeleeAttackName, MeleeAttack> meleeAttackDitionary = new Dictionary<MeleeAttackName, MeleeAttack>();
-    #endregion melee variables
-
     #endregion main variables
 
     #region monobehaviour methods
@@ -55,20 +41,6 @@ public class CombatMechanics : MonoBehaviour {
         bufferInputTimer.Add(MELEE_ANIMATION_TRIGGER, 0);
         associatedCharacterStats = GetComponent<CharacterStats>();
         associatedCharacterStats.combatMechanics = this;
-    }
-
-    private void OnValidate()
-    {
-        for (int i = 0; i < allAvailableMeleeAttacks.Length; i++)
-        {
-            if (allAvailableMeleeAttacks[i] == null)
-            {
-                allAvailableMeleeAttacks[i] = ScriptableObject.CreateInstance<MeleeAttack>();
-            }
-            allAvailableMeleeAttacks[i].meleeAttackName = (MeleeAttackName)i;
-            
-
-        }
     }
     #endregion monobehaviour methods
 
@@ -124,15 +96,4 @@ public class CombatMechanics : MonoBehaviour {
         }
         anim.ResetTrigger(nameOfAttackToBuffer);
     }
-
-    #region structs
-    [System.Serializable]
-    public class MeleeAttack : ScriptableObject
-    {
-        public MeleeAttackName meleeAttackName;
-        public float meleeAttackDamage = 5;
-        [Tooltip("The time in seconds that it will take ")]
-        public float hitStunInSeconds = 1;
-    }
-    #endregion structs
 }

@@ -12,7 +12,7 @@ public abstract class Hitbox : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    public HitboxManager associateMeleeMechanics;
+    public MeleeMechanics associateMeleeMechanics;
     public delegate void HitboxCollisionEnteredEvent(CharacterStats stats, Vector3 pointOfImpact);
     public event HitboxCollisionEnteredEvent onHitboxCollisionEnteredEvent;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Generic Melee mechanics
 /// </summary>
-public class HitboxManager : MonoBehaviour {
+public class MeleeMechanics : MonoBehaviour {
     #region enums
     public enum HitboxLayer
     {
@@ -22,12 +22,13 @@ public class HitboxManager : MonoBehaviour {
     public List<Hitbox> allAssociatedHitboxes = new List<Hitbox>();
     [HideInInspector]
     public List<Hurtbox> allAssociatedHurtboxes = new List<Hurtbox>();
+
     public CharacterStats associatedCharacterStats { get; set; }
     /// <summary>
     /// A collection of all the hitbox managers that have been intereacted with. This is to ensure that we
     /// do not hit an object multiple times from just one attack by interacting with multiple hurtboxes
     /// </summary>
-    private List<HitboxManager> hitboxManagerCollection = new List<HitboxManager>();
+    private List<MeleeMechanics> hitboxManagerCollection = new List<MeleeMechanics>();
 
     #region monobehaviour methods
     private void Awake()
@@ -108,7 +109,7 @@ public class HitboxManager : MonoBehaviour {
     /// we do not hit a target multiple time with the same attack
     /// </summary>
     /// <param name="hitboxManager"></param>
-    public void AddHitboxManagerToCollection(HitboxManager hitboxManager)
+    public void AddHitboxManagerToCollection(MeleeMechanics hitboxManager)
     {
         if (!hitboxManager)
         {
@@ -121,15 +122,19 @@ public class HitboxManager : MonoBehaviour {
         hitboxManagerCollection.Add(hitboxManager);
     }
 
-    public void RemoveHitboxManagerFromCollection(HitboxManager hitboxManagerToRemove)
+    public void RemoveHitboxManagerFromCollection(MeleeMechanics hitboxManagerToRemove)
     {
         if (!hitboxManagerToRemove)
         {
             Debug.LogWarning("The hitbox manager that you are trying to remove is null or inactive. This should not be the case. Please double check what may have happened.");
         }
+        if (hitboxManagerCollection.Contains(hitboxManagerToRemove))
+        {
+            hitboxManagerCollection.Remove(hitboxManagerToRemove);
+        }
     }
 
-    public bool HitboxManagerCollectionContainsHitboxManager(HitboxManager managerToCheck)
+    public bool HitboxManagerCollectionContainsHitboxManager(MeleeMechanics managerToCheck)
     {
         if (!managerToCheck)
         {
@@ -138,4 +143,43 @@ public class HitboxManager : MonoBehaviour {
         return hitboxManagerCollection.Contains(managerToCheck);
     }
     #endregion hitbox manager collection methods
+
+    #region melee mechanic events
+    /// <summary>
+    /// In the event that our hitbox interacts with an enemy hurtbox this method should be called in order ensure that we do properly
+    /// hit our enemy the desiired amount of times and apply the appropriate damage
+    /// </summary>
+    /// <param name="myHitbox"></param>
+    /// <param name="hurtbox"></param>
+    public void OnHitboxOnEnemyHurtbox(Hitbox myHitbox, Hurtbox hurtbox)
+    {
+
+    }
+    #endregion melee mechanic events
+
+    #region structs
+    [System.Serializable]
+    public struct MeleeProperties
+    {
+        [Tooltip("This is only used visually for players to read or for developers to organize what the name of a move is")]
+        public string attackName;
+        [Tooltip("This is used to identify the value")]
+        public int attackIDValue;
+        [Tooltip("The amount of damage we will apply to the enemy that we hit")]
+        public float damageToBeDealt;
+
+        public float hitstunInSeconds;
+        
+    }
+    #endregion structs
+    /// <summary>
+    /// Sometimes if a hit is really impactful we may want to stop time for a bit to give the player a sense of power behind
+    /// a hit
+    /// </summary>
+    /// <param name="timeInSecondsToStop"></param>
+    /// <returns></returns>
+    protected virtual IEnumerator StopTimeForHitImpact(float timeInSecondsToStop)
+    {
+        yield break;
+    }
 }

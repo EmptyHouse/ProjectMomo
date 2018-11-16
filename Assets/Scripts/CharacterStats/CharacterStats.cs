@@ -14,7 +14,7 @@ public class CharacterStats : MonoBehaviour {
 
     public MovementMechanics movementMechanics { get; set; }
     public CombatMechanics combatMechanics { get; set; }
-    public HitboxManager associatedHitboxManager { get; set; }
+    public MeleeMechanics associatedHitboxManager { get; set; }
     public CustomPhysics2D customPhysics { get; set; }
 
 
@@ -23,7 +23,7 @@ public class CharacterStats : MonoBehaviour {
     {
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();
-        associatedHitboxManager = GetComponent<HitboxManager>();
+        associatedHitboxManager = GetComponent<MeleeMechanics>();
         if (associatedHitboxManager)
         {
             associatedHitboxManager.associatedCharacterStats = this;

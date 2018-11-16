@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hurtbox : MonoBehaviour {
     [System.NonSerialized]
-    public HitboxManager associatedMeleeMechanics;
+    public MeleeMechanics associatedMeleeMechanics;
     #region monobehaviour methods
     private void Awake()
     {
