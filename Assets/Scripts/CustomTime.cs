@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomTime {
+public class CustomTime : MonoBehaviour{
     #region enums
     public enum TimeLayer
     {
@@ -14,9 +14,31 @@ public class CustomTime {
     }
     #endregion enums
 
+    #region static references
+    private static CustomTime instance;
+    public static CustomTime Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = GameObject.FindObjectOfType<CustomTime>();
+            }
+            return instance;
+        }
+    }
+    #endregion static references
+
     #region main variables
     private static Dictionary<TimeLayer, float> timeScaleDictionary = new Dictionary<TimeLayer, float>();
     #endregion main variables
+
+    #region monobehaviour methods
+    private void Awake()
+    {
+        
+    }
+    #endregion monobehaviour methods
 
     static CustomTime()
     {
@@ -40,7 +62,7 @@ public class CustomTime {
             case TimeLayer.DeltaTime:
                 return Time.deltaTime;
             default:
-                return Time.unscaledDeltaTime * timeScaleDictionary[timeCategory];
+                return Time.deltaTime * timeScaleDictionary[timeCategory];
 
         }
     }
@@ -63,6 +85,28 @@ public class CustomTime {
                 timeScaleDictionary[timeCategory] = scaledTime;
                 break;
         }
+    }
+
+    public static float GetDeltaTimeScale(TimeLayer timeLayer)
+    {
+        switch (timeLayer)
+        {
+            case TimeLayer.DeltaTime:
+                return Time.timeScale;
+            case TimeLayer.UnscaledDeltaTime:
+                return 1;
+            default:
+                return Time.timeScale * timeScaleDictionary[timeLayer];
+
+        }
+    }
+
+    /// <summary>
+    /// Sets the scale of the real delta time. Real delta time referring to Unity's delta time
+    /// </summary>
+    public static void SetRealDeltaTimeScale(float deltaTimeScale)
+    {
+        Time.timeScale = deltaTimeScale;
     }
 
     private IEnumerator ScaleDeltaTimeToGoalTime()
