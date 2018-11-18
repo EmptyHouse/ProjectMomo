@@ -22,9 +22,15 @@ public class MeleeMechanics : MonoBehaviour {
     /// </summary>
     [HideInInspector]
     public List<Hitbox> allAssociatedHitboxes = new List<Hitbox>();
+    /// <summary>
+    /// A list of all the hurtboxes that are connected to this object
+    /// </summary>
     [HideInInspector]
     public List<Hurtbox> allAssociatedHurtboxes = new List<Hurtbox>();
-
+    /// <summary>
+    /// This is a list of all the character stats that have been hit by our hitboxes. This is to ensure
+    /// we don't hit an object multiple times unless it is intentional
+    /// </summary>
     public CharacterStats associatedCharacterStats { get; set; }
     /// <summary>
     /// A collection of all the hitbox managers that have been intereacted with. This is to ensure that we
@@ -39,9 +45,12 @@ public class MeleeMechanics : MonoBehaviour {
         {
             if (meleePropertyList[i] == null)
             {
-                meleePropertyList[i] = CreateNewMeleeProperties();
+                meleePropertyList[i] = new MeleeProperties();
             }
-
+            if (!meleePropertyList[i].propertyIsInitialized)
+            {
+                InitializeMeleeProperties(meleePropertyList[i]);
+            }
             meleePropertyList[i].attackIDValue = i;
         }
     }
@@ -168,14 +177,14 @@ public class MeleeMechanics : MonoBehaviour {
     #endregion melee mechanic events
 
     #region structs
-    public MeleeProperties CreateNewMeleeProperties()
+    public void InitializeMeleeProperties(MeleeProperties meleePropertiesToInitialize)
     {
-        MeleeProperties meleeProperties = new MeleeProperties();
-        meleeProperties.attackName = "Attack_00";
-        meleeProperties.attackIDValue = 0;
-        meleeProperties.damageToBeDealt = 5f;
-        meleeProperties.hitstunInSeconds = 1f;
-        return meleeProperties;
+        meleePropertiesToInitialize.propertyIsInitialized = true;
+        meleePropertiesToInitialize.attackName = "Attack_00";
+        meleePropertiesToInitialize.attackIDValue = 0;
+        meleePropertiesToInitialize.damageToBeDealt = 5;
+        meleePropertiesToInitialize.hitStunInSeconds = 1;
+        
     }
 
     [System.Serializable]
@@ -188,7 +197,9 @@ public class MeleeMechanics : MonoBehaviour {
         [Tooltip("The amount of damage we will apply to the enemy that we hit")]
         public float damageToBeDealt = 5;
         [Tooltip("The amount of time in seconds that a character can not carry out any other action")]
-        public float hitstunInSeconds = 1;
+        public float hitStunInSeconds = 1;
+        [HideInInspector]
+        public bool propertyIsInitialized = false;
         
     }
     #endregion structs

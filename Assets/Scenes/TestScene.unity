@@ -183,9 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
-  meleeAttackName: 2
-  meleeAttackDamage: 5
-  hitStunInSeconds: 1
 --- !u!1001 &72426195
 Prefab:
   m_ObjectHideFlags: 0
@@ -369,9 +366,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
-  meleeAttackName: 1
-  meleeAttackDamage: 5
-  hitStunInSeconds: 1
 --- !u!4 &823680826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
@@ -388,9 +382,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
-  meleeAttackName: 2
-  meleeAttackDamage: 5
-  hitStunInSeconds: 1
 --- !u!1001 &1057669346
 Prefab:
   m_ObjectHideFlags: 0
@@ -502,9 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
-  meleeAttackName: 0
-  meleeAttackDamage: 5
-  hitStunInSeconds: 1
 --- !u!1001 &1188526597
 Prefab:
   m_ObjectHideFlags: 0
@@ -702,6 +690,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxLayer: 0
+  meleePropertyList:
+  - attackName: Attack_00
+    attackIDValue: 0
+    damageToBeDealt: 5
+    hitStunInSeconds: 1
+    propertyIsInitialized: 1
+  - attackName: Attack_01
+    attackIDValue: 1
+    damageToBeDealt: 5
+    hitStunInSeconds: 1
+    propertyIsInitialized: 1
+  - attackName: Attack_02
+    attackIDValue: 2
+    damageToBeDealt: 5
+    hitStunInSeconds: 1
+    propertyIsInitialized: 1
   allAssociatedHitboxes: []
   allAssociatedHurtboxes: []
 --- !u!1 &1931237902
