@@ -172,17 +172,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 16103483}
---- !u!114 &38222860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
 --- !u!1001 &72426195
 Prefab:
   m_ObjectHideFlags: 0
@@ -242,6 +231,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 1057669346}
+--- !u!1 &232787994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232787995}
+  m_Layer: 0
+  m_Name: Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232787995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232787994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1684771529}
+  - {fileID: 1226978714}
+  - {fileID: 673852799}
+  m_Father: {fileID: 1960353030}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &420828557
 Prefab:
   m_ObjectHideFlags: 0
@@ -355,33 +375,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 536378420}
---- !u!114 &635832567
+--- !u!1 &673852798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 673852799}
+  - component: {fileID: 673852801}
+  - component: {fileID: 673852800}
+  m_Layer: 0
+  m_Name: Hitbox3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &673852799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673852798}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 232787995}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &673852800
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673852798}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &673852801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 673852798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 51d4373bb5deb904ab2a87c24eef3afc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
+  m_EditorClassIdentifier: 
 --- !u!4 &823680826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 420828557}
---- !u!114 &910651638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
 --- !u!1001 &1057669346
 Prefab:
   m_ObjectHideFlags: 0
@@ -482,17 +546,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d2b58caa2355443b721e416df10425, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &1167410422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatMechanics/MeleeAttack
 --- !u!1001 &1188526597
 Prefab:
   m_ObjectHideFlags: 0
@@ -552,6 +605,72 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 1188526597}
+--- !u!1 &1226978713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226978714}
+  - component: {fileID: 1226978716}
+  - component: {fileID: 1226978715}
+  m_Layer: 0
+  m_Name: Hitbox2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226978714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226978713}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 232787995}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1226978715
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226978713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1226978716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226978713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d4373bb5deb904ab2a87c24eef3afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1496946331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
@@ -564,11 +683,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4584264396215106, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -601,113 +715,116 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114834192882531270, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: maximumAirSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114834192882531270, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: airAcceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114834192882531270, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: isFacingRight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172056850627624, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114091007850828632, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: offsetFromVelocity.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114091007850828632, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: offsetFromVelocity.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: currentlySelectedMeleeAttack.meleeAttackName
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[1].meleeAttackName
+    - target: {fileID: 4795648816480040, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[2].meleeAttackName
+    - target: {fileID: 4172056850627624, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[3].meleeAttackName
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[0]
-      value: 
-      objectReference: {fileID: 1167410422}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[1]
-      value: 
-      objectReference: {fileID: 635832567}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[2]
-      value: 
-      objectReference: {fileID: 38222860}
-    - target: {fileID: 114680422678637112, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
-        type: 2}
-      propertyPath: allAvailableMeleeAttacks.Array.data[3]
-      value: 
-      objectReference: {fileID: 910651638}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1555824988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1394378532997922, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
+--- !u!4 &1555824998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4584264396215106, guid: e1c0840bc9a19cf48907c5ee9faf0eb5,
     type: 2}
   m_PrefabInternal: {fileID: 1555824987}
---- !u!114 &1555824989
+--- !u!1 &1684771528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684771529}
+  - component: {fileID: 1684771531}
+  - component: {fileID: 1684771530}
+  m_Layer: 0
+  m_Name: Hitbox1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1684771529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1684771528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 232787995}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1684771530
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1684771528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1684771531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1555824988}
+  m_GameObject: {fileID: 1684771528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b211adc49118a704080c22362a10db17, type: 3}
+  m_Script: {fileID: 11500000, guid: 51d4373bb5deb904ab2a87c24eef3afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxLayer: 0
-  meleePropertyList:
-  - attackName: Attack_00
-    attackIDValue: 0
-    damageToBeDealt: 5
-    hitStunInSeconds: 1
-    propertyIsInitialized: 1
-  - attackName: Attack_01
-    attackIDValue: 1
-    damageToBeDealt: 5
-    hitStunInSeconds: 1
-    propertyIsInitialized: 1
-  - attackName: Attack_02
-    attackIDValue: 2
-    damageToBeDealt: 5
-    hitStunInSeconds: 1
-    propertyIsInitialized: 1
-  allAssociatedHitboxes: []
-  allAssociatedHurtboxes: []
+--- !u!1 &1925407779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925407780}
+  m_Layer: 0
+  m_Name: Hurtboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1925407780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1925407779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1960353030}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1931237902
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,3 +865,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4641103999955718, guid: 12d2b58caa2355443b721e416df10425,
     type: 2}
   m_PrefabInternal: {fileID: 72426195}
+--- !u!1 &1960353029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960353030}
+  m_Layer: 0
+  m_Name: HitboxContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1960353030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1960353029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 232787995}
+  - {fileID: 1925407780}
+  m_Father: {fileID: 1555824998}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

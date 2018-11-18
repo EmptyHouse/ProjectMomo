@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomTime : MonoBehaviour {
+public class CustomTime {
     #region enums
     public enum TimeLayer
     {
@@ -17,6 +17,14 @@ public class CustomTime : MonoBehaviour {
     #region main variables
     private static Dictionary<TimeLayer, float> timeScaleDictionary = new Dictionary<TimeLayer, float>();
     #endregion main variables
+
+    static CustomTime()
+    {
+        foreach (TimeLayer timeLayer in System.Enum.GetValues(typeof(TimeLayer)))
+        {
+            timeScaleDictionary.Add(timeLayer, 1);
+        }
+    }
 
     /// <summary>
     /// Gets the scaled time based on the category that was passed in
@@ -55,5 +63,10 @@ public class CustomTime : MonoBehaviour {
                 timeScaleDictionary[timeCategory] = scaledTime;
                 break;
         }
+    }
+
+    private IEnumerator ScaleDeltaTimeToGoalTime()
+    {
+        yield break;
     }
 }

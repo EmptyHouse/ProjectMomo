@@ -23,7 +23,7 @@ public class CustomPhysics2D : MonoBehaviour {
     private Vector2 gravityVector = Vector2.down;
 
     public List<CustomCollider2D> allCustomColliders { get; private set; }
-
+    public CharacterStats associatedCharacterStats { get; set; }
     
 
     /// <summary>

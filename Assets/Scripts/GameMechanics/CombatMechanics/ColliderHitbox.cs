@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class ColliderHitbox : Hitbox {
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)

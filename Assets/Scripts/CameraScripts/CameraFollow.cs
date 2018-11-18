@@ -69,7 +69,7 @@ public class CameraFollow : MonoBehaviour {
         float timeThatHasPassed = 0;
         while (timeThatHasPassed < cameraShakeDuration)
         {
-            timeThatHasPassed += Time.deltaTime;
+            timeThatHasPassed += CustomTime.GetScaledTime(CustomTime.TimeLayer.DeltaTime);
             yield return null;
         }
     }

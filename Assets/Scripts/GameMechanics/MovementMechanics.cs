@@ -180,7 +180,7 @@ public class MovementMechanics : MonoBehaviour {
             goalSpeed = walkingSpeed * Mathf.Sign(horizontalInput);
         }
         Vector2 newVelocityVector = new Vector2(rigid.velocity.x, rigid.velocity.y);
-        newVelocityVector.x = Mathf.MoveTowards(rigid.velocity.x, goalSpeed, Time.deltaTime * groundAcceleration);
+        newVelocityVector.x = Mathf.MoveTowards(rigid.velocity.x, goalSpeed, CustomTime.GetScaledTime(rigid.associatedCharacterStats.characterTimeLayer) * groundAcceleration);
         rigid.velocity = newVelocityVector;
     }
 
@@ -196,7 +196,8 @@ public class MovementMechanics : MonoBehaviour {
         float goalSpeed = Mathf.Sign(horizontalInput) * maximumAirSpeed;
 
         float updatedXVelocity = rigid.velocity.x;
-        updatedXVelocity = Mathf.MoveTowards(updatedXVelocity, goalSpeed, Time.deltaTime * airAcceleration);
+        updatedXVelocity = Mathf.MoveTowards(updatedXVelocity, goalSpeed, 
+            CustomTime.GetScaledTime(rigid.associatedCharacterStats.characterTimeLayer) * airAcceleration);
         Vector2 updatedVectorVelocity = new Vector2(updatedXVelocity, rigid.velocity.y);
         rigid.velocity = updatedVectorVelocity;
     }

@@ -29,6 +29,10 @@ public class CharacterStats : MonoBehaviour {
             associatedHitboxManager.associatedCharacterStats = this;
         }
         customPhysics = GetComponent<CustomPhysics2D>();
+        if (customPhysics != null)
+        {
+            customPhysics.associatedCharacterStats = this;
+        }
 
         currentHealth = maxHealth;
     }

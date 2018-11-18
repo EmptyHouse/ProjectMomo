@@ -23,6 +23,7 @@ public class CustomCollider2D : MonoBehaviour {
 
     private CustomPhysics2D rigid;
     private ColliderBounds currentColliderBounds;
+    
 
 
     #region monobehaviour methods
@@ -116,7 +117,8 @@ public class CustomCollider2D : MonoBehaviour {
         }
 
         List<TileCollider> tileCollidersThatWeHit = GetAllTilesHitFromRayCasts(
-            currentColliderBounds.topLeft + Vector2.right * horizontalBuffer, currentColliderBounds.topRight + Vector2.left * horizontalBuffer, Vector2.up, Mathf.Abs(rigid.velocity.y * Time.deltaTime), verticalRayCount);
+            currentColliderBounds.topLeft + Vector2.right * horizontalBuffer, currentColliderBounds.topRight + Vector2.left * horizontalBuffer, Vector2.up, 
+            Mathf.Abs(rigid.velocity.y * CustomTime.GetScaledTime(rigid.associatedCharacterStats.characterTimeLayer)), verticalRayCount);
         if (tileCollidersThatWeHit.Count == 0)
         {
             return false;
@@ -143,7 +145,8 @@ public class CustomCollider2D : MonoBehaviour {
         }
 
         List<TileCollider> tileCollidersThatWeHit = GetAllTilesHitFromRayCasts(
-            currentColliderBounds.bottomLeft + Vector2.right * horizontalBuffer, currentColliderBounds.bottomRight + Vector2.left * horizontalBuffer, Vector2.down, Mathf.Abs(rigid.velocity.y * Time.deltaTime), verticalRayCount);
+            currentColliderBounds.bottomLeft + Vector2.right * horizontalBuffer, currentColliderBounds.bottomRight + Vector2.left * horizontalBuffer, Vector2.down, 
+            Mathf.Abs(rigid.velocity.y * CustomTime.GetScaledTime(rigid.associatedCharacterStats.characterTimeLayer)), verticalRayCount);
         if (tileCollidersThatWeHit.Count == 0)
         {
             return false;
@@ -172,7 +175,8 @@ public class CustomCollider2D : MonoBehaviour {
         }
 
         List<TileCollider> tileCollidersThatWeHit = GetAllTilesHitFromRayCasts(
-            currentColliderBounds.topRight + Vector2.down * verticalBuffer, currentColliderBounds.bottomRight + Vector2.up * verticalBuffer, Vector2.right, Mathf.Abs(rigid.velocity.x * Time.deltaTime), horizontalRayCount);
+            currentColliderBounds.topRight + Vector2.down * verticalBuffer, currentColliderBounds.bottomRight + Vector2.up * verticalBuffer, Vector2.right, 
+            Mathf.Abs(rigid.velocity.x * CustomTime.GetScaledTime(rigid.associatedCharacterStats.characterTimeLayer)), horizontalRayCount);
         if (tileCollidersThatWeHit.Count == 0)
         {
             return false;
@@ -201,7 +205,8 @@ public class CustomCollider2D : MonoBehaviour {
         }
 
         List<TileCollider> tileCollidersThatWeHit = GetAllTilesHitFromRayCasts(
-            currentColliderBounds.topLeft + Vector2.down * verticalBuffer, currentColliderBounds.bottomLeft + Vector2.up * verticalBuffer, Vector2.left, Mathf.Abs(rigid.velocity.x * Time.deltaTime), horizontalRayCount);
+            currentColliderBounds.topLeft + Vector2.down * verticalBuffer, currentColliderBounds.bottomLeft + Vector2.up * verticalBuffer, 
+            Vector2.left, Mathf.Abs(rigid.velocity.x * CustomTime.GetScaledTime(rigid.associatedCharacterStats.characterTimeLayer)), horizontalRayCount);
         if (tileCollidersThatWeHit.Count == 0)
         {
             return false;
