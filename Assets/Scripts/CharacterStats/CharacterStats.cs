@@ -6,8 +6,6 @@ using UnityEngine;
 /// A script that hold references to important behviaours and stats that an object may need to know to interact with a character
 /// </summary>
 public class CharacterStats : MonoBehaviour {
-    [Tooltip("The characters associated time layer. If there is a mechanic dealing with time, this will be applied to all components in our character stats")]
-    public CustomTime.TimeLayer characterTimeLayer;
     [Tooltip("The maximum health that this character will have. Upon starting up, this character will begin with this health")]
     public float maxHealth = 100;
     private float currentHealth;
@@ -16,6 +14,8 @@ public class CharacterStats : MonoBehaviour {
     public CombatMechanics combatMechanics { get; set; }
     public MeleeMechanics associatedHitboxManager { get; set; }
     public CustomPhysics2D customPhysics { get; set; }
+    public TimeManagedObject timeManagedObject { get; set; }
+    public Animator anim;
 
 
     #region monobehaivour methods
@@ -24,6 +24,9 @@ public class CharacterStats : MonoBehaviour {
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();
         associatedHitboxManager = GetComponent<MeleeMechanics>();
+        timeManagedObject = GetComponent<TimeManagedObject>();
+        anim = GetComponent<Animator>();
+
         if (associatedHitboxManager)
         {
             associatedHitboxManager.associatedCharacterStats = this;
@@ -35,6 +38,7 @@ public class CharacterStats : MonoBehaviour {
         }
 
         currentHealth = maxHealth;
+        GameOverseer.Instance.AddTimeMangedObjectToList(timeManagedObject);
     }
     #endregion monobheaviour methods
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(TimeManagedObject))]
 /// <summary>
 /// Typically will only interact with the environment. Interactions with enemies or projectiles or other hitboxes should take place with a
 /// hitbox trigger collider
@@ -24,6 +24,7 @@ public class CustomPhysics2D : MonoBehaviour {
 
     public List<CustomCollider2D> allCustomColliders { get; private set; }
     public CharacterStats associatedCharacterStats { get; set; }
+    public TimeManagedObject timeManagedObject { get; set; }
     
 
     /// <summary>
@@ -51,6 +52,7 @@ public class CustomPhysics2D : MonoBehaviour {
     private void Awake()
     {
         allCustomColliders = new List<CustomCollider2D>();
+        timeManagedObject = GetComponent<TimeManagedObject>();
     }
 
     private void Update()
@@ -91,7 +93,6 @@ public class CustomPhysics2D : MonoBehaviour {
     {
         if (useTerminalVelocity)
         {
-            //Vector2 currentVelocityDown = new Vector2(velocity.x )
             float dotGravity = Vector2.Dot(gravityVector, velocity);
             Vector2 downComponent = dotGravity * gravityVector;
             Vector2 rightComponent = Vector2.Dot(gravityRight, velocity) * gravityRight;
@@ -101,16 +102,18 @@ public class CustomPhysics2D : MonoBehaviour {
                 velocity = rightComponent + gravityDown * terminalVelocity;
             }
         }
-        float gravityValueToApply = gravityScale * GRAVITY_CONSTANT * Time.deltaTime;
+        float gravityValueToApply = gravityScale * GRAVITY_CONSTANT * CustomTime.GetScaledTime(timeManagedObject.timeLayer);
         velocity += gravityValueToApply * gravityVector;
-
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void UpdatePositionFromVelocity()
     {
         Vector3 velocityVector3 = new Vector3(velocity.x, velocity.y, 0);
         
-        this.transform.position += velocityVector3 * Time.deltaTime;
+        this.transform.position += velocityVector3 * CustomTime.GetScaledTime(timeManagedObject.timeLayer);
     }
 
     /// <summary>
@@ -127,7 +130,6 @@ public class CustomPhysics2D : MonoBehaviour {
     /// </summary>
     public void OnPhysicsObjectGrounded()
     {
-        //Debug.Log("On Grounded Event");
         OnGroundedEvent();
     }
 
