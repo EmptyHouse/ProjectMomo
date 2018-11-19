@@ -12,6 +12,9 @@ public class TimeManagedObject : MonoBehaviour {
     public delegate void TimeLayerUpdatedEvent();
     public event TimeLayerUpdatedEvent TimeLayerUpdated;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void OnTimeLayerScaleUpdated()
     {
         TimeLayerUpdated();

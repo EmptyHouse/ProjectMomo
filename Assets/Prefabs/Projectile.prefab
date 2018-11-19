@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4970559963671956}
   - component: {fileID: 114240566803542176}
   - component: {fileID: 114266897975922052}
+  - component: {fileID: 114592917310665274}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -54,7 +55,7 @@ GameObject:
   - component: {fileID: 4143917493875782}
   - component: {fileID: 212739523388833368}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: ProjectileSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +130,18 @@ MonoBehaviour:
   gravityVector: {x: 0, y: -1}
   gravityScale: 1
   terminalVelocity: 10
+--- !u!114 &114592917310665274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571823008172880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97ab0f3235f10e498d47584ee97d0d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLayer: 2
 --- !u!114 &114621909375034336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +156,7 @@ MonoBehaviour:
   rayCount: 3
   rayDistance: 0
   raySpread: 0.01
+  associatedCharacterThatFiredThisProjectile: {fileID: 0}
 --- !u!212 &212739523388833368
 SpriteRenderer:
   m_ObjectHideFlags: 1

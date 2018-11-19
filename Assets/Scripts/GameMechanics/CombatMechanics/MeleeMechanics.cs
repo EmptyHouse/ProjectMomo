@@ -6,15 +6,8 @@ using UnityEngine;
 /// Generic Melee mechanics
 /// </summary>
 public class MeleeMechanics : MonoBehaviour {
-    #region enums
-    public enum HitboxLayer
-    {
-        Player,
-        Enemy,
-    }
-    #endregion enums
-    [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
-    public HitboxLayer hitboxLayer;
+    
+    
     [Tooltip("A list of melee properties that will be referenced when our hitbox interacts with an enemy hurtbox")]
     public MeleeProperties[] meleePropertyList = new MeleeProperties[0];
     /// <summary>

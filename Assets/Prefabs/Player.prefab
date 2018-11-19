@@ -54,9 +54,9 @@ GameObject:
   - component: {fileID: 114834192882531270}
   - component: {fileID: 114600435543586222}
   - component: {fileID: 114034676722732172}
+  - component: {fileID: 114571401799895562}
   - component: {fileID: 114680422678637112}
   - component: {fileID: 114271925679472084}
-  - component: {fileID: 114183348414224384}
   - component: {fileID: 95853242224395598}
   - component: {fileID: 61538100372829176}
   m_Layer: 0
@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4172056850627624
 Transform:
   m_ObjectHideFlags: 1
@@ -515,18 +515,6 @@ MonoBehaviour:
   offsetFromVelocity: {x: 0, y: 0}
   dampTime: 0.15
   refVel: {x: 0, y: 0, z: 0}
---- !u!114 &114183348414224384
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1394378532997922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97ab0f3235f10e498d47584ee97d0d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLayer: 0
 --- !u!114 &114271925679472084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,7 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b211adc49118a704080c22362a10db17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxLayer: 0
   meleePropertyList:
   - attackName: Attack_00
     attackIDValue: 0
@@ -568,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99bac75130fd674d86def4279185aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitboxLayer: 0
   maxHealth: 100
   anim: {fileID: 0}
 --- !u!114 &114440606262173008
@@ -584,9 +572,22 @@ MonoBehaviour:
   useGravity: 1
   useTerminalVelocity: 1
   gravityVector: {x: 0, y: -1}
-  timeManagedObject: {fileID: 0}
   gravityScale: 0.892857
   terminalVelocity: 10
+--- !u!114 &114571401799895562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1394378532997922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c760a1f12320314fb7131bb599d3c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLayer: 4
+  scaleForPlayers: 0.9
+  scaledTimeForEverythingElse: 0.1
 --- !u!114 &114600435543586222
 MonoBehaviour:
   m_ObjectHideFlags: 1

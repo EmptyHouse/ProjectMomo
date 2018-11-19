@@ -92,7 +92,7 @@ public class CombatMechanics : MonoBehaviour {
         while (bufferInputTimer[nameOfAttackToBuffer] > 0)
         {
             yield return null;
-            bufferInputTimer[nameOfAttackToBuffer] -= CustomTime.GetScaledTime(CustomTime.TimeLayer.UnscaledDeltaTime);
+            bufferInputTimer[nameOfAttackToBuffer] -= CustomTime.GetTimeLayerAdjustedDeltaTime(CustomTime.TimeLayer.UnscaledDeltaTime);
         }
         anim.ResetTrigger(nameOfAttackToBuffer);
     }

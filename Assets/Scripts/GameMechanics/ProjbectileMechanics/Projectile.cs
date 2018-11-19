@@ -63,9 +63,21 @@ public class Projectile : MonoBehaviour {
 
     private void OnProjectileCollision(CharacterStats characterThatWasHit, Vector3 pointOfImpact)
     {
+
         if (!characterThatWasHit)
         {
             
+        }
+        else
+        {
+            if (characterThatWasHit.hitboxLayer == associatedCharacterStats.hitboxLayer)
+            {
+                return;
+            }
+            else
+            {
+                this.transform.SetParent(characterThatWasHit.transform);
+            }
         }
         this.transform.position = pointOfImpact - (rayHitbox.transform.position - this.transform.position);
         rigid.enabled = false;
@@ -74,6 +86,10 @@ public class Projectile : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FadeOutAndDestroy()
     {
         float timeToFadeOut = 1;

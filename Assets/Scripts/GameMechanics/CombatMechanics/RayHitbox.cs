@@ -86,6 +86,7 @@ public class RayHitbox : Hitbox {
             {
                 OnEnteredHurtbox(hurtBox);
             }
+            //print(hit.collider.name);
             HitboxEnteredEvent(null, hit.point);
         }
     }

@@ -53,7 +53,7 @@ public class CustomTime : MonoBehaviour{
     /// </summary>
     /// <param name="timeCategory"></param>
     /// <returns></returns>
-    public static float GetScaledTime(TimeLayer timeCategory)
+    public static float GetTimeLayerAdjustedDeltaTime(TimeLayer timeCategory)
     {
         switch (timeCategory)
         {
@@ -85,9 +85,14 @@ public class CustomTime : MonoBehaviour{
                 timeScaleDictionary[timeCategory] = scaledTime;
                 break;
         }
+
+        foreach (TimeManagedObject timeObject in GameOverseer.Instance.GetTimeMangedList(timeCategory))
+        {
+            timeObject.OnTimeLayerScaleUpdated();
+        }
     }
 
-    public static float GetDeltaTimeScale(TimeLayer timeLayer)
+    public static float GetTimeLayerScale(TimeLayer timeLayer)
     {
         switch (timeLayer)
         {
@@ -98,6 +103,17 @@ public class CustomTime : MonoBehaviour{
             default:
                 return Time.timeScale * timeScaleDictionary[timeLayer];
 
+        }
+    }
+
+    /// <summary>
+    /// Resets all time scales to the default timescale value of 1
+    /// </summary>
+    public static void ResetAllScaledTime()
+    {
+        foreach (TimeLayer tLayer in timeScaleDictionary.Keys)
+        {
+            timeScaleDictionary[tLayer] = 1;
         }
     }
 
