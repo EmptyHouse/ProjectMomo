@@ -72,7 +72,7 @@ public class RayHitbox : Hitbox {
         Vector3 forwardDirection = transform.right;
         Ray2D ray = new Ray2D(new Vector2(position.x, position.y), rigid.velocity.normalized);
 
-        hit = Physics2D.Raycast(ray.origin, ray.direction, rigid.velocity.magnitude * Time.deltaTime);
+        hit = Physics2D.Raycast(ray.origin, ray.direction, rigid.velocity.magnitude * CustomTime.GetTimeLayerAdjustedDeltaTime(rigid.timeManagedObject.timeLayer));
         if (hit)
         {
             Hitbox hitBox = hit.collider.GetComponent<Hitbox>();

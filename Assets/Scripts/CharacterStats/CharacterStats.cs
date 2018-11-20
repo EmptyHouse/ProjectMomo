@@ -28,7 +28,7 @@ public class CharacterStats : MonoBehaviour {
 
 
     #region monobehaivour methods
-    private void Awake()
+    private void Start()
     {
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();

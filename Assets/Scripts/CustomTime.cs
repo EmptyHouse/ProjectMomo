@@ -79,7 +79,7 @@ public class CustomTime : MonoBehaviour{
         {
             case TimeLayer.UnscaledDeltaTime:
             case TimeLayer.DeltaTime:
-                Debug.LogWarning("You can not change the scaled time of " + timeCategory.ToString());
+                //Debug.LogWarning("You can not change the scaled time of " + timeCategory.ToString());
                 return;
             default:
                 timeScaleDictionary[timeCategory] = scaledTime;
@@ -102,7 +102,6 @@ public class CustomTime : MonoBehaviour{
                 return 1;
             default:
                 return Time.timeScale * timeScaleDictionary[timeLayer];
-
         }
     }
 
@@ -111,9 +110,10 @@ public class CustomTime : MonoBehaviour{
     /// </summary>
     public static void ResetAllScaledTime()
     {
-        foreach (TimeLayer tLayer in timeScaleDictionary.Keys)
+        foreach (TimeLayer tLayer in new List<TimeLayer>(timeScaleDictionary.Keys))
         {
-            timeScaleDictionary[tLayer] = 1;
+
+            SetScaledTime(tLayer, 1);
         }
     }
 
@@ -123,10 +123,5 @@ public class CustomTime : MonoBehaviour{
     public static void SetRealDeltaTimeScale(float deltaTimeScale)
     {
         Time.timeScale = deltaTimeScale;
-    }
-
-    private IEnumerator ScaleDeltaTimeToGoalTime()
-    {
-        yield break;
     }
 }

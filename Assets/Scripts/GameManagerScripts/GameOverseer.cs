@@ -62,6 +62,7 @@ public class GameOverseer : MonoBehaviour {
             return;
         }
         List<TimeManagedObject> timeManagedObjectList = allTimeMangedObjectDictionary[timeObjectToAdd.timeLayer];
+
         if (timeManagedObjectList.Contains(timeObjectToAdd))
         {
             Debug.LogWarning("This object was already added to our list of time management objects");
