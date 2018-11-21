@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1366331713830360
 GameObject:
   m_ObjectHideFlags: 1
@@ -585,9 +585,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c760a1f12320314fb7131bb599d3c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLayer: 4
-  scaleForPlayers: 0.9
-  scaledTimeForEverythingElse: 0.1
+  timeLayer: 0
+  isTimeSlowed: 0
+  scaleForPlayers: 0.7
+  scaledTimeForEverythingElse: 0.01
+  maxTimeControlMeter: 100
+  refreshRate: 10
+  depleteRate: 35
 --- !u!114 &114600435543586222
 MonoBehaviour:
   m_ObjectHideFlags: 1

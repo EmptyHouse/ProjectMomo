@@ -64,8 +64,11 @@ public class TimeManagedPlayer : TimeManagedObject {
             {
                 OnTimeControlToggled();
                 currentTimeControlMeter = 0;
+                InGameUI.Instance.SetTimeMeterText(currentTimeControlMeter);
                 yield break;
             }
+            InGameUI.Instance.SetTimeMeterText(currentTimeControlMeter);
+
             yield return null;
         }
     }
@@ -78,8 +81,12 @@ public class TimeManagedPlayer : TimeManagedObject {
             if (currentTimeControlMeter >= maxTimeControlMeter)
             {
                 currentTimeControlMeter = maxTimeControlMeter;
+                InGameUI.Instance.SetTimeMeterText(currentTimeControlMeter);
+
                 yield break;
             }
+            InGameUI.Instance.SetTimeMeterText(currentTimeControlMeter);
+
             yield return null;
         }
     }
