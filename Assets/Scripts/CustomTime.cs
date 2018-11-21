@@ -27,6 +27,22 @@ public class CustomTime : MonoBehaviour{
             return instance;
         }
     }
+
+    public static float DeltaTime
+    {
+        get
+        {
+            return CustomTime.GetTimeLayerAdjustedDeltaTime(TimeLayer.DeltaTime);
+        }
+    }
+
+    public static float UnscaledDeltaTime
+    {
+        get
+        {
+            return CustomTime.GetTimeLayerAdjustedDeltaTime(TimeLayer.UnscaledDeltaTime);
+        }
+    }
     #endregion static references
 
     #region main variables

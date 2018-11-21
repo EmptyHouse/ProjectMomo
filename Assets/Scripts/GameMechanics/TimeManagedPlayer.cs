@@ -8,7 +8,22 @@ public class TimeManagedPlayer : TimeManagedObject {
 
     public float scaleForPlayers = .9f;
     public float scaledTimeForEverythingElse = .1f;
-    public float timeControlMeter = 100;
+    [Tooltip("The maximum value that our time control can be set to")]
+    public float maxTimeControlMeter = 100;
+
+    [Tooltip("The rate at which our")]
+    public float refreshRate = 10f;
+    [Tooltip("The rate at which our time control meter will deplete. Measured in Units per second")]
+    public float depleteRate = 35f;
+
+    private float currentTimeControlMeter = 0;
+
+    #region monobehaviour methods
+    private void Awake()
+    {
+        currentTimeControlMeter = maxTimeControlMeter;
+    }
+    #endregion monobehaviour methods
 
     /// <summary>
     /// Although this method is found here, the only character that should have control of time is
@@ -17,9 +32,13 @@ public class TimeManagedPlayer : TimeManagedObject {
     /// </summary>
     public virtual void OnTimeControlToggled()
     {
-        if (isTimeSlowed)
+        
+        isTimeSlowed = !isTimeSlowed;
+        if (!isTimeSlowed)
         {
             CustomTime.ResetAllScaledTime();
+            StartCoroutine(RefreshTimeControlMeter());
+
         }
         else
         {
@@ -27,10 +46,48 @@ public class TimeManagedPlayer : TimeManagedObject {
             //CustomTime.SetScaledTime(CustomTime.TimeLayer.Enemy, scaledTimeForEverythingElse);
             //CustomTime.SetScaledTime(CustomTime.TimeLayer.World, scaledTimeForEverythingElse);
             StartCoroutine(MoveTowardSlowerTime());
+            StartCoroutine(DepleteTimeControlMeter());
         }
-        isTimeSlowed = !isTimeSlowed;
+
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DepleteTimeControlMeter()
+    {
+        while (isTimeSlowed && currentTimeControlMeter > 0)
+        {
+            currentTimeControlMeter -= CustomTime.DeltaTime * depleteRate;
+            if (currentTimeControlMeter <= 0)
+            {
+                OnTimeControlToggled();
+                currentTimeControlMeter = 0;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator RefreshTimeControlMeter()
+    {
+        while (!isTimeSlowed && currentTimeControlMeter < maxTimeControlMeter)
+        {
+            currentTimeControlMeter += CustomTime.DeltaTime * refreshRate;
+            if (currentTimeControlMeter >= maxTimeControlMeter)
+            {
+                currentTimeControlMeter = maxTimeControlMeter;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Gradually moves toward the specified rate that we want to slow our time scale to.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MoveTowardSlowerTime()
     {
         float timeToReachDesiredSlowTime = .35f;
@@ -42,7 +99,7 @@ public class TimeManagedPlayer : TimeManagedObject {
         float differnceBetweenScaleForWorld = 1 - scaledTimeForEverythingElse;
         while (timeThatHasPassed < timeToReachDesiredSlowTime)
         {
-            timeThatHasPassed += CustomTime.GetTimeLayerAdjustedDeltaTime(CustomTime.TimeLayer.DeltaTime);
+            timeThatHasPassed += CustomTime.DeltaTime;
             currentScaleForPlayer = 1 - (timeThatHasPassed / timeToReachDesiredSlowTime) * differenceBetweenScaleForPlayer;
             currentScaleForEverythingElse = 1 - (timeThatHasPassed / timeToReachDesiredSlowTime) * differnceBetweenScaleForWorld;
             CustomTime.SetScaledTime(CustomTime.TimeLayer.Player, currentScaleForPlayer);
