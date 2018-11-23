@@ -46,6 +46,8 @@ public class MovementMechanics : MonoBehaviour {
     public int maxAvailableJumps = 1;
     [Tooltip("Indicates whether our character is fast falling or not")]
     private bool isFastFalling = false;
+    [Tooltip("The calculated acceleration that will be applied to the character when they are in the air")]
+    private float jumpingAcceleration = 1f;
     [HideInInspector]
     /// <summary>
     /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character
@@ -122,7 +124,8 @@ public class MovementMechanics : MonoBehaviour {
 
         float gravity = (2 * heightOfJump) / Mathf.Pow(timeToReachJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToReachJumpApex;
-        rigid.gravityScale = gravity / CustomPhysics2D.GRAVITY_CONSTANT;
+        jumpingAcceleration = gravity / CustomPhysics2D.GRAVITY_CONSTANT;
+        rigid.gravityScale = jumpingAcceleration;
 
         if (maxAvailableJumps < 0)
         {
@@ -277,6 +280,7 @@ public class MovementMechanics : MonoBehaviour {
             return false;
         }
         rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
+        SetCharacterFastFalling(false);
         return true;
     }
 
@@ -284,9 +288,17 @@ public class MovementMechanics : MonoBehaviour {
     /// When our character is in the air, out player can control the rate at which they fall by holding down the jump
     /// button. If they release the jumpbutton, we should use the fastfall values
     /// </summary>
-    public void HandleFastFalling(bool isFastFalling)
+    public void SetCharacterFastFalling(bool isFastFalling)
     {
-
+        this.isFastFalling = isFastFalling;
+        if (!isFastFalling)
+        {
+            rigid.gravityScale = jumpingAcceleration;
+        }
+        else
+        {
+            rigid.gravityScale = jumpingAcceleration * fastFallScale;
+        }
     }
     
     /// <summary>
@@ -305,7 +317,7 @@ public class MovementMechanics : MonoBehaviour {
     public void OnAirborneEvent()
     {
         anim.SetBool(IN_AIR_ANIMATION_PARAMETER, true);
-        this.isFastFalling = false;
+        SetCharacterFastFalling(false);
         this.currentJumpsAvailable--;
     }
     #endregion jumping methods

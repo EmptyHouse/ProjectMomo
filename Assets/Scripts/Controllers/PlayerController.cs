@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour {
         {
             characterStats.movementMechanics.Jump();
         }
+        if (Input.GetButtonUp(JUMP_INPUT))
+        {
+            characterStats.movementMechanics.SetCharacterFastFalling(true);
+        }
         if (Input.GetButtonDown(TIME_CONTROL_INPUT))
         {
             characterStats.timeManagedObject.OnTimeControlToggled();
