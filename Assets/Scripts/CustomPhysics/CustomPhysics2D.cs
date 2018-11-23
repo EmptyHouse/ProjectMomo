@@ -88,7 +88,9 @@ public class CustomPhysics2D : MonoBehaviour {
     public event PhysicsObjectAirborneEvent OnAirborneEvent;
     #endregion event methods
 
-
+    /// <summary>
+    /// Updates the current velocity that is caused by gravitational force
+    /// </summary>
     private void UpdateVelocityFromGravity()
     {
         if (useTerminalVelocity)

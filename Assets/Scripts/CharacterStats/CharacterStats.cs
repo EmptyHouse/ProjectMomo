@@ -13,18 +13,23 @@ public class CharacterStats : MonoBehaviour {
         Enemy,
     }
     #endregion enums
+    #region statistics variables
     [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
     public HitboxLayer hitboxLayer;
     [Tooltip("The maximum health that this character will have. Upon starting up, this character will begin with this health")]
     public float maxHealth = 100;
+    /// <summary>
+    /// The player's current Health
+    /// </summary>
     private float currentHealth;
+    #endregion statistics variables
 
     public MovementMechanics movementMechanics { get; set; }
     public CombatMechanics combatMechanics { get; set; }
     public MeleeMechanics associatedHitboxManager { get; set; }
     public CustomPhysics2D customPhysics { get; set; }
     public TimeManagedPlayer timeManagedObject { get; set; }
-    public Animator anim;
+    public Animator characterAnimator { get; set; }
 
 
     #region monobehaivour methods
@@ -35,7 +40,7 @@ public class CharacterStats : MonoBehaviour {
         associatedHitboxManager = GetComponent<MeleeMechanics>();
         timeManagedObject = GetComponent<TimeManagedPlayer>();
         timeManagedObject.TimeLayerUpdated += OnTimeLayerUpdated;
-        anim = GetComponent<Animator>();
+        characterAnimator = GetComponent<Animator>();
 
         if (associatedHitboxManager)
         {
@@ -57,11 +62,14 @@ public class CharacterStats : MonoBehaviour {
     }
     #endregion monobheaviour methods
 
-    private void OnTimeLayerUpdated()
+    /// <summary>
+    /// This method will be called any time the time scale in our time layer is changed. Any changes needed
+    /// </summary>
+    protected virtual void OnTimeLayerUpdated()
     {
-        if (anim != null)
+        if (characterAnimator != null)
         {
-            anim.speed = CustomTime.GetTimeLayerScale(timeManagedObject.timeLayer);
+            characterAnimator.speed = CustomTime.GetTimeLayerScale(timeManagedObject.timeLayer);
         }
     }
 

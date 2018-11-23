@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This is the base class that handles any functions that revolve around movement. This includes
+/// running, jumping, crouching, etc. 
+/// </summary>
 [RequireComponent(typeof(CustomPhysics2D))]
 public class MovementMechanics : MonoBehaviour {
     private const string SPEED_ANIMATION_PARAMETER = "Speed";
@@ -39,6 +44,8 @@ public class MovementMechanics : MonoBehaviour {
     public float fastFallScale = 1.7f;
     [Tooltip("The number of jumps that our character is allowed to perform. If 0 is set than this character is not allowed to jump in any situation.")]
     public int maxAvailableJumps = 1;
+    [Tooltip("Indicates whether our character is fast falling or not")]
+    private bool isFastFalling = false;
     [HideInInspector]
     /// <summary>
     /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character
@@ -272,6 +279,15 @@ public class MovementMechanics : MonoBehaviour {
         rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
         return true;
     }
+
+    /// <summary>
+    /// When our character is in the air, out player can control the rate at which they fall by holding down the jump
+    /// button. If they release the jumpbutton, we should use the fastfall values
+    /// </summary>
+    public void HandleFastFalling(bool isFastFalling)
+    {
+
+    }
     
     /// <summary>
     /// This method will be called any time our character touches the ground after being
@@ -289,6 +305,7 @@ public class MovementMechanics : MonoBehaviour {
     public void OnAirborneEvent()
     {
         anim.SetBool(IN_AIR_ANIMATION_PARAMETER, true);
+        this.isFastFalling = false;
         this.currentJumpsAvailable--;
     }
     #endregion jumping methods
