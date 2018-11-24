@@ -35,6 +35,21 @@ public class BaseEnemyStatMachine : MonoBehaviour {
 
     }
 
+    public void ChangeCurrentState(NPCState updatedState)
+    {
+        if (updatedState == null)
+        {
+            return;
+        }
+
+        if (currentNPCState != null)
+        {
+            currentNPCState.EndState();
+        }
+        currentNPCState = updatedState;
+        currentNPCState.StartState();
+    }
+
 
 
     public class NPCState
