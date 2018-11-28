@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -8,6 +9,10 @@ using UnityEngine;
 /// that a player can actively select in the game.
 /// </summary>
 public class SelectableUI : MonoBehaviour {
+    #region const
+    public const string SELECT_BUTTON = "Submit";
+    public const string CANCEL_BUTTON = "Cancel";
+    #endregion const
     #region enums
     public enum UIDirection
     {
@@ -27,6 +32,6 @@ public class SelectableUI : MonoBehaviour {
     public SelectableUI eastSelectableUI;
     [Tooltip("UI object that will be selected if the player is pointing in the 'left' direction.")]
     public SelectableUI westSelectableUI;
-
-
+    [Tooltip("A reference to the text field that contains the title of the UI Element")]
+    public Text uiTitleText;
 }
