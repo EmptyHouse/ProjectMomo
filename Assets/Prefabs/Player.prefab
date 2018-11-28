@@ -557,7 +557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxLayer: 0
   maxHealth: 100
-  anim: {fileID: 0}
 --- !u!114 &114440606262173008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -637,7 +636,7 @@ MonoBehaviour:
   isFacingRight: 0
   timeToReachJumpApex: 0.4
   heightOfJump: 0.7
-  fastFallScale: 1.7
+  fastFallScale: 1.4
   maxAvailableJumps: 2
   ignoreInputs: 0
 --- !u!114 &114848659701939038
