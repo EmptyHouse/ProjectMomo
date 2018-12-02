@@ -113,7 +113,10 @@ public class TimeManagedPlayer : TimeManagedObject {
             CustomTime.SetScaledTime(CustomTime.TimeLayer.Enemy, currentScaleForEverythingElse);
             CustomTime.SetScaledTime(CustomTime.TimeLayer.World, currentScaleForEverythingElse);
             yield return null;
-
+            if (!isTimeSlowed)
+            {
+                yield break;
+            }
         }
         CustomTime.SetScaledTime(CustomTime.TimeLayer.Player, scaleForPlayers);
         CustomTime.SetScaledTime(CustomTime.TimeLayer.Enemy, scaledTimeForEverythingElse);

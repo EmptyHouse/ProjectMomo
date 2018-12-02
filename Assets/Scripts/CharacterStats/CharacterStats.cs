@@ -28,7 +28,7 @@ public class CharacterStats : MonoBehaviour {
     public CombatMechanics combatMechanics { get; set; }
     public MeleeMechanics associatedHitboxManager { get; set; }
     public CustomPhysics2D customPhysics { get; set; }
-    public TimeManagedPlayer timeManagedObject { get; set; }
+    public TimeManagedObject timeManagedObject { get; set; }
     public Animator characterAnimator { get; set; }
 
 

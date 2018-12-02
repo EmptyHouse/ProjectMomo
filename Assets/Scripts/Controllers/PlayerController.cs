@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetButtonDown(TIME_CONTROL_INPUT))
         {
-            characterStats.timeManagedObject.OnTimeControlToggled();
+            ((TimeManagedPlayer)characterStats.timeManagedObject).OnTimeControlToggled();
         }
     }
     #endregion monobehaiovur methods
