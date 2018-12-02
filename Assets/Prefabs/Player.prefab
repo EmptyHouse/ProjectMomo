@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584264396215106}
-  - component: {fileID: 114392607067530340}
+  - component: {fileID: 114802236380997764}
   - component: {fileID: 114440606262173008}
   - component: {fileID: 114834192882531270}
   - component: {fileID: 114600435543586222}
@@ -544,19 +544,6 @@ MonoBehaviour:
     propertyIsInitialized: 1
   allAssociatedHitboxes: []
   allAssociatedHurtboxes: []
---- !u!114 &114392607067530340
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1394378532997922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99bac75130fd674d86def4279185aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitboxLayer: 0
-  maxHealth: 100
 --- !u!114 &114440606262173008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,6 +603,19 @@ MonoBehaviour:
   currentlySelectedProjectile: {fileID: 114240566803542176, guid: 361418c6e45073b48b32600af06d5490,
     type: 2}
   projectileLaunchTransform: {fileID: 4295775983975980}
+--- !u!114 &114802236380997764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1394378532997922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c7400e9bf6d0642a50966dcb3edb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitboxLayer: 1
+  maxHealth: 100
 --- !u!114 &114834192882531270
 MonoBehaviour:
   m_ObjectHideFlags: 1

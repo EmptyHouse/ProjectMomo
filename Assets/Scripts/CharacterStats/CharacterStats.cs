@@ -9,8 +9,8 @@ public class CharacterStats : MonoBehaviour {
     #region enums
     public enum HitboxLayer
     {
-        Player,
         Enemy,
+        Player,
     }
     #endregion enums
     #region statistics variables
