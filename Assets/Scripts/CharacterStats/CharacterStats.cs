@@ -39,7 +39,10 @@ public class CharacterStats : MonoBehaviour {
         combatMechanics = GetComponent<CombatMechanics>();
         associatedHitboxManager = GetComponent<MeleeMechanics>();
         timeManagedObject = GetComponent<TimeManagedPlayer>();
-        timeManagedObject.TimeLayerUpdated += OnTimeLayerUpdated;
+        if (timeManagedObject != null)
+        {
+            timeManagedObject.TimeLayerUpdated += OnTimeLayerUpdated;
+        }
         characterAnimator = GetComponent<Animator>();
 
         if (associatedHitboxManager)
@@ -55,10 +58,14 @@ public class CharacterStats : MonoBehaviour {
         currentHealth = maxHealth;
         GameOverseer.Instance.AddTimeMangedObjectToList(timeManagedObject);
     }
+    
 
     private void OnDestroy()
     {
-        timeManagedObject.TimeLayerUpdated -= OnTimeLayerUpdated;
+        if (timeManagedObject != null)
+        {
+            timeManagedObject.TimeLayerUpdated -= OnTimeLayerUpdated;
+        }
     }
     #endregion monobheaviour methods
 

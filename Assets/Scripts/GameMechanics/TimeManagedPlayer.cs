@@ -111,7 +111,7 @@ public class TimeManagedPlayer : TimeManagedObject {
             currentScaleForEverythingElse = 1 - (timeThatHasPassed / timeToReachDesiredSlowTime) * differnceBetweenScaleForWorld;
             CustomTime.SetScaledTime(CustomTime.TimeLayer.Player, currentScaleForPlayer);
             CustomTime.SetScaledTime(CustomTime.TimeLayer.Enemy, currentScaleForEverythingElse);
-            CustomTime.SetScaledTime(CustomTime.TimeLayer.World, currentScaleForEverythingElse);
+            CustomTime.SetScaledTime(CustomTime.TimeLayer.World_NPC, currentScaleForEverythingElse);
             yield return null;
             if (!isTimeSlowed)
             {
@@ -120,6 +120,6 @@ public class TimeManagedPlayer : TimeManagedObject {
         }
         CustomTime.SetScaledTime(CustomTime.TimeLayer.Player, scaleForPlayers);
         CustomTime.SetScaledTime(CustomTime.TimeLayer.Enemy, scaledTimeForEverythingElse);
-        CustomTime.SetScaledTime(CustomTime.TimeLayer.World, scaledTimeForEverythingElse);
+        CustomTime.SetScaledTime(CustomTime.TimeLayer.World_NPC, scaledTimeForEverythingElse);
     }
 }

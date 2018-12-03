@@ -8,7 +8,7 @@ public class CustomTime : MonoBehaviour{
     {
         Player,
         Enemy,
-        World,
+        World_NPC,
         UnscaledDeltaTime,
         DeltaTime,
     }
