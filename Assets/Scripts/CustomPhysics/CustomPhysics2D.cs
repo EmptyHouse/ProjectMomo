@@ -12,7 +12,8 @@ public class CustomPhysics2D : MonoBehaviour {
     public const float GRAVITY_CONSTANT = 9.8f;
     #endregion const variables
     #region main variables
-    public Vector2 velocity { get; set; }
+    [System.NonSerialized]
+    public Vector2 velocity = Vector2.zero;
     [Header("Gravity Values")]
     [Tooltip("When this is marked true, gravity will effect the object based on the gravity scale and gravity vector")]
     public bool useGravity = true;

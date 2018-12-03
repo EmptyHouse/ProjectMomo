@@ -16,6 +16,4 @@ public class Hurtbox : MonoBehaviour {
         associatedMeleeMechanics.RemoveAssociatedHurtbox(this);
     }
     #endregion monobehaviour methods
-
-
 }

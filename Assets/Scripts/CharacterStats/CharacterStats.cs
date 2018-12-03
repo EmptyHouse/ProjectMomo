@@ -6,6 +6,10 @@ using UnityEngine;
 /// A script that hold references to important behviaours and stats that an object may need to know to interact with a character
 /// </summary>
 public class CharacterStats : MonoBehaviour {
+    #region const variables
+    private const string DEAD_ANIMATOR_TRIGGER = "Dead";
+    #endregion const variables
+
     #region enums
     public enum HitboxLayer
     {
@@ -104,11 +108,14 @@ public class CharacterStats : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// When a character's health has been 
     /// </summary>
     public virtual void OnCharacterKilled()
     {
-        
+        if (characterAnimator)
+        {
+            characterAnimator.SetTrigger(DEAD_ANIMATOR_TRIGGER);
+        }
     }
     #endregion health methods
 

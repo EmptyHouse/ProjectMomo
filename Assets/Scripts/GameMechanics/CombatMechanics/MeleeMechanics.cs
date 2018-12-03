@@ -25,15 +25,19 @@ public class MeleeMechanics : MonoBehaviour {
     /// we don't hit an object multiple times unless it is intentional
     /// </summary>
     public CharacterStats associatedCharacterStats { get; set; }
+
     /// <summary>
     /// A collection of all the hitbox managers that have been intereacted with. This is to ensure that we
     /// do not hit an object multiple times from just one attack by interacting with multiple hurtboxes
     /// </summary>
     private List<MeleeMechanics> hitboxManagerCollection = new List<MeleeMechanics>();
 
+    [Tooltip("The current melee attack that is being used. This is not allowed to be changed in the editor. It is only ")]
+    public int currentMeleeState = -1;
     #region monobehaviour methods
     private void OnValidate()
     {
+        currentMeleeState = -1;
         for (int i = 0; i < meleePropertyList.Length; i++)
         {
             if (meleePropertyList[i] == null)
@@ -79,7 +83,7 @@ public class MeleeMechanics : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Adds an associated hurtbox to the Melee Mechanics
     /// </summary>
     /// <param name="hurtbox"></param>
     public void AddAssociateHurtbox(Hurtbox hurtbox)
@@ -191,11 +195,35 @@ public class MeleeMechanics : MonoBehaviour {
         public float damageToBeDealt = 5;
         [Tooltip("The amount of time in seconds that a character can not carry out any other action")]
         public float hitStunInSeconds = 1;
+        [Tooltip("The animation curve that will handle the velocity ")]
+        public AnimationCurve velocityAnimationCurve;
         [HideInInspector]
         public bool propertyIsInitialized = false;
         
     }
     #endregion structs
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MoveCharacterWhileAnimating(MeleeProperties currentMeleeProperties)
+    {
+        AnimationCurve velocityAnimationCurve = currentMeleeProperties.velocityAnimationCurve;
+        if (velocityAnimationCurve.length <= 0)
+        {
+            yield break;
+        }
+
+        float totalTime = velocityAnimationCurve.keys[velocityAnimationCurve.length - 1].time;
+        float timeThatHasPassed = 0;
+        while (timeThatHasPassed < totalTime)
+        {
+            associatedCharacterStats.customPhysics.velocity.x = velocityAnimationCurve.Evaluate(timeThatHasPassed);
+            timeThatHasPassed += CustomTime.GetTimeLayerAdjustedDeltaTime(associatedCharacterStats.timeManagedObject.timeLayer);
+            yield return null;
+        }
+    }
+
     /// <summary>
     /// Sometimes if a hit is really impactful we may want to stop time for a bit to give the player a sense of power behind
     /// a hit
