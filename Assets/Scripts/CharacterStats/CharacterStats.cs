@@ -81,18 +81,34 @@ public class CharacterStats : MonoBehaviour {
     }
 
     #region health methods
-    public void TakeDamage(float damageToTake)
+    /// <summary>
+    /// Whenever our character takes damage this method should be caled
+    /// </summary>
+    /// <param name="damageToTake"></param>
+    public virtual void TakeDamage(float damageToTake)
     {
-
+        currentHealth -= damageToTake;
+        if (currentHealth <= 0)
+        {
+            OnCharacterKilled();
+        }
     }
 
     /// <summary>
     /// Adds health to the associated character
     /// </summary>
     /// <param name="healthToAdd"></param>
-    public void AddHealth(float healthToAdd)
+    public virtual void AddHealth(float healthToAdd)
     {
         this.currentHealth = Mathf.Min(maxHealth, currentHealth + healthToAdd);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public virtual void OnCharacterKilled()
+    {
+        
     }
     #endregion health methods
 
