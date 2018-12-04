@@ -3,20 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This class will contain all the logic necessary for our character's hitbox
+/// This class will contain all the logic necessary for our character's hurtbox.
+/// 
+/// Hurtbox is a bit different from our traditional hitbox. this class will only look to take damage rather than dealing damage
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class Hurtbox : MonoBehaviour {
-    public MeleeMechanics associatedMeleeMechanics { get; set; }
-    #region monobehaviour methods
-    private void Awake()
-    {
-        associatedMeleeMechanics.AddAssociateHurtbox(this);
-    }
-
-    private void OnDestroy()
-    {
-        associatedMeleeMechanics.RemoveAssociatedHurtbox(this);
-    }
-    #endregion monobehaviour methods
+    public CharacterStats associatedCharacterstats;
 }

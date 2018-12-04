@@ -18,7 +18,7 @@ public class ColliderHitbox : Hitbox {
         {
             OnEnteredHitbox(hitbox);
         }
-        if (hurtbox && hurtbox.associatedMeleeMechanics != this.associateMeleeMechanics)
+        if (hurtbox && hurtbox.associatedCharacterstats != this.associateMeleeMechanics.associatedCharacterStats)
         {
             OnEnteredHurtbox(hurtbox);
         }
@@ -37,7 +37,7 @@ public class ColliderHitbox : Hitbox {
         {
             OnExitHitbox(hitbox);
         }
-        if (hurtbox && hurtbox.associatedMeleeMechanics != this.associateMeleeMechanics)
+        if (hurtbox && hurtbox.associatedCharacterstats != this.associateMeleeMechanics.associatedCharacterStats)
         {
             OnExitHurtbox(hurtbox);
         }

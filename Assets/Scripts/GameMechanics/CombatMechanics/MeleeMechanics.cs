@@ -16,11 +16,6 @@ public class MeleeMechanics : MonoBehaviour {
     [HideInInspector]
     public List<Hitbox> allAssociatedHitboxes = new List<Hitbox>();
     /// <summary>
-    /// A list of all the hurtboxes that are connected to this object
-    /// </summary>
-    [HideInInspector]
-    public List<Hurtbox> allAssociatedHurtboxes = new List<Hurtbox>();
-    /// <summary>
     /// This is a list of all the character stats that have been hit by our hitboxes. This is to ensure
     /// we don't hit an object multiple times unless it is intentional
     /// </summary>
@@ -80,33 +75,6 @@ public class MeleeMechanics : MonoBehaviour {
             return;
         }
         allAssociatedHitboxes.Remove(hitbox);
-    }
-
-    /// <summary>
-    /// Adds an associated hurtbox to the Melee Mechanics
-    /// </summary>
-    /// <param name="hurtbox"></param>
-    public void AddAssociateHurtbox(Hurtbox hurtbox)
-    {
-        if (allAssociatedHurtboxes.Contains(hurtbox))
-        {
-            Debug.LogWarning("This hurtbox was already added.", hurtbox);
-            return;
-        }
-        allAssociatedHurtboxes.Add(hurtbox);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void RemoveAssociatedHurtbox(Hurtbox hurtbox)
-    {
-        if (!allAssociatedHurtboxes.Contains(hurtbox))
-        {
-            Debug.LogWarning("This hurtbox was not found in the list. Perhaps it was already removed?", hurtbox);
-            return;
-        }
-        allAssociatedHurtboxes.Remove(hurtbox);
     }
     #endregion adding and removing hitbox/hurtboxes
 
