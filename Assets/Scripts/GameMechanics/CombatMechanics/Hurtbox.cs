@@ -10,4 +10,20 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Hurtbox : MonoBehaviour {
     public CharacterStats associatedCharacterstats;
+    public Collider2D attachedBoxeCollider;
+
+    private void Awake()
+    {
+        attachedBoxeCollider = GetComponent<Collider2D>();
+        associatedCharacterstats = GetComponentInParent<CharacterStats>();
+    }
+
+
+    private void OnValidate()
+    {
+        if (!attachedBoxeCollider.isTrigger)
+        {
+            attachedBoxeCollider.isTrigger = true;
+        }
+    }
 }
