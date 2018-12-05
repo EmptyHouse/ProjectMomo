@@ -56,9 +56,9 @@ public abstract class Hitbox : MonoBehaviour {
     /// 
     /// </summary>
     /// <param name="hurtboxThatWasEntered"></param>
-    public virtual void OnEnteredHurtbox(Hurtbox hurtboxThatWasEntered)
+    public virtual void OnEnteredHurtbox(Hurtbox hurtboxThatWasEntered, Vector3 positionOfHit)
     {
-        onHitboxCollisionEnteredEvent(null, Vector3.zero);
+        onHitboxCollisionEnteredEvent(hurtboxThatWasEntered.associatedCharacterstats, positionOfHit);
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public abstract class Hitbox : MonoBehaviour {
 
     }
 
-    public void HitboxEnteredEvent(CharacterStats stats, Vector3 pointOfImpact)
+    public void HurttboxEnteredEvent(CharacterStats stats, Vector3 pointOfImpact)
     {
         onHitboxCollisionEnteredEvent(stats, pointOfImpact);
     }

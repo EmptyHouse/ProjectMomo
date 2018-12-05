@@ -63,7 +63,6 @@ public class Projectile : MonoBehaviour {
 
     private void OnProjectileCollision(CharacterStats characterThatWasHit, Vector3 pointOfImpact)
     {
-
         if (!characterThatWasHit)
         {
             
@@ -72,6 +71,7 @@ public class Projectile : MonoBehaviour {
         {
             if (characterThatWasHit.hitboxLayer == associatedCharacterStats.hitboxLayer)
             {
+
                 return;
             }
             else

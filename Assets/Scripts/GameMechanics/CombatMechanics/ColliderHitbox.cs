@@ -20,7 +20,7 @@ public class ColliderHitbox : Hitbox {
         }
         if (hurtbox && hurtbox.associatedCharacterstats != this.associateMeleeMechanics.associatedCharacterStats)
         {
-            OnEnteredHurtbox(hurtbox);
+            OnEnteredHurtbox(hurtbox, collider.transform.position);//Probably wanna fix this up in the future
         }
     }
 

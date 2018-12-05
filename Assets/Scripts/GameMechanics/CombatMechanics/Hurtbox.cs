@@ -9,21 +9,25 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class Hurtbox : MonoBehaviour {
-    public CharacterStats associatedCharacterstats;
-    public Collider2D attachedBoxeCollider;
+    public CharacterStats associatedCharacterstats { get; private set; }
+    public Collider2D attachedBoxCollider { get; private set; }
 
     private void Awake()
     {
-        attachedBoxeCollider = GetComponent<Collider2D>();
+        attachedBoxCollider = GetComponent<Collider2D>();
         associatedCharacterstats = GetComponentInParent<CharacterStats>();
     }
 
 
     private void OnValidate()
     {
-        if (!attachedBoxeCollider.isTrigger)
+        if (attachedBoxCollider == null)
         {
-            attachedBoxeCollider.isTrigger = true;
+            attachedBoxCollider = GetComponent<Collider2D>();
+        }
+        if (!attachedBoxCollider.isTrigger)
+        {
+            attachedBoxCollider.isTrigger = true;
         }
     }
 }
