@@ -12,6 +12,8 @@ public class Hurtbox : MonoBehaviour {
     public CharacterStats associatedCharacterstats { get; private set; }
     public Collider2D attachedBoxCollider { get; private set; }
 
+
+    #region monobehaviour methods
     private void Awake()
     {
         attachedBoxCollider = GetComponent<Collider2D>();
@@ -30,4 +32,5 @@ public class Hurtbox : MonoBehaviour {
             attachedBoxCollider.isTrigger = true;
         }
     }
+    #endregion monobehaviour methods
 }

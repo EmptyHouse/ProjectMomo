@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is an extension of the base hitbox class that handles hitboxes that contain 2d colliders.
+/// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class ColliderHitbox : Hitbox {
 
+    #region monobehaviour methods
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         if (!hitboxActive)
@@ -42,4 +46,5 @@ public class ColliderHitbox : Hitbox {
             OnExitHurtbox(hurtbox);
         }
     }
+    #endregion monobehaviour methods
 }
