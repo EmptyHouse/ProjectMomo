@@ -7,6 +7,8 @@ using UnityEngine;
 /// Base class for our hitboxes
 /// </summary>
 public abstract class Hitbox : MonoBehaviour {
+    public const string DEFAULT_LAYER = "Hitbox";
+
     public bool hitboxActive { get; set; }
     [System.NonSerialized]
     /// <summary>
@@ -31,7 +33,14 @@ public abstract class Hitbox : MonoBehaviour {
         
     }
 
-    
+
+    private void OnValidate()
+    {
+        if (this.gameObject.layer != LayerMask.NameToLayer(DEFAULT_LAYER))
+        {
+            this.gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
+        }
+    }
     #endregion monobehaviour methods
 
     /// <summary>

@@ -116,6 +116,7 @@ public class CharacterStats : MonoBehaviour {
         {
             characterAnimator.SetTrigger(DEAD_ANIMATOR_TRIGGER);
         }
+        Destroy(this.gameObject);
     }
     #endregion health methods
 

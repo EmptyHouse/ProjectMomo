@@ -11,6 +11,9 @@ public class Projectile : MonoBehaviour {
     /// A reference to the character stats of the character that laumched this projectile
     /// </summary>
     public CharacterStats associatedCharacterStats { get; set; }
+
+    [Header("Projectile Properties")]
+    public float damageToApplyToHitCharacter = 5;
     private CustomPhysics2D rigid;
     private RayHitbox rayHitbox;
     private SpriteRenderer spriteRenderer;
@@ -63,26 +66,28 @@ public class Projectile : MonoBehaviour {
 
     private void OnProjectileCollision(CharacterStats characterThatWasHit, Vector3 pointOfImpact)
     {
-        if (!characterThatWasHit)
-        {
-            
-        }
-        else
+        if (characterThatWasHit)
         {
             if (characterThatWasHit.hitboxLayer == associatedCharacterStats.hitboxLayer)
             {
-
+                //If we hit something in the same layer we should ignore it. Though now that I think about it, this check should take place in the Hitbox logic...
                 return;
             }
             else
             {
                 this.transform.SetParent(characterThatWasHit.transform);
+                characterThatWasHit.TakeDamage(damageToApplyToHitCharacter);
+                Destroy(this.gameObject);
             }
         }
-        this.transform.position = pointOfImpact - (rayHitbox.transform.position - this.transform.position);
-        rigid.enabled = false;
-        rayHitbox.enabled = false;
-        StartCoroutine(FadeOutAndDestroy());
+        else
+        {
+            StartCoroutine(FadeOutAndDestroy());
+            this.transform.position = pointOfImpact - (rayHitbox.transform.position - this.transform.position);
+            rigid.enabled = false;
+            rayHitbox.enabled = false;
+        }
+        
     }
 
 

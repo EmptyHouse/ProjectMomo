@@ -16,7 +16,10 @@ public class RayHitbox : Hitbox {
     [Tooltip("The distance between all vector points in the ray origins")]
     public float raySpread;
     private CustomPhysics2D rigid;
-    public CharacterStats associatedCharacterThatFiredThisProjectile;
+    /// <summary>
+    /// The associated character stats for this projectile. This will be applied at run time.
+    /// </summary>
+    public CharacterStats associatedCharacterThatFiredThisProjectile { get; set; }
     #endregion main variables
     #region monobehaviour methods
     private void Start()

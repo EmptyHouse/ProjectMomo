@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class Hurtbox : MonoBehaviour {
+
     public CharacterStats associatedCharacterstats { get; private set; }
     public Collider2D attachedBoxCollider { get; private set; }
 
@@ -30,6 +31,10 @@ public class Hurtbox : MonoBehaviour {
         if (!attachedBoxCollider.isTrigger)
         {
             attachedBoxCollider.isTrigger = true;
+        }
+        if (this.gameObject.layer != LayerMask.NameToLayer(Hitbox.DEFAULT_LAYER))
+        {
+            this.gameObject.layer = LayerMask.NameToLayer(Hitbox.DEFAULT_LAYER);
         }
     }
     #endregion monobehaviour methods
