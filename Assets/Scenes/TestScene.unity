@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 621318807}
   - component: {fileID: 621318809}
   - component: {fileID: 621318808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hurtbox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,6 +1005,22 @@ Prefab:
     - target: {fileID: 1446829445288728, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280365861000924, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280365861000924, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280365861000924, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280365861000924, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c0840bc9a19cf48907c5ee9faf0eb5, type: 2}
@@ -1501,7 +1517,7 @@ GameObject:
   - component: {fileID: 1549329950}
   - component: {fileID: 1549329952}
   - component: {fileID: 1549329951}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hurtbox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -30,6 +30,13 @@ public class MeleeMechanics : MonoBehaviour {
     [Tooltip("The current melee attack that is being used. This is not allowed to be changed in the editor. It is only ")]
     public int currentMeleeState = -1;
     #region monobehaviour methods
+    private void Start()
+    {
+        foreach (Hitbox hitbox in allAssociatedHitboxes)
+        {
+                    }
+    }
+
     private void OnValidate()
     {
         currentMeleeState = -1;
@@ -61,6 +68,11 @@ public class MeleeMechanics : MonoBehaviour {
             return;
         }
         allAssociatedHitboxes.Add(hitbox);
+    }
+
+    public void SetMeleeStats(int meleeStatsToUse)
+    {
+
     }
 
     /// <summary>

@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4291203884597234}
   - component: {fileID: 114946647547633922}
   - component: {fileID: 61560438563466592}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hitbox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 4280365861000924}
   - component: {fileID: 114944002578115876}
   - component: {fileID: 61009448729409220}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hitbox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 4353478174446398}
   - component: {fileID: 61823544847741430}
   - component: {fileID: 114102319705571782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hurtbox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 4525582885245694}
   - component: {fileID: 114848659701939038}
   - component: {fileID: 61171141755139536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hitbox3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 4579971552190132}
   - component: {fileID: 61913307525419610}
   - component: {fileID: 114402244656927106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hurtbox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
