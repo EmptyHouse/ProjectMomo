@@ -9,7 +9,6 @@ using UnityEngine;
 public abstract class Hitbox : MonoBehaviour {
     public const string DEFAULT_LAYER = "Hitbox";
 
-    public bool hitboxActive { get; set; }
     [System.NonSerialized]
     /// <summary>
     /// 
@@ -21,7 +20,10 @@ public abstract class Hitbox : MonoBehaviour {
     #region monobehaiovur methods
     protected virtual void Awake()
     {
-        //associateMeleeMechanics.AddAssociatedHitbox(this);
+        associateMeleeMechanics = GetComponentInParent<MeleeMechanics>();
+        associateMeleeMechanics.AddAssociatedHitbox(this);
+        onHitboxCollisionEnteredEvent += associateMeleeMechanics.OnHitboxOnEnemyHurtbox;
+
     }
 
     protected virtual void OnDestroy()

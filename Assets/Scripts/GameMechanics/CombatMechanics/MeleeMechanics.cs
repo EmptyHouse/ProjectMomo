@@ -28,13 +28,7 @@ public class MeleeMechanics : MonoBehaviour {
     [Tooltip("The current melee attack that is being used. This is not allowed to be changed in the editor. It is only ")]
     public int currentMeleeState = -1;
     #region monobehaviour methods
-    private void Start()
-    {
-        foreach (Hitbox hitbox in allAssociatedHitboxes)
-        {
-                    }
-    }
-
+   
     private void OnValidate()
     {
         currentMeleeState = -1;
@@ -49,6 +43,14 @@ public class MeleeMechanics : MonoBehaviour {
                 InitializeMeleeProperties(meleePropertyList[i]);
             }
             meleePropertyList[i].attackIDValue = i;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (Hitbox hitbox in allAssociatedHitboxes)
+        {
+            hitbox.onHitboxCollisionEnteredEvent -= OnHitboxOnEnemyHurtbox;
         }
     }
     #endregion monobehaviour methods
@@ -70,7 +72,7 @@ public class MeleeMechanics : MonoBehaviour {
 
     public void SetMeleeStats(int meleeStatsToUse)
     {
-
+        currentMeleeState = meleeStatsToUse;
     }
 
     /// <summary>
@@ -140,14 +142,15 @@ public class MeleeMechanics : MonoBehaviour {
 
     #region melee mechanic events
     /// <summary>
-    /// In the event that our hitbox interacts with an enemy hurtbox this method should be called in order ensure that we do properly
-    /// hit our enemy the desiired amount of times and apply the appropriate damage
+    /// 
     /// </summary>
     /// <param name="myHitbox"></param>
     /// <param name="hurtbox"></param>
-    public void OnHitboxOnEnemyHurtbox(Hitbox myHitbox, Hurtbox hurtbox)
+    public void OnHitboxOnEnemyHurtbox(CharacterStats enemyStats, Vector3 pointOfImpact)
     {
-
+        print("I am here");
+        MeleeProperties meleeProperties = GetCurrentMeleeProperties();
+        enemyStats.TakeDamage(meleeProperties.damageToBeDealt);
     }
     #endregion melee mechanic events
 
@@ -160,6 +163,12 @@ public class MeleeMechanics : MonoBehaviour {
         meleePropertiesToInitialize.damageToBeDealt = 5;
         meleePropertiesToInitialize.hitStunInSeconds = 1;
         
+    }
+
+    private MeleeProperties GetCurrentMeleeProperties()
+    {
+        print(currentMeleeState);
+        return meleePropertyList[currentMeleeState];
     }
 
     [System.Serializable]

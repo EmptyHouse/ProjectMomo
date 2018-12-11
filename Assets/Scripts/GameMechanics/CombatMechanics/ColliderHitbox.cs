@@ -11,10 +11,8 @@ public class ColliderHitbox : Hitbox {
     #region monobehaviour methods
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!hitboxActive)
-        {
-            return;
-        }
+        
+
         Hitbox hitbox = collider.GetComponent<Hitbox>();
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
 
@@ -30,10 +28,7 @@ public class ColliderHitbox : Hitbox {
 
     protected virtual void OnTriggerExit2D(Collider2D collider)
     {
-        if (!hitboxActive)
-        {
-            return;
-        }
+        
         Hitbox hitbox = collider.GetComponent<Hitbox>();
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
 
