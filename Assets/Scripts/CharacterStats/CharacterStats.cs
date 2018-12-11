@@ -15,6 +15,7 @@ public class CharacterStats : MonoBehaviour {
     {
         Enemy,
         Player,
+        Environment,
     }
     #endregion enums
     #region statistics variables

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Generic Melee mechanics
+/// Generic Melee mechanics. This will contain all the properties necessary when a characer attacks an enemy
 /// </summary>
 public class MeleeMechanics : MonoBehaviour {
-    
-    
     [Tooltip("A list of melee properties that will be referenced when our hitbox interacts with an enemy hurtbox")]
     public MeleeProperties[] meleePropertyList = new MeleeProperties[0];
     /// <summary>
