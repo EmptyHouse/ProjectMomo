@@ -20,18 +20,14 @@ public abstract class Hitbox : MonoBehaviour {
     #region monobehaiovur methods
     protected virtual void Awake()
     {
-        associateMeleeMechanics = GetComponentInParent<MeleeMechanics>();
-        associateMeleeMechanics.AddAssociatedHitbox(this);
-        onHitboxCollisionEnteredEvent += associateMeleeMechanics.OnHitboxOnEnemyHurtbox;
+        
+        
 
     }
 
     protected virtual void OnDestroy()
     {
-        if (associateMeleeMechanics != null)
-        {
-            associateMeleeMechanics.RemoveAssociatedHitbox(this);
-        }
+        
         
     }
 

@@ -7,13 +7,25 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class ColliderHitbox : Hitbox {
-
+    [System.NonSerialized]
+    /// <summary>
+    /// 
+    /// </summary>
+    public MeleeMechanics associateMeleeMechanics;
     #region monobehaviour methods
+    protected override void Awake()
+    {
+        base.Awake();
+        associateMeleeMechanics = GetComponentInParent<MeleeMechanics>();
+        associateMeleeMechanics.AddAssociatedHitbox(this);
+        onHitboxCollisionEnteredEvent += associateMeleeMechanics.OnHitboxEnteredEnemyHurtbox;
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         
 
-        Hitbox hitbox = collider.GetComponent<Hitbox>();
+        ColliderHitbox hitbox = collider.GetComponent<ColliderHitbox>();
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
 
         if (hitbox && hitbox.associateMeleeMechanics != this.associateMeleeMechanics)
@@ -28,8 +40,9 @@ public class ColliderHitbox : Hitbox {
 
     protected virtual void OnTriggerExit2D(Collider2D collider)
     {
-        
-        Hitbox hitbox = collider.GetComponent<Hitbox>();
+
+        ColliderHitbox hitbox = collider.GetComponent<ColliderHitbox>();
+
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
 
         if (hitbox && hitbox.associateMeleeMechanics != this.associateMeleeMechanics)
@@ -39,6 +52,14 @@ public class ColliderHitbox : Hitbox {
         if (hurtbox && hurtbox.associatedCharacterstats != this.associateMeleeMechanics.associatedCharacterStats)
         {
             OnExitHurtbox(hurtbox);
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        if (associateMeleeMechanics != null)
+        {
+            associateMeleeMechanics.RemoveAssociatedHitbox(this);
         }
     }
     #endregion monobehaviour methods

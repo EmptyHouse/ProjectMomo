@@ -38,7 +38,7 @@ public class CharacterStats : MonoBehaviour {
 
 
     #region monobehaivour methods
-    private void Start()
+    protected virtual void Start()
     {
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();

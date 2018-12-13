@@ -23,7 +23,7 @@ public class MeleeMechanics : MonoBehaviour {
     /// A collection of all the hitbox managers that have been intereacted with. This is to ensure that we
     /// do not hit an object multiple times from just one attack by interacting with multiple hurtboxes
     /// </summary>
-    private List<MeleeMechanics> hitboxManagerCollection = new List<MeleeMechanics>();
+    private List<CharacterStats> hitboxManagerCollection = new List<CharacterStats>();
 
     [Tooltip("The current melee attack that is being used. This is not allowed to be changed in the editor. It is only ")]
     public int currentMeleeState = -1;
@@ -50,7 +50,7 @@ public class MeleeMechanics : MonoBehaviour {
     {
         foreach (Hitbox hitbox in allAssociatedHitboxes)
         {
-            hitbox.onHitboxCollisionEnteredEvent -= OnHitboxOnEnemyHurtbox;
+            hitbox.onHitboxCollisionEnteredEvent -= OnHitboxEnteredEnemyHurtbox;
         }
     }
     #endregion monobehaviour methods
@@ -73,6 +73,7 @@ public class MeleeMechanics : MonoBehaviour {
     public void SetMeleeStats(int meleeStatsToUse)
     {
         currentMeleeState = meleeStatsToUse;
+        ResetHitboxManagerCollection();
     }
 
     /// <summary>
@@ -104,39 +105,39 @@ public class MeleeMechanics : MonoBehaviour {
     /// Adds a hitbox manager to the the hitboxManagerCollection list. This will be used to ensure that
     /// we do not hit a target multiple time with the same attack
     /// </summary>
-    /// <param name="hitboxManager"></param>
-    public void AddHitboxManagerToCollection(MeleeMechanics hitboxManager)
+    /// <param name="characterThatWasHit"></param>
+    public void AddHitboxManagerToCollection(CharacterStats characterThatWasHit)
     {
-        if (!hitboxManager)
+        if (!characterThatWasHit)
         {
             Debug.LogWarning("The hitbox manager that was passed in was null or inactive. Please check what went wrong here.");
         }
-        if (hitboxManagerCollection.Contains(hitboxManager))
+        if (hitboxManagerCollection.Contains(characterThatWasHit))
         {
             return;
         }
-        hitboxManagerCollection.Add(hitboxManager);
+        hitboxManagerCollection.Add(characterThatWasHit);
     }
 
-    public void RemoveHitboxManagerFromCollection(MeleeMechanics hitboxManagerToRemove)
+    public void RemoveHitboxManagerFromCollection(CharacterStats characterStatsToRemove)
     {
-        if (!hitboxManagerToRemove)
+        if (!characterStatsToRemove)
         {
             Debug.LogWarning("The hitbox manager that you are trying to remove is null or inactive. This should not be the case. Please double check what may have happened.");
         }
-        if (hitboxManagerCollection.Contains(hitboxManagerToRemove))
+        if (hitboxManagerCollection.Contains(characterStatsToRemove))
         {
-            hitboxManagerCollection.Remove(hitboxManagerToRemove);
+            hitboxManagerCollection.Remove(characterStatsToRemove);
         }
     }
 
-    public bool HitboxManagerCollectionContainsHitboxManager(MeleeMechanics managerToCheck)
+    public bool HitboxManagerCollectionContainsHitboxManager(CharacterStats characterStatsToCheck)
     {
-        if (!managerToCheck)
+        if (!characterStatsToCheck)
         {
             Debug.LogWarning("The manager you are trying to check is either null or inactive. This should not be the case. Please check what may have gone wrong.");
         }
-        return hitboxManagerCollection.Contains(managerToCheck);
+        return hitboxManagerCollection.Contains(characterStatsToCheck);
     }
     #endregion hitbox manager collection methods
 
@@ -146,11 +147,15 @@ public class MeleeMechanics : MonoBehaviour {
     /// </summary>
     /// <param name="myHitbox"></param>
     /// <param name="hurtbox"></param>
-    public void OnHitboxOnEnemyHurtbox(CharacterStats enemyStats, Vector3 pointOfImpact)
+    public void OnHitboxEnteredEnemyHurtbox(CharacterStats enemyStats, Vector3 pointOfImpact)
     {
-        print("I am here");
+        if (HitboxManagerCollectionContainsHitboxManager(enemyStats))
+        {
+            return;
+        }
         MeleeProperties meleeProperties = GetCurrentMeleeProperties();
         enemyStats.TakeDamage(meleeProperties.damageToBeDealt);
+        AddHitboxManagerToCollection(enemyStats);
     }
     #endregion melee mechanic events
 
@@ -167,7 +172,6 @@ public class MeleeMechanics : MonoBehaviour {
 
     private MeleeProperties GetCurrentMeleeProperties()
     {
-        print(currentMeleeState);
         return meleePropertyList[currentMeleeState];
     }
 

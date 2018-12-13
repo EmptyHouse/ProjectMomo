@@ -11,8 +11,20 @@ public class BaseEnemyStatMachine : MonoBehaviour {
 
     private NPCState currentNPCState;
 
+    #region monobehaviour methods
+    private void Start()
+    {
+        ChangeCurrentState(initialNPCState);
+    }
+
+    private void Update()
+    {
+        UpdateNPCStateMachine();
+    }
+    #endregion monobehaviour methods
+
     /// <summary>
-    /// 
+    /// Method to start a new state machine
     /// </summary>
     public void StartNPCStateMachine()
     {
@@ -52,10 +64,8 @@ public class BaseEnemyStatMachine : MonoBehaviour {
 
 
 
-    public class NPCState
-    {
-
-
+    public abstract class NPCState
+    { 
         #region state methods
         /// <summary>
         /// Any initialization that needs to occur when we start a new state should

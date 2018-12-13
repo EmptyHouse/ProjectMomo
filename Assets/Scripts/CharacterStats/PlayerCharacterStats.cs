@@ -7,4 +7,13 @@ using UnityEngine;
 /// </summary>
 public class PlayerCharacterStats : CharacterStats {
 
+
+
+    #region monobehaviour methods
+    protected override void Start()
+    {
+        base.Start();
+        GameOverseer.Instance.playerCharacterStats = this;
+    }
+    #endregion monobehaviour methods
 }
