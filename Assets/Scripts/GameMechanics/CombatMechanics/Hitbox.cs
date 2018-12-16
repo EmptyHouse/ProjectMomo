@@ -9,11 +9,7 @@ using UnityEngine;
 public abstract class Hitbox : MonoBehaviour {
     public const string DEFAULT_LAYER = "Hitbox";
 
-    [System.NonSerialized]
-    /// <summary>
-    /// 
-    /// </summary>
-    public MeleeMechanics associateMeleeMechanics;
+   
     public delegate void HitboxCollisionEnteredEvent(CharacterStats stats, Vector3 pointOfImpact);
     public event HitboxCollisionEnteredEvent onHitboxCollisionEnteredEvent;
 
