@@ -2,13 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class will contain all the dialogue text that will be displayed for a dialogue event. This will also contain references to the character
+/// properties.
+/// </summary>
 public class Dialogue : MonoBehaviour {
+    [SerializeField]
     [Tooltip("This is where you can write all text that will be played out for a Dialogue event")]
-    public DialogueSentences[] dialogueSentences;
+    private DialogueSentence[] dialogueSentences;
+
+    /// <summary>
+    /// Converts our dialogue sentence array to a queue that can be used by our dialogue system manager
+    /// </summary>
+    /// <returns></returns>
+    public Queue<DialogueSentence> GetDialogueSentences()
+    {
+        Queue<DialogueSentence> dialogueQueue = new Queue<DialogueSentence>();
+        foreach (DialogueSentence dialogueSentence in dialogueSentences)
+        {
+            dialogueQueue.Enqueue(dialogueSentence);
+        }
+        return dialogueQueue;
+    }
 
 
     [System.Serializable]
-    public class DialogueSentences
+    public class DialogueSentence
     {
         [Tooltip("A reference to all the properties the character that is speaking will contain")]
         public DialogueCharacterProperties characterProperties;
