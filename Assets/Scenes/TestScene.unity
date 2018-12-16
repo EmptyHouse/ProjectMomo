@@ -447,6 +447,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114597568990867726, guid: 9a1bb79a846c4134d921a17398e0039b,
+        type: 2}
+      propertyPath: dialogueSentences.Array.data[2].sentence
+      value: The trees are angry with us. They are not pleased with what we have done.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1bb79a846c4134d921a17398e0039b, type: 2}
   m_IsPrefabAsset: 0
@@ -599,6 +604,7 @@ GameObject:
   - component: {fileID: 283570152}
   - component: {fileID: 283570151}
   - component: {fileID: 283570150}
+  - component: {fileID: 283570154}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -684,6 +690,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &283570154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 283570149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b925a79b2c46284439cf5700298cfc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsBeforeDrawingNextLetter: 0.05
+  testDialogue: {fileID: 1775574612}
+  dialogueContainer: {fileID: 604483571}
+  dialogueTextBox: {fileID: 385797456}
 --- !u!1 &285765724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1196,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 604483571}
-  - component: {fileID: 604483572}
   m_Layer: 5
   m_Name: DialogueUI
   m_TagString: Untagged
@@ -1202,17 +1222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &604483572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 604483570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b925a79b2c46284439cf5700298cfc5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &621318806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2645,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4373bb5deb904ab2a87c24eef3afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1775574612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114597568990867726, guid: 9a1bb79a846c4134d921a17398e0039b,
+    type: 2}
+  m_PrefabInternal: {fileID: 199220746}
+  m_Script: {fileID: 11500000, guid: cc20e743cc3c5184d96a3f1947015796, type: 3}
 --- !u!1 &1830396470
 GameObject:
   m_ObjectHideFlags: 0
