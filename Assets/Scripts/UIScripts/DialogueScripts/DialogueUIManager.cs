@@ -25,7 +25,7 @@ public class DialogueUIManager : MonoBehaviour {
     public float secondsBeforeDrawingNextLetter = .05f;
 
     [Header("UI References")]
-    public Dialogue testDialogue;
+    private DialogueNPC npcThatIsBeingTalkedTo;
     public Transform dialogueContainer;
     public Text dialogueTextBox;
     public Queue<Dialogue.DialogueSentence> dialogueSentenceQueue;
@@ -35,18 +35,20 @@ public class DialogueUIManager : MonoBehaviour {
     {
         instance = this;
         dialogueContainer.gameObject.SetActive(false);
-        StartDialogue(testDialogue);
     }
     #endregion monobehaivour methods
 
 
-    public void StartDialogue(Dialogue dialogueEvent)
+    public void StartDialogue(Dialogue dialogueEvent, DialogueNPC dialogueNPC)
     {
         if (dialogueEvent == null)
         {
             return;
         }
+        npcThatIsBeingTalkedTo = dialogueNPC;
         dialogueContainer.gameObject.SetActive(true);
+        GameOverseer.Instance.playerCharacterStats.playerController.enabled = false;
+
         dialogueSentenceQueue = dialogueEvent.GetDialogueSentences();
         StartNextDialogueSentence();
     }
@@ -62,16 +64,21 @@ public class DialogueUIManager : MonoBehaviour {
     }
 
     
-
+    /// <summary>
+    /// Closes the Dialogue UI and gives control back to our player
+    /// </summary>
     public void CloseDialogue()
     {
         dialogueContainer.gameObject.SetActive(false);
+        GameOverseer.Instance.playerCharacterStats.playerController.enabled = true;
+        npcThatIsBeingTalkedTo.StartCoroutine(npcThatIsBeingTalkedTo.DelayBeforeAllowingPlayerToEnterDialogue());
     }
 
     private IEnumerator DrawDialogueTextToTextBox(Dialogue.DialogueSentence dialogueSentenceToDraw)
     {
         float timeThatHasPassed = 0;
         string dialogueText = "";
+        dialogueTextBox.text = "";
         int textIndex = 0;
         while (dialogueText != dialogueSentenceToDraw.sentence)
         {

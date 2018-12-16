@@ -7,6 +7,10 @@ using UnityEngine;
 /// properties.
 /// </summary>
 public class Dialogue : MonoBehaviour {
+    #region const variables
+    public const string DialogueActionButton = "Submit";
+    #endregion const variables
+
     [SerializeField]
     [Tooltip("This is where you can write all text that will be played out for a Dialogue event")]
     private DialogueSentence[] dialogueSentences;

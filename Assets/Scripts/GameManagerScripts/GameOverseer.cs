@@ -33,7 +33,7 @@ public class GameOverseer : MonoBehaviour {
     #endregion static variables
 
     #region main variables
-    public CharacterStats playerCharacterStats;
+    public PlayerCharacterStats playerCharacterStats;
     public GameState currentGameState { get; private set; }
     public Dictionary<CustomTime.TimeLayer, List<TimeManagedObject>> allTimeMangedObjectDictionary { get; private set; }
     #endregion main variables

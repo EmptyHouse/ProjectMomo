@@ -7,12 +7,15 @@ using UnityEngine;
 /// </summary>
 public class PlayerCharacterStats : CharacterStats {
 
-
+    #region main variables
+    public PlayerController playerController;
+    #endregion main variables
 
     #region monobehaviour methods
     protected override void Start()
     {
         base.Start();
+        playerController = GetComponent<PlayerController>();
         GameOverseer.Instance.playerCharacterStats = this;
     }
     #endregion monobehaviour methods
