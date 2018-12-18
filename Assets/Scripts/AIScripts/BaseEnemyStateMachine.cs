@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// The base class that will handle enemy AI. This should not be used for NPC's that are 
 /// </summary>
-public class BaseEnemyStatMachine : MonoBehaviour {
+public class BaseEnemyStateMachine : MonoBehaviour {
     public CharacterStats associatedCharacterStats;
     public NPCState initialNPCState;
 
