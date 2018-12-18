@@ -12,11 +12,13 @@ public class PlayerCharacterStats : CharacterStats {
     #endregion main variables
 
     #region monobehaviour methods
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
-        playerController = GetComponent<PlayerController>();
         GameOverseer.Instance.playerCharacterStats = this;
+
+        base.Awake();
+        timeManagedObject = GetComponent<TimeManagedPlayer>();
+        playerController = GetComponent<PlayerController>();
     }
     #endregion monobehaviour methods
 }

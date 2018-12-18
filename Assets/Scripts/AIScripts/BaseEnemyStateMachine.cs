@@ -6,14 +6,15 @@ using UnityEngine;
 /// The base class that will handle enemy AI. This should not be used for NPC's that are 
 /// </summary>
 public class BaseEnemyStateMachine : MonoBehaviour {
-    public CharacterStats associatedCharacterStats;
     public NPCState initialNPCState;
 
     private NPCState currentNPCState;
+    public CharacterStats associatedCharacterStats { get; private set; }
 
     #region monobehaviour methods
     private void Start()
     {
+        associatedCharacterStats = GetComponent<CharacterStats>();
         ChangeCurrentState(initialNPCState);
     }
 
@@ -21,35 +22,30 @@ public class BaseEnemyStateMachine : MonoBehaviour {
     {
         UpdateNPCStateMachine();
     }
-    #endregion monobehaviour methods
 
-    /// <summary>
-    /// Method to start a new state machine
-    /// </summary>
-    public void StartNPCStateMachine()
+    private void OnValidate()
     {
-
+        if(initialNPCState == null)
+        {
+            initialNPCState = ScriptableObject.CreateInstance<PatrolState>();
+        }
     }
+    #endregion monobehaviour methods
 
     /// <summary>
     /// This method will be called every frame
     /// </summary>
     private void UpdateNPCStateMachine()
     {
-
+        if (currentNPCState != null)
+        {
+            currentNPCState.UpdateState();
+        }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void EndNPCStateMachine()
+    public void ChangeCurrentState(NPCState newNPCState)
     {
-
-    }
-
-    public void ChangeCurrentState(NPCState updatedState)
-    {
-        if (updatedState == null)
+        if (newNPCState == null)
         {
             return;
         }
@@ -58,40 +54,40 @@ public class BaseEnemyStateMachine : MonoBehaviour {
         {
             currentNPCState.EndState();
         }
-        currentNPCState = updatedState;
+        currentNPCState = newNPCState;
         currentNPCState.StartState();
+        currentNPCState.enemyStateMachine = this;
     }
 
 
 
-    public abstract class NPCState
-    { 
+    public abstract class NPCState : ScriptableObject
+    {
+        
+        public BaseEnemyStateMachine enemyStateMachine { get; set; }
         #region state methods
         /// <summary>
         /// Any initialization that needs to occur when we start a new state should
         /// take place here
         /// </summary>
-        public void StartState()
-        {
-
-        }
+        public abstract void StartState();
 
         /// <summary>
         /// Anything that needs to be updated every frame when our character is in this state
         /// should take place here.
         /// </summary>
-        public void UpdateState()
-        {
-
-        }
+        public abstract void UpdateState();
 
         /// <summary>
         /// Any cleanup that should occur in this state should take place here.
         /// </summary>
-        public void EndState()
-        {
-
-        }
+        public abstract void EndState();
         #endregion state methods
     }
+
+    
+
+    #region custom editor
+
+    #endregion custom editor
 }

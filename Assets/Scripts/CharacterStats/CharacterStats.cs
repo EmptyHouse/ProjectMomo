@@ -38,12 +38,12 @@ public class CharacterStats : MonoBehaviour {
 
 
     #region monobehaivour methods
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();
         associatedHitboxManager = GetComponent<MeleeMechanics>();
-        timeManagedObject = GetComponent<TimeManagedPlayer>();
+        timeManagedObject = GetComponent<TimeManagedObject>();
         if (timeManagedObject != null)
         {
             timeManagedObject.TimeLayerUpdated += OnTimeLayerUpdated;

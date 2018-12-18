@@ -36,21 +36,30 @@ public class GameOverseer : MonoBehaviour {
     public PlayerCharacterStats playerCharacterStats;
     public GameState currentGameState { get; private set; }
     public Dictionary<CustomTime.TimeLayer, List<TimeManagedObject>> allTimeMangedObjectDictionary { get; private set; }
+
     #endregion main variables
 
     #region monobehaviour methods
     private void Awake()
     {
         instance = this;
+        if (allTimeMangedObjectDictionary == null)
+        {
+            InitializeTimeList();
+        }
+    }
+    #endregion monobehaviour methods
+
+    #region time mangement methods
+    private void InitializeTimeList()
+    {
         allTimeMangedObjectDictionary = new Dictionary<CustomTime.TimeLayer, List<TimeManagedObject>>();
         foreach (CustomTime.TimeLayer tLayer in System.Enum.GetValues(typeof(CustomTime.TimeLayer)))
         {
             allTimeMangedObjectDictionary.Add(tLayer, new List<TimeManagedObject>());
         }
     }
-    #endregion monobehaviour methods
 
-    #region time mangement methods
     /// <summary>
     /// Add a time managed object to our Game Overseer
     /// </summary>
@@ -61,6 +70,9 @@ public class GameOverseer : MonoBehaviour {
         {
             return;
         }
+
+        if (allTimeMangedObjectDictionary == null) InitializeTimeList();
+
         List<TimeManagedObject> timeManagedObjectList = allTimeMangedObjectDictionary[timeObjectToAdd.timeLayer];
 
         if (timeManagedObjectList.Contains(timeObjectToAdd))

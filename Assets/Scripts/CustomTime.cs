@@ -71,6 +71,7 @@ public class CustomTime : MonoBehaviour{
     /// <returns></returns>
     public static float GetTimeLayerAdjustedDeltaTime(TimeLayer timeCategory)
     {
+        
         switch (timeCategory)
         {
             case TimeLayer.UnscaledDeltaTime:

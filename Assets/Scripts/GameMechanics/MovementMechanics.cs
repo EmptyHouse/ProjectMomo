@@ -158,7 +158,8 @@ public class MovementMechanics : MonoBehaviour {
 
         this.horizontalInput = horizontalInput;
         FlipSpriteBasedOnInput(this.horizontalInput);
-        anim.SetFloat(SPEED_ANIMATION_PARAMETER, Mathf.Abs(horizontalInput));
+        if (anim)
+            anim.SetFloat(SPEED_ANIMATION_PARAMETER, Mathf.Abs(horizontalInput));
     }
 
     /// <summary>
@@ -243,6 +244,10 @@ public class MovementMechanics : MonoBehaviour {
     /// </summary>
     private void SetSpriteFlipped(bool spriteFacingright)
     {
+        if (!spriteRenderer)
+        {
+            return;
+        }
         this.isFacingRight = spriteFacingright;
         if (spriteFacingright)
         {

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    private void Update()
+    private void LateUpdate()
     {
         characterStats.movementMechanics.SetHorizontalInput(Input.GetAxisRaw(HorizontalInput));
         characterStats.movementMechanics.SetVerticalInput(Input.GetAxisRaw(VerticalInput));
