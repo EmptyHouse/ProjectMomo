@@ -61,7 +61,7 @@ public class SelectableUIManager : MonoBehaviour {
     /// </summary>
     /// <param name="initialVerticalInput"></param>
     /// <returns></returns>
-    private IEnumerator BeginAutoScrollingVertial(float initialVerticalInput)
+    private IEnumerator BeginAutoScrollingVertical(float initialVerticalInput)
     {
         isCurrentlyAutoScrolling = true;
         float direction = Mathf.Sign(initialVerticalInput);
