@@ -20,6 +20,8 @@ public class InventoryItem : MonoBehaviour {
     [Tooltip("The maximum number of items that we can hold of this particular item. Used for stacking certain items")]
     public int maxNumberOfItemsToHold = 1;
     public ItemType itemType;
+    [Tooltip("The associated icon that will be displayed in our UI")]
+    public Sprite itemIcon;
     #endregion main variables
 
     #region monobehaviour methods

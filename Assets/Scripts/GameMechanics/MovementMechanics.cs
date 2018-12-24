@@ -48,6 +48,12 @@ public class MovementMechanics : MonoBehaviour {
     private bool isFastFalling = false;
     [Tooltip("The calculated acceleration that will be applied to the character when they are in the air")]
     private float jumpingAcceleration = 1f;
+
+    [Header("Dashing Variables")]
+    [Tooltip("The animation curve that will determine the velocity at which our character will move at points within our dash animation")]
+    public AnimationCurve dashVelocityAnimationCurve;
+    [Tooltip("The time in seconds to complete a dashing animation")]
+    public float timeToCompleteDash = .6f;
     [HideInInspector]
     /// <summary>
     /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character

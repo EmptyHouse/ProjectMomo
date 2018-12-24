@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour {
-    public CharacterStats associateCharacterstats;
+    /// <summary>
+    /// The associated character stats
+    /// </summary>
+    public CharacterStats associateCharacterstats { get; set; }
+
     /// <summary>
     /// This is a dictionary collection of all our collected items. The key is our inventory item properties
     /// The value is the number of items we have. Values equal to 0 will be ignored and treated as not contained
@@ -19,7 +23,7 @@ public class InventoryManager : MonoBehaviour {
         {
             AddItemToInventory(item);
         }
-        Debug.Log("Number Of Keys: " + allCollectedItems.Keys.Count);
+
     }
     #endregion monobehaviour methods
     /// <summary>
