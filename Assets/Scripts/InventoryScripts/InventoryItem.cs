@@ -19,6 +19,7 @@ public class InventoryItem : MonoBehaviour {
     public string inventoryItemName;
     [Tooltip("The maximum number of items that we can hold of this particular item. Used for stacking certain items")]
     public int maxNumberOfItemsToHold = 1;
+    [Tooltip("The number of items that will be collected when our player picks up this item")]
     public int numberOfItemsToCollect = 1;
     public ItemType itemType;
     [Tooltip("The associated icon that will be displayed in our UI")]
@@ -26,7 +27,17 @@ public class InventoryItem : MonoBehaviour {
     #endregion main variables
 
     #region monobehaviour methods
-    
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PlayerCharacterStats playerStats = collision.GetComponent<PlayerCharacterStats>();
+
+        if (playerStats)
+        {
+            
+        }
+    }
     #endregion monobehaviour methods
     /// <summary>
     /// Method that will be called anytime we need to use this item

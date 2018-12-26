@@ -8,7 +8,8 @@ using UnityEngine;
 public class PlayerCharacterStats : CharacterStats {
 
     #region main variables
-    public PlayerController playerController;
+    public InventoryManager inventoryManager { get; set; }
+    public PlayerController playerController { get; set; }
     #endregion main variables
 
     #region monobehaviour methods
@@ -19,6 +20,7 @@ public class PlayerCharacterStats : CharacterStats {
         base.Awake();
         timeManagedObject = GetComponent<TimeManagedPlayer>();
         playerController = GetComponent<PlayerController>();
+        inventoryManager = GetComponent<InventoryManager>();
     }
     #endregion monobehaviour methods
 }
