@@ -14,16 +14,12 @@ public class InventoryManager : MonoBehaviour {
     /// in our inventory
     /// </summary>
     private Dictionary<InventoryItem, int> allCollectedItems = new Dictionary<InventoryItem, int>();
-    public InventoryItem[] itemsToAdd;
+
+
 
     #region monobehaviour methods
     private void Start()
     {
-        foreach (InventoryItem item in itemsToAdd)
-        {
-            AddItemToInventory(item);
-        }
-
     }
     #endregion monobehaviour methods
     /// <summary>
@@ -43,13 +39,42 @@ public class InventoryManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// This will return the total number of items we have in our inventory. If we have never collected an item
+    /// we will return a size of 0
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public int GetItemsRemaining(InventoryItem item)
+    {
+        if (allCollectedItems.ContainsKey(item))
+        {
+            return allCollectedItems[item];
+        }
+        return 0;
+    }
+
+    /// <summary>
+    /// Returns a bool value indicating if we have any instances of an item
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public bool ContainsItem(InventoryItem item)
+    {
+        return GetItemsRemaining(item) > 0;
+    }
+
+    /// <summary>
     /// This method simply discards items from your inventory if there are any remaining. It will not use the item
     /// </summary>
     /// <param name="inventoryItemToRemove"></param>
     /// <param name="numberOfItemsToRemove"></param>
     public void RemoveItemFromInventory(InventoryItem inventoryItemToRemove, int numberOfItemsToRemove)
     {
-
+        if (ContainsItem(inventoryItemToRemove))
+        {
+            allCollectedItems[inventoryItemToRemove] -= numberOfItemsToRemove;
+            allCollectedItems[inventoryItemToRemove] = Mathf.Max(0, allCollectedItems[inventoryItemToRemove]);
+        }
     }
 
     /// <summary>
