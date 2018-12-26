@@ -7,7 +7,7 @@ using UnityEngine;
 /// Base class for all Inventory Items. These are passive or active items that the player can use to give them
 /// benefits
 /// </summary>
-public class InventoryItem : MonoBehaviour {
+public class InventoryItem : MonoBehaviour, System.IComparable {
     public enum ItemType
     {
         PassiveItem,
@@ -58,5 +58,15 @@ public class InventoryItem : MonoBehaviour {
     public override int GetHashCode()
     {
         return this.inventoryItemName.GetHashCode();
+    }
+
+    public int CompareTo(object obj)
+    {
+        if (!(obj is InventoryItem))
+        {
+            return 1;
+        }
+        InventoryItem objItem = (InventoryItem)obj;
+        return this.inventoryItemName.CompareTo(objItem.inventoryItemName);
     }
 }

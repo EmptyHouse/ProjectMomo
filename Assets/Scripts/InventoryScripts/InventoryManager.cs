@@ -15,7 +15,12 @@ public class InventoryManager : MonoBehaviour {
     /// </summary>
     private Dictionary<InventoryItem, int> allCollectedItems = new Dictionary<InventoryItem, int>();
 
+    private List<InventoryItem> orderedInventoryItemList = new List<InventoryItem>();
 
+    /// <summary>
+    /// The index of the currently seleted item in our orderedInventoryItemList
+    /// </summary>
+    private int currentlySelectedItemIndex;
 
     #region monobehaviour methods
     private void Start()
@@ -32,10 +37,31 @@ public class InventoryManager : MonoBehaviour {
         if (!allCollectedItems.ContainsKey(inventoryItemToAdd))
         {
             allCollectedItems.Add(inventoryItemToAdd, 0);
+            if (!orderedInventoryItemList.Contains(inventoryItemToAdd))
+            {
+                orderedInventoryItemList.Add(inventoryItemToAdd);
+                
+            }
         }
         allCollectedItems[inventoryItemToAdd] += numberOfItemsToAdd;
 
         allCollectedItems[inventoryItemToAdd] = Mathf.Min(allCollectedItems[inventoryItemToAdd], inventoryItemToAdd.maxNumberOfItemsToHold);
+    }
+
+    /// <summary>
+    /// Returns the currently selected item if there is one available
+    /// </summary>
+    /// <returns></returns>
+    public InventoryItem GetCurrentlySelectedItem()
+    {
+        if (orderedInventoryItemList.Count == 0 )
+        {
+            return null;
+        }
+        else
+        {
+            return orderedInventoryItemList[currentlySelectedItemIndex];
+        }
     }
 
     /// <summary>
@@ -80,10 +106,27 @@ public class InventoryManager : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="directionOfNextItem"></param>
+    public void SelectNextItem(int directionOfNextItem = 1)
+    {
+        if (orderedInventoryItemList.Count == 0)
+        {
+            return;
+        }
+
+        currentlySelectedItemIndex += directionOfNextItem;
+        currentlySelectedItemIndex %= orderedInventoryItemList.Count;
+        currentlySelectedItemIndex += orderedInventoryItemList.Count;
+        currentlySelectedItemIndex %= orderedInventoryItemList.Count;
+    }
+    
+    /// <summary>
+    /// Uses an instance of the currenctly selected item
+    /// </summary>
     /// <param name="itemToUse"></param>
     public void UseItem(InventoryItem itemToUse)
     {
-
+        itemToUse.UseItem(associateCharacterstats);
 
         RemoveItemFromInventory(itemToUse, 1);
     }
