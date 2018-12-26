@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour {
     /// <summary>
     /// The index of the currently seleted item in our orderedInventoryItemList
     /// </summary>
-    private int currentlySelectedItemIndex;
+    private int currentlySelectedItemIndex = -1;
 
     #region monobehaviour methods
     private void Start()
@@ -41,6 +41,10 @@ public class InventoryManager : MonoBehaviour {
             {
                 orderedInventoryItemList.Add(inventoryItemToAdd);
                 
+            }
+            if (currentlySelectedItemIndex < 0)
+            {
+                SelectNextItem();
             }
         }
         allCollectedItems[inventoryItemToAdd] += numberOfItemsToAdd;
@@ -118,6 +122,7 @@ public class InventoryManager : MonoBehaviour {
         currentlySelectedItemIndex %= orderedInventoryItemList.Count;
         currentlySelectedItemIndex += orderedInventoryItemList.Count;
         currentlySelectedItemIndex %= orderedInventoryItemList.Count;
+        InventoryUIManager.Instance.SetCurrentlySelectedItem(orderedInventoryItemList[currentlySelectedItemIndex]);
     }
     
     /// <summary>
