@@ -35,7 +35,7 @@ public class InventoryItem : MonoBehaviour, System.IComparable {
 
         if (playerStats)
         {
-            
+            playerStats.inventoryManager.AddItemToInventory(this, numberOfItemsToCollect);
         }
     }
     #endregion monobehaviour methods
