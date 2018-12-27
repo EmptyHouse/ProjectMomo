@@ -50,6 +50,20 @@ public class InventoryManager : MonoBehaviour {
         allCollectedItems[inventoryItemToAdd] += numberOfItemsToAdd;
 
         allCollectedItems[inventoryItemToAdd] = Mathf.Min(allCollectedItems[inventoryItemToAdd], inventoryItemToAdd.maxNumberOfItemsToHold);
+
+
+
+        VisuallyUpdateInventoryItem();
+    }
+
+    private void VisuallyUpdateInventoryItem()
+    {
+        if (orderedInventoryItemList.Count == 0)
+        {
+            return;
+        }
+        InventoryItem currentItem = orderedInventoryItemList[currentlySelectedItemIndex];
+        InventoryUIManager.Instance.SetCurrentlySelectedItem(currentItem, GetItemsRemaining(currentItem));
     }
 
     /// <summary>
@@ -122,17 +136,22 @@ public class InventoryManager : MonoBehaviour {
         currentlySelectedItemIndex %= orderedInventoryItemList.Count;
         currentlySelectedItemIndex += orderedInventoryItemList.Count;
         currentlySelectedItemIndex %= orderedInventoryItemList.Count;
-        InventoryUIManager.Instance.SetCurrentlySelectedItem(orderedInventoryItemList[currentlySelectedItemIndex]);
+
+        VisuallyUpdateInventoryItem();
     }
     
     /// <summary>
     /// Uses an instance of the currenctly selected item
     /// </summary>
-    /// <param name="itemToUse"></param>
-    public void UseItem(InventoryItem itemToUse)
+    public void UseItem()
     {
+        if (orderedInventoryItemList.Count == 0) return;
+
+
+        InventoryItem itemToUse = orderedInventoryItemList[currentlySelectedItemIndex];
         itemToUse.UseItem(associateCharacterstats);
 
         RemoveItemFromInventory(itemToUse, 1);
+        VisuallyUpdateInventoryItem();
     }
 }

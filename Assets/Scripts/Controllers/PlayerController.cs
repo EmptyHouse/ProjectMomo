@@ -11,18 +11,19 @@ public class PlayerController : MonoBehaviour {
     private const string PROJECTILE_INPUT = "FireProjectile";
     private const string JUMP_INPUT = "Jump";
     private const string TIME_CONTROL_INPUT = "TimeControl";
+    private const string USE_ITEM = "Item";
     #endregion const inputs
 
     public const string HorizontalInput = "Horizontal";
     public const string VerticalInput = "Vertical";
 
     [Tooltip("Reference to the player stats component. This will hold all reference of our character")]
-    private CharacterStats characterStats;
+    private PlayerCharacterStats characterStats;
 
     #region monobehaviour methods
     private void Start()
     {
-        characterStats = GetComponent<CharacterStats>();
+        characterStats = (PlayerCharacterStats)GetComponent<PlayerCharacterStats>();
     }
 
     /// <summary>
@@ -51,6 +52,10 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown(TIME_CONTROL_INPUT))
         {
             ((TimeManagedPlayer)characterStats.timeManagedObject).OnTimeControlToggled();
+        }
+        if(Input.GetButtonDown(USE_ITEM))
+        {
+            characterStats.inventoryManager.UseItem();
         }
     }
     #endregion monobehaiovur methods

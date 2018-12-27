@@ -23,7 +23,8 @@ public class InventoryUIManager : MonoBehaviour {
     #region main variables
     [Header("UI References")]
     [Tooltip("")]
-    public Image currentlySelectedItemImage; 
+    public Image currentlySelectedItemImage;
+    public Text itemCountText;
 
     #endregion main variables
 
@@ -34,8 +35,9 @@ public class InventoryUIManager : MonoBehaviour {
     }
     #endregion monobehaviour methods
 
-    public void SetCurrentlySelectedItem(InventoryItem currentlySelectedItem)
+    public void SetCurrentlySelectedItem(InventoryItem currentlySelectedItem, int countRemaining)
     {
         currentlySelectedItemImage.sprite = currentlySelectedItem.itemIcon;
+        itemCountText.text = countRemaining.ToString() + "x";
     }
 }
