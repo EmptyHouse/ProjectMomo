@@ -9,6 +9,15 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(CustomPhysics2D))]
 public class MovementMechanics : MonoBehaviour {
+    #region enums
+    public enum MovementState
+    {
+        FreeMovement, //Player has full control of their movement
+        NoPlayerControlledMovement,//If the player is in hit stun or some other even, this movement type may be set
+        Dashing,//Player is dashing
+    }
+    #endregion enums
+
     private const string SPEED_ANIMATION_PARAMETER = "Speed";
     private const string IN_AIR_ANIMATION_PARAMETER = "InAir";
     private const string IS_CROUCHING_PARAMETER = "IsCrouching";
@@ -52,8 +61,10 @@ public class MovementMechanics : MonoBehaviour {
     [Header("Dashing Variables")]
     [Tooltip("The animation curve that will determine the velocity at which our character will move at points within our dash animation")]
     public AnimationCurve dashVelocityAnimationCurve;
+    public float maxDashSpeed = 3f;
     [Tooltip("The time in seconds to complete a dashing animation")]
     public float timeToCompleteDash = .6f;
+    public float delayBeforeDashing = .15f;
     [HideInInspector]
     /// <summary>
     /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character
@@ -61,6 +72,8 @@ public class MovementMechanics : MonoBehaviour {
     /// </summary>
     public bool ignoreInputs;
     private int currentJumpsAvailable;
+
+    private MovementState currentMovementState = MovementState.FreeMovement;
     /// <summary>
     /// Jump velocity is calculated based on the jump height and time to reach apex
     /// </summary>
@@ -93,6 +106,11 @@ public class MovementMechanics : MonoBehaviour {
 
     private void Update()
     {
+        if (currentMovementState != MovementState.FreeMovement)
+        {
+            return;
+        }
+
         if (rigid.isInAir)
         {
             UpdateCurrentSpeedInAir();
@@ -115,9 +133,7 @@ public class MovementMechanics : MonoBehaviour {
         {
             isCrouching = false;
             anim.SetBool(IS_CROUCHING_PARAMETER, isCrouching);
-        }
-
-        
+        }        
     }
 
     private void OnValidate()
@@ -332,5 +348,51 @@ public class MovementMechanics : MonoBehaviour {
         this.currentJumpsAvailable--;
     }
     #endregion jumping methods
+
+    #region dashing methods
+
+    public void Dash()
+    {
+        if (currentMovementState != MovementState.FreeMovement)
+        {
+            return;
+        }
+        StartCoroutine(DashCoroutine());
+    }
+
+    /// <summary>
+    /// When our character is performaing a dashing action, this coroutine will handle all the movement
+    /// based on the animation curve that is set up
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DashCoroutine()
+    {
+        currentMovementState = MovementState.Dashing;
+        rigid.useGravity = false;
+        float timeThatHasPassed = 0;
+        while (timeThatHasPassed < delayBeforeDashing)
+        {
+            rigid.velocity = Vector2.zero;
+            timeThatHasPassed += CustomTime.GetTimeLayerAdjustedDeltaTime(rigid.timeManagedObject.timeLayer);
+            yield return null;
+        }
+        timeThatHasPassed = 0;
+        Vector2 directionOfInput = new Vector2(horizontalInput, verticalInput).normalized;
+        if (directionOfInput == Vector2.zero)
+        {
+            directionOfInput = new Vector2(this.spriteRenderer.transform.localScale.x, 0).normalized;
+        }
+        while (timeThatHasPassed < timeToCompleteDash)
+        {
+            rigid.velocity = directionOfInput * dashVelocityAnimationCurve.Evaluate(timeThatHasPassed / timeToCompleteDash) * maxDashSpeed;
+            timeThatHasPassed += CustomTime.GetTimeLayerAdjustedDeltaTime(rigid.timeManagedObject.timeLayer);
+            yield return null;
+        }
+
+        currentMovementState = MovementState.FreeMovement;
+        rigid.velocity.x = Mathf.Sign(rigid.velocity.x) * Mathf.Min(Mathf.Abs(rigid.velocity.x), maximumAirSpeed);
+        rigid.useGravity = true;
+    }
+    #endregion dashing methods
 
 }

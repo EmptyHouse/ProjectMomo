@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     private const string MELEE_INPUT = "Melee";
     private const string PROJECTILE_INPUT = "FireProjectile";
     private const string JUMP_INPUT = "Jump";
+    private const string DASH_INPUT = "Dash";
     private const string TIME_CONTROL_INPUT = "TimeControl";
     private const string USE_ITEM = "Item";
     #endregion const inputs
@@ -52,6 +53,10 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown(TIME_CONTROL_INPUT))
         {
             ((TimeManagedPlayer)characterStats.timeManagedObject).OnTimeControlToggled();
+        }
+        if (Input.GetButtonDown(DASH_INPUT))
+        {
+            characterStats.movementMechanics.Dash();
         }
         if(Input.GetButtonDown(USE_ITEM))
         {

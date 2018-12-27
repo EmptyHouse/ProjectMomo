@@ -1002,7 +1002,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  maxDashSpeed: 3
   timeToCompleteDash: 0.6
+  delayBeforeDashing: 0.15
   ignoreInputs: 0
 --- !u!114 &285765730
 MonoBehaviour:
@@ -2888,11 +2890,40 @@ MonoBehaviour:
   maxAvailableJumps: 2
   dashVelocityAnimationCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9524994
+      inSlope: -0.003320058
+      outSlope: -0.003320058
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.63862276
+    - serializedVersion: 3
+      time: 0.29360056
+      value: 0.96368486
+      inSlope: 0.13766557
+      outSlope: 0.13766557
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4181437
+      outWeight: 0.17421602
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.013150164
+      outSlope: 0.013150164
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33621207
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeToCompleteDash: 0.6
+  maxDashSpeed: 6
+  timeToCompleteDash: 0.1
+  delayBeforeDashing: 0.01
   ignoreInputs: 0
 --- !u!114 &1038331861
 MonoBehaviour:
@@ -3699,7 +3730,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  maxDashSpeed: 3
   timeToCompleteDash: 0.6
+  delayBeforeDashing: 0.15
   ignoreInputs: 0
 --- !u!114 &1549101414
 MonoBehaviour:
