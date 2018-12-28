@@ -43,6 +43,14 @@ public class SpawnPool : MonoBehaviour {
         string objectName = objectToPool.attachedMonobehaviour.name;
 
         PoolableObject newlyCreatedObject = (PoolableObject)Instantiate(objectToPool.attachedMonobehaviour);
+        newlyCreatedObject.attachedMonobehaviour.gameObject.SetActive(false);
+
+        newlyCreatedObject.attachedMonobehaviour.name = objectToPool.attachedMonobehaviour.name;
+        if (!spawnPoolDictionary.ContainsKey(objectToPool.attachedMonobehaviour.name))
+        {
+            spawnPoolDictionary.Add(objectToPool.attachedMonobehaviour.name, new Queue<PoolableObject>());
+        }
+        spawnPoolDictionary[objectToPool.attachedMonobehaviour.name].Enqueue(newlyCreatedObject);
     }
 
     #region handle spawning and despawning

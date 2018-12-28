@@ -1968,7 +1968,7 @@ MonoBehaviour:
   inventoryItemName: Item1
   maxNumberOfItemsToHold: 10
   itemType: 0
-  itemIcon: {fileID: 21300000, guid: a2e9aebe1b2aa97478d33b9cd0d0686b, type: 3}
+  itemIcon: {fileID: 0}
 --- !u!4 &854256843
 Transform:
   m_ObjectHideFlags: 0
@@ -2389,7 +2389,7 @@ MonoBehaviour:
   inventoryItemName: Item1
   maxNumberOfItemsToHold: 10
   itemType: 0
-  itemIcon: {fileID: 21300000, guid: a2e9aebe1b2aa97478d33b9cd0d0686b, type: 3}
+  itemIcon: {fileID: 0}
 --- !u!4 &907323664
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,7 +2402,7 @@ Transform:
   m_Children:
   - {fileID: 571863821}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &907413106
 GameObject:
@@ -2890,40 +2890,13 @@ MonoBehaviour:
   maxAvailableJumps: 2
   dashVelocityAnimationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9524994
-      inSlope: -0.003320058
-      outSlope: -0.003320058
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.63862276
-    - serializedVersion: 3
-      time: 0.29360056
-      value: 0.96368486
-      inSlope: 0.13766557
-      outSlope: 0.13766557
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.4181437
-      outWeight: 0.17421602
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.013150164
-      outSlope: 0.013150164
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33621207
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxDashSpeed: 6
-  timeToCompleteDash: 0.1
-  delayBeforeDashing: 0.01
+  maxDashSpeed: 3
+  timeToCompleteDash: 0.6
+  delayBeforeDashing: 0.15
   ignoreInputs: 0
 --- !u!114 &1038331861
 MonoBehaviour:
@@ -4151,48 +4124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4373bb5deb904ab2a87c24eef3afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1784986711
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.3670752
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.45517388
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.18962646
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179770270373970, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 72465540b57bb91449a2f85cfe42195d, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1830396470
 GameObject:
   m_ObjectHideFlags: 0
