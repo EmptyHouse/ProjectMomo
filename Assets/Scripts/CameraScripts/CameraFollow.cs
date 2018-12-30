@@ -27,9 +27,8 @@ public class CameraFollow : MonoBehaviour {
         targetRigidbodyPhysics = mainTarget.GetComponent<CustomPhysics2D>();
         cameraOffset = this.transform.position - mainTarget.position;
         this.transform.SetParent(null);
-        associatedCamera = GetComponent<Camera>();
+        associatedCamera = GetComponentInChildren<Camera>();
 
-        SetUpCamera();
     }
 
     private void LateUpdate()
@@ -37,11 +36,6 @@ public class CameraFollow : MonoBehaviour {
         UpdateCameraPosition();
     }
     #endregion monobehavoiur methods
-    public void SetUpCamera()
-    {
-
-    }
-
 
     /// <summary>
     /// Moves the camera closer to the target based on the 
@@ -55,22 +49,6 @@ public class CameraFollow : MonoBehaviour {
 
             Vector3 delta = goalPosition - transform.position;
             transform.position = Vector3.SmoothDamp(transform.position, transform.position + delta, ref refVel, dampTime);
-        }
-    }
-
-    /// <summary>
-    /// Performs a camera shake, based on the desired duration and intsensity desired
-    /// </summary>
-    /// <param name="cameraShakeDuration"></param>
-    /// <param name="cameraShakeIntensity"></param>
-    /// <returns></returns>
-    public IEnumerator CameraShake(float cameraShakeDuration = .1f, float cameraShakeIntensity = 1)
-    {
-        float timeThatHasPassed = 0;
-        while (timeThatHasPassed < cameraShakeDuration)
-        {
-            timeThatHasPassed += CustomTime.DeltaTime;
-            yield return null;
         }
     }
 }
