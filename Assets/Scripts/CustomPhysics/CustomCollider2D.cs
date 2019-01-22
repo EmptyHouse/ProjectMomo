@@ -11,8 +11,8 @@ using UnityEngine;
 [RequireComponent(typeof(CustomPhysics2D))]
 public class CustomCollider2D : MonoBehaviour {
     public Collider2D associatedCollider { get; private set; }
-    public float horizontalBuffer;
-    public float verticalBuffer;
+    public float horizontalBuffer = .02f;
+    public float verticalBuffer = .02f;
 
     [Header("Ray Counts")]
     [Tooltip("The number of rays we will fire in the horizontal direction")]

@@ -133,6 +133,7 @@ public class CustomPhysics2D : MonoBehaviour {
     /// </summary>
     public void OnPhysicsObjectGrounded()
     {
+        if (OnGroundedEvent == null) return;
         OnGroundedEvent();
     }
 
@@ -141,6 +142,7 @@ public class CustomPhysics2D : MonoBehaviour {
     /// </summary>
     public void OnPhysicsOjbectAirborne()
     {
+        if (OnAirborneEvent == null) return;
         OnAirborneEvent();
     }
  
