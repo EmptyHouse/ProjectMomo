@@ -28,6 +28,12 @@ public class InGameUI : MonoBehaviour {
     #region monbehaviour methods
     private void Awake()
     {
+        if (instance)
+        {
+            Destroy(this.transform.parent);
+            return;
+        }
+        DontDestroyOnLoad(this.transform.parent);
         instance = this;
     }
     #endregion monobehaviour methods

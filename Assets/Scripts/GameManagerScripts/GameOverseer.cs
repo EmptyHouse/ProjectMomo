@@ -42,11 +42,19 @@ public class GameOverseer : MonoBehaviour {
     #region monobehaviour methods
     private void Awake()
     {
+        if (instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
         instance = this;
         if (allTimeMangedObjectDictionary == null)
         {
             InitializeTimeList();
         }
+
+        DontDestroyOnLoad(this.gameObject);
     }
     #endregion monobehaviour methods
 
@@ -125,5 +133,7 @@ public class GameOverseer : MonoBehaviour {
         }
         this.currentGameState = gameStateToSet;
     }
+
+    
 
 }
