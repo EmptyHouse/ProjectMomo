@@ -23,16 +23,13 @@ public class InGameUI : MonoBehaviour {
     #region main variables
     [Header("UI References")]
     public Text timeMeterText;
+    [Tooltip("The animator object that will be called when loading into a new level")]
+    public Animator levelTransitionUIAnimator;
     #endregion main variables
 
     #region monbehaviour methods
     private void Awake()
     {
-        if (instance)
-        {
-            Destroy(this.transform.parent);
-            return;
-        }
         DontDestroyOnLoad(this.transform.parent);
         instance = this;
     }

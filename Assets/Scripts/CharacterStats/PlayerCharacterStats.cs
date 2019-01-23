@@ -21,6 +21,8 @@ public class PlayerCharacterStats : CharacterStats {
         timeManagedObject = GetComponent<TimeManagedPlayer>();
         playerController = GetComponent<PlayerController>();
         inventoryManager = GetComponent<InventoryManager>();
+
+        DontDestroyOnLoad(this.gameObject);
     }
     #endregion monobehaviour methods
 }

@@ -31,8 +31,30 @@ public class LevelManager : MonoBehaviour {
     }
     #endregion monobehaviour methods
 
-    public void LoadNewLevel()
+    public void LoadNewLevel(string nameOfScene, int spawnPointID)
     {
+        StartCoroutine(LoadNextLevelInBackground(nameOfScene));
+    }
 
+    private IEnumerator LoadNextLevelInBackground(string nameOfScene)
+    {
+        InGameUI.Instance.levelTransitionUIAnimator.gameObject.SetActive(true);
+
+        AsyncOperation levelLoadingOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nameOfScene);
+        levelLoadingOperation.allowSceneActivation = false;
+        float timeThatHasPassed = 0;
+        while (levelLoadingOperation.progress < .9f)
+        {
+            yield return null;
+            timeThatHasPassed += CustomTime.UnscaledDeltaTime;
+        }
+        levelLoadingOperation.allowSceneActivation = true;
+        while (levelLoadingOperation.progress < 1)
+        {
+            yield return null;
+            timeThatHasPassed += CustomTime.UnscaledDeltaTime;
+        }
+
+        InGameUI.Instance.levelTransitionUIAnimator.gameObject.SetActive(false);
     }
 }

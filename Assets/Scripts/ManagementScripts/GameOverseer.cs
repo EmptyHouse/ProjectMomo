@@ -42,12 +42,6 @@ public class GameOverseer : MonoBehaviour {
     #region monobehaviour methods
     private void Awake()
     {
-        if (instance)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
         instance = this;
         if (allTimeMangedObjectDictionary == null)
         {
