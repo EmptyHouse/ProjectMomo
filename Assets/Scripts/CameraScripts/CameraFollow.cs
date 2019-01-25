@@ -29,6 +29,8 @@ public class CameraFollow : MonoBehaviour {
         this.transform.SetParent(null);
         associatedCamera = GetComponentInChildren<Camera>();
 
+        DontDestroyOnLoad(this.gameObject);
+
     }
 
     private void LateUpdate()
