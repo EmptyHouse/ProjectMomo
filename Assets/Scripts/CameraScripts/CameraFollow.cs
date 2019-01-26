@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour {
         this.transform.SetParent(null);
         associatedCamera = GetComponentInChildren<Camera>();
 
-        DontDestroyOnLoad(this.gameObject);
+        GameOverseer.Instance.AddObjectToDontDestroyOnLoad(this.gameObject);
 
     }
 

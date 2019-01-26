@@ -37,18 +37,20 @@ public class GameOverseer : MonoBehaviour {
     public GameState currentGameState { get; private set; }
     public Dictionary<CustomTime.TimeLayer, List<TimeManagedObject>> allTimeMangedObjectDictionary { get; private set; }
 
+    public List<GameObject> listOfObjectsInDontDestroyOnLoad { get; private set; }
     #endregion main variables
 
     #region monobehaviour methods
     private void Awake()
     {
+        
         instance = this;
         if (allTimeMangedObjectDictionary == null)
         {
             InitializeTimeList();
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        AddObjectToDontDestroyOnLoad(this.gameObject);
     }
     #endregion monobehaviour methods
 
@@ -128,6 +130,31 @@ public class GameOverseer : MonoBehaviour {
         this.currentGameState = gameStateToSet;
     }
 
-    
+    /// <summary>
+    /// In some cases we will want to persist the objects that are persistent throughout different levels
+    /// For example the in game UI and the game overseer should be persisted
+    /// </summary>
+    /// <param name="gameObjectToAddToDontDestroyOnLoad"></param>
+    public void AddObjectToDontDestroyOnLoad(GameObject gameObjectToAddToDontDestroyOnLoad)
+    {
+        if (listOfObjectsInDontDestroyOnLoad == null)
+        {
+            listOfObjectsInDontDestroyOnLoad = new List<GameObject>();
+        }
+        DontDestroyOnLoad(gameObjectToAddToDontDestroyOnLoad);
+        listOfObjectsInDontDestroyOnLoad.Add(gameObjectToAddToDontDestroyOnLoad);
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void DestroyAllGameObjectsInDontDestroyOnLoad()
+    {
+        if (listOfObjectsInDontDestroyOnLoad == null) return;
+
+        foreach (GameObject objectToDestroy in listOfObjectsInDontDestroyOnLoad)
+        {
+            Destroy(objectToDestroy);
+        }
+    }
 }

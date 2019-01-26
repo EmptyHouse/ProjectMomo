@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour {
     #endregion const variables
 
     #region main variables
-    public LevelSpawnPointManager levelSpawnPointManager;
+    public LevelSpawnPointManager levelSpawnPointManager { get; set; }
     #endregion main variables
 
     #region monobehaviour methods

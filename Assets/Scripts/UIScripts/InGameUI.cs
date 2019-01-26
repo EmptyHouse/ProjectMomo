@@ -33,7 +33,7 @@ public class InGameUI : MonoBehaviour {
     #region monbehaviour methods
     private void Awake()
     {
-        DontDestroyOnLoad(this.transform.parent);
+        GameOverseer.Instance.AddObjectToDontDestroyOnLoad(this.transform.parent.gameObject);
         instance = this;
     }
     #endregion monobehaviour methods

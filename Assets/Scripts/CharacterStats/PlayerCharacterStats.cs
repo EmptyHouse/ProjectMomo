@@ -22,7 +22,7 @@ public class PlayerCharacterStats : CharacterStats {
         playerController = GetComponent<PlayerController>();
         inventoryManager = GetComponent<InventoryManager>();
 
-        DontDestroyOnLoad(this.gameObject);
+        GameOverseer.Instance.AddObjectToDontDestroyOnLoad(this.gameObject);
     }
     #endregion monobehaviour methods
 }
