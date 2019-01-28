@@ -25,16 +25,18 @@ public class SelectableUIManager : MonoBehaviour {
     public SelectableUI initiallySelectedUI;
     [Tooltip("This will make it so that we begin our menu on the initiallySelectedUI object whenever we open our menu")]
     public bool resetToInitialUIUponOpening;
+    //[Tooltip("The transform parent that contains all the UI elements related to this menu")]
+    
     #endregion main variables
 
-    private SelectableUI currentlySelectedUI;
+    public SelectableUI currentlySelectedUI { get; private set; }
     private bool isCurrentlyAutoScrolling;
 
     #region monobehaviour methods
 
     private void Start()
     {
-        currentlySelectedUI = initiallySelectedUI;
+        SetNextSelectableUIOption(initiallySelectedUI);
     }
 
     private void Update()
@@ -48,7 +50,7 @@ public class SelectableUIManager : MonoBehaviour {
 
         if (Mathf.Abs(verticalInput) > JOYSTICK_THRESHOLD)
         {
-
+            StartCoroutine(BeginAutoScrollingVertical(verticalInput));
         }
         else if (Mathf.Abs(horizontalInput) > JOYSTICK_THRESHOLD)
         {
@@ -56,6 +58,30 @@ public class SelectableUIManager : MonoBehaviour {
         }
     }
     #endregion monobehaviour methods
+
+
+    private SelectableUI GetNextOption(SelectableUI.UIDirection directionToCheck)
+    {
+        List<SelectableUI> currentlyCheckedOptions = new List<SelectableUI>();
+        SelectableUI optionToCheck = currentlySelectedUI.GetUIInDirection(directionToCheck);
+        return optionToCheck;
+        //while (optionToCheck != null && !currentlyCheckedOptions.Contains(optionToCheck))
+        //{
+
+        //}
+    }
+
+    private void SetNextSelectableUIOption(SelectableUI selectableUI)
+    {
+        if (selectableUI == null) return;
+        if (this.currentlySelectedUI != null)
+        {
+            this.currentlySelectedUI.enabled = false;
+        }
+        this.currentlySelectedUI = selectableUI;
+        this.currentlySelectedUI.enabled = true;
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -69,7 +95,11 @@ public class SelectableUIManager : MonoBehaviour {
         float timeThatHasPassed = 0;
 
         ///TO-DO Add code that will change to the next item in the ui menu
-
+        SelectableUI nextOption = GetNextOption(direction < 0 ? SelectableUI.UIDirection.South : SelectableUI.UIDirection.North);
+        if (nextOption != null)
+        {
+            currentlySelectedUI = nextOption;
+        }
         while (timeThatHasPassed < timeBeforeAutoScrolling)
         {
             if (direction * Input.GetAxisRaw("Vertical") < JOYSTICK_THRESHOLD)
@@ -88,12 +118,17 @@ public class SelectableUIManager : MonoBehaviour {
             {
                 timeThatHasPassed = 0;
                 ///TO-DO Add code that will change to the next item in the ui menu
-
+                nextOption = GetNextOption(direction < 0 ? SelectableUI.UIDirection.South : SelectableUI.UIDirection.North);
+                if (nextOption != null)
+                {
+                    currentlySelectedUI = nextOption;
+                }
             }
 
             timeThatHasPassed += Time.unscaledDeltaTime;
             yield return null;
         }
+        this.isCurrentlyAutoScrolling = false;
         yield break;
     }
 }

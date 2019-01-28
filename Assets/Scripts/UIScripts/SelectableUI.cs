@@ -23,6 +23,20 @@ public class SelectableUI : MonoBehaviour {
     }
     #endregion enums
 
+    public RectTransform rectTransform
+    {
+        get
+        {
+            if (cachedRectTransform == null)
+            {
+                cachedRectTransform = GetComponent<RectTransform>();
+            }
+            return cachedRectTransform;
+        }
+    }
+
+    private RectTransform cachedRectTransform;
+
 
     [Tooltip("UI object that will be selected if the player is pointing in the 'up' direction.")]
     public SelectableUI northSelectableUI;
@@ -34,4 +48,32 @@ public class SelectableUI : MonoBehaviour {
     public SelectableUI westSelectableUI;
     [Tooltip("A reference to the text field that contains the title of the UI Element")]
     public Text uiTitleText;
+
+
+    private void Awake()
+    {
+        this.enabled = false;
+    }
+
+    public SelectableUI GetUIInDirection(UIDirection direction)
+    {
+        switch (direction)
+        {
+            case UIDirection.North:
+
+                return northSelectableUI;
+            case UIDirection.South:
+
+                return southSelectableUI;
+            case UIDirection.East:
+
+                return eastSelectableUI;
+            case UIDirection.West:
+
+                return westSelectableUI;
+        }
+        return null;
+    }
+
+
 }

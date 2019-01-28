@@ -11,6 +11,8 @@ public class SelectableButton : SelectableUI {
     public ButtonEvent onButtonPressedEvent;
     [Tooltip("This event is called when our select button is released while this option is selected")]
     public ButtonEvent onButtonReleasedEvent;
+    [Tooltip("The associated button's background image")]
+    public UnityEngine.UI.Image buttonBackgroundImage;
 
     private void Update()
     {
@@ -22,6 +24,7 @@ public class SelectableButton : SelectableUI {
         {
             ButtonReleased();
         }
+        
     }
 
     /// <summary>
