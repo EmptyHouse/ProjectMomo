@@ -26,6 +26,9 @@ public class InGameUI : MonoBehaviour {
     #region main variables
     [Header("UI References")]
     public Text timeMeterText;
+    [Tooltip("Slider that displays the amount of health that the player has remaining")]
+    public Slider playerHealthBarSlider;
+
     [Tooltip("The animator object that will be called when loading into a new level")]
     public Animator levelTransitionUIAnimator;
     #endregion main variables
@@ -38,10 +41,18 @@ public class InGameUI : MonoBehaviour {
     }
     #endregion monobehaviour methods
 
+    #region update ui display methods
+
     public void SetTimeMeterText(float textValue)
     {
         timeMeterText.text = "Time Meter: " + ((int)textValue).ToString();
     }
 
+    
+    public void SetPlayerHealthBar(float healthPercentage) 
+    {
+        playerHealthBarSlider.value = healthPercentage;
+    }
 
+    #endregion update ui display methods
 }

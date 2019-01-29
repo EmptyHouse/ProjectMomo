@@ -25,4 +25,12 @@ public class PlayerCharacterStats : CharacterStats {
         GameOverseer.Instance.AddObjectToDontDestroyOnLoad(this.gameObject);
     }
     #endregion monobehaviour methods
+
+    #region override methods
+    public override void TakeDamage(float damageToTake)
+    {
+        base.TakeDamage(damageToTake);
+        InGameUI.Instance.SetPlayerHealthBar(currentHealth / maxHealth);
+    }
+    #endregion override methods
 }

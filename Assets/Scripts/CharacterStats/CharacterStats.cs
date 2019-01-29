@@ -26,7 +26,7 @@ public class CharacterStats : MonoBehaviour {
     /// <summary>
     /// The player's current Health
     /// </summary>
-    private float currentHealth;
+    protected float currentHealth;
     #endregion statistics variables
 
     public MovementMechanics movementMechanics { get; set; }
