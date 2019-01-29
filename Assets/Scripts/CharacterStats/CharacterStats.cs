@@ -19,6 +19,8 @@ public class CharacterStats : MonoBehaviour {
     }
     #endregion enums
     #region statistics variables
+    [Tooltip("The health bar slider that indicates the remaining health of our character")]
+    private UnityEngine.UI.Slider healthSlider;
     [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
     public HitboxLayer hitboxLayer;
     [Tooltip("The maximum health that this character will have. Upon starting up, this character will begin with this health")]
@@ -40,6 +42,8 @@ public class CharacterStats : MonoBehaviour {
     #region monobehaivour methods
     protected virtual void Awake()
     {
+        healthSlider = GetComponentInChildren<UnityEngine.UI.Slider>();
+        
         movementMechanics = GetComponent<MovementMechanics>();
         combatMechanics = GetComponent<CombatMechanics>();
         associatedHitboxManager = GetComponent<MeleeMechanics>();
@@ -62,6 +66,8 @@ public class CharacterStats : MonoBehaviour {
 
         currentHealth = maxHealth;
         GameOverseer.Instance.AddTimeMangedObjectToList(timeManagedObject);
+
+        UpdateHealthBarSlider();
     }
     
 
@@ -118,6 +124,17 @@ public class CharacterStats : MonoBehaviour {
             characterAnimator.SetTrigger(DEAD_ANIMATOR_TRIGGER);
         }
         Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// Updates the health bar slider that is found above our enemies to show their remaining health
+    /// </summary>
+    private void UpdateHealthBarSlider()
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth / maxHealth;
+        }
     }
     #endregion health methods
 
