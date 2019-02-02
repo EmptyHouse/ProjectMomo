@@ -13,23 +13,7 @@ AnimationClip:
   m_RotationCurves: []
   m_CompressedRotationCurves: []
   m_EulerCurves: []
-  m_PositionCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.101, y: 0.25, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: Sprite/LaunchPointForProjectile
+  m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
@@ -60,24 +44,7 @@ AnimationClip:
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 65c65a13d7f8867449b70b619d4cab81, type: 3}
-  m_PPtrCurves:
-  - curve:
-    - time: 0
-      value: {fileID: 21300070, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - time: 0.1
-      value: {fileID: 21300072, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - time: 0.2
-      value: {fileID: 21300074, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - time: 0.3
-      value: {fileID: 21300076, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - time: 0.4
-      value: {fileID: 21300078, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - time: 0.5
-      value: {fileID: 21300080, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    attribute: m_Sprite
-    path: Sprite
-    classID: 212
-    script: {fileID: 0}
+  m_PPtrCurves: []
   m_SampleRate: 30
   m_WrapMode: 0
   m_Bounds:
@@ -92,27 +59,7 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 850496168
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-    - serializedVersion: 2
-      path: 1258399155
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    pptrCurveMapping:
-    - {fileID: 21300070, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - {fileID: 21300072, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - {fileID: 21300074, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - {fileID: 21300076, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - {fileID: 21300078, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
-    - {fileID: 21300080, guid: cc6c6e355bc8e4e44b09ab4448383f81, type: 3}
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -134,63 +81,6 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.101
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: Sprite/LaunchPointForProjectile
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.25
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: Sprite/LaunchPointForProjectile
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: Sprite/LaunchPointForProjectile
-    classID: 4
-    script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
