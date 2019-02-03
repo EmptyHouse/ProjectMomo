@@ -18,6 +18,7 @@ public class MovementMechanics : MonoBehaviour {
     }
     #endregion enums
 
+    private const string VERTICAL_INPUT_PARAMETER = "VerticalInput";
     private const string SPEED_ANIMATION_PARAMETER = "Speed";
     private const string IN_AIR_ANIMATION_PARAMETER = "InAir";
     private const string IS_CROUCHING_PARAMETER = "IsCrouching";
@@ -104,8 +105,11 @@ public class MovementMechanics : MonoBehaviour {
         rigid.OnAirborneEvent += this.OnAirborneEvent;
     }
 
+
     private void Update()
     {
+        anim.SetFloat(VERTICAL_INPUT_PARAMETER, this.verticalInput);
+        
         if (currentMovementState != MovementState.FreeMovement)
         {
             return;
@@ -114,14 +118,11 @@ public class MovementMechanics : MonoBehaviour {
         if (rigid.isInAir)
         {
             UpdateCurrentSpeedInAir();
+            anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
         }
         else
         {
             UpdateCurrentSpeedOnGround();
-        }
-        if (rigid.isInAir)
-        {
-            anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
         }
 
         if (!isCrouching && verticalInput <= -CROUCHING_THRESHOLD)
@@ -240,9 +241,9 @@ public class MovementMechanics : MonoBehaviour {
     /// Flips the character's sprite appropriately based on the input passed through
     /// </summary>
     /// <param name="horizontalInput"></param>
-    private void FlipSpriteBasedOnInput(float horizontalInput)
+    private void FlipSpriteBasedOnInput(float horizontalInput, bool ignoreInAirCondition = false)
     {
-        if (rigid.isInAir)
+        if (rigid.isInAir && !ignoreInAirCondition)
         {
             return;
         }
@@ -306,6 +307,9 @@ public class MovementMechanics : MonoBehaviour {
         {
             return false;
         }
+        
+        FlipSpriteBasedOnInput(this.horizontalInput, true);
+
         rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
         SetCharacterFastFalling(false);
         return true;
