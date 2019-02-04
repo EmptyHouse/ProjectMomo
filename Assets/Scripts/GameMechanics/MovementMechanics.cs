@@ -18,11 +18,11 @@ public class MovementMechanics : MonoBehaviour {
     }
     #endregion enums
 
-    private const string VERTICAL_INPUT_PARAMETER = "VerticalInput";
     private const string SPEED_ANIMATION_PARAMETER = "Speed";
     private const string IN_AIR_ANIMATION_PARAMETER = "InAir";
     private const string IS_CROUCHING_PARAMETER = "IsCrouching";
     private const string VERTICAL_SPEED_ANIMATION_PARAMETER = "VerticalSpeed";
+
     private const float INPUT_THRESHOLD_RUNNING = .6f;
     private const float INPUT_THRESHOLD_WALKING = .15f;
     private const float CROUCHING_THRESHOLD = .6F;
@@ -105,11 +105,8 @@ public class MovementMechanics : MonoBehaviour {
         rigid.OnAirborneEvent += this.OnAirborneEvent;
     }
 
-
     private void Update()
     {
-        anim.SetFloat(VERTICAL_INPUT_PARAMETER, this.verticalInput);
-        
         if (currentMovementState != MovementState.FreeMovement)
         {
             return;
@@ -118,11 +115,14 @@ public class MovementMechanics : MonoBehaviour {
         if (rigid.isInAir)
         {
             UpdateCurrentSpeedInAir();
-            anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
         }
         else
         {
             UpdateCurrentSpeedOnGround();
+        }
+        if (rigid.isInAir)
+        {
+            anim.SetFloat(VERTICAL_SPEED_ANIMATION_PARAMETER, rigid.velocity.y);
         }
 
         if (!isCrouching && verticalInput <= -CROUCHING_THRESHOLD)
@@ -134,7 +134,7 @@ public class MovementMechanics : MonoBehaviour {
         {
             isCrouching = false;
             anim.SetBool(IS_CROUCHING_PARAMETER, isCrouching);
-        }        
+        }      
     }
 
     private void OnValidate()
@@ -197,6 +197,24 @@ public class MovementMechanics : MonoBehaviour {
             verticalInput = 0;
         }
         this.verticalInput = verticalInput;
+    }
+
+    /// <summary>
+    /// Gets the currently set vertical input that will be used for movement
+    /// </summary>
+    /// <returns></returns>
+    public float GetVerticalInput()
+    {
+        return this.verticalInput;
+    }
+
+    /// <summary>
+    /// Gets the currently set horizontal input that will be used for movement
+    /// </summary>
+    /// <returns></returns>
+    public float GetHorizontalInput()
+    {
+        return this.horizontalInput;
     }
 
     /// <summary>

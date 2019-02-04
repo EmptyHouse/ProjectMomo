@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour {
     #region const inputs
+    private const string HORIZONTAL_INPUT_ANIMATOR_PARENTER = "HorizontalInput";
+    private const string VERTICAL_INPUT_ANIMATOR_PARAMETER = "VerticalInput";
+
     private const string MELEE_INPUT = "Melee";
     private const string PROJECTILE_INPUT = "FireProjectile";
     private const string JUMP_INPUT = "Jump";
@@ -20,10 +23,12 @@ public class PlayerController : MonoBehaviour {
 
     [Tooltip("Reference to the player stats component. This will hold all reference of our character")]
     private PlayerCharacterStats characterStats;
+    private Animator anim;
 
     #region monobehaviour methods
     private void Start()
     {
+        anim = GetComponent<Animator>();
         characterStats = (PlayerCharacterStats)GetComponent<PlayerCharacterStats>();
     }
 
@@ -32,8 +37,13 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     private void LateUpdate()
     {
+        
         characterStats.movementMechanics.SetHorizontalInput(Input.GetAxisRaw(HorizontalInput));
         characterStats.movementMechanics.SetVerticalInput(Input.GetAxisRaw(VerticalInput));
+
+        anim.SetFloat(VERTICAL_INPUT_ANIMATOR_PARAMETER, characterStats.movementMechanics.GetVerticalInput());
+        anim.SetFloat(HORIZONTAL_INPUT_ANIMATOR_PARENTER, characterStats.movementMechanics.GetHorizontalInput());
+
         if (Input.GetButtonDown(PROJECTILE_INPUT))
         {
             characterStats.combatMechanics.FireArrowAnimation();
