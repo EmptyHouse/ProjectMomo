@@ -13,7 +13,9 @@ public class SplashScreenManager : SelectableUIManager {
     }
 #endif
 
-
+    /// <summary>
+    /// Strnig name of the scene that we will load
+    /// </summary>
     private string sceneToLoadOnStartGameString;
 
     
