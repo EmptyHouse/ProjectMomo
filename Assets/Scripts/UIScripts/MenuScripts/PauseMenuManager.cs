@@ -22,6 +22,7 @@ public class PauseMenuManager : MonoBehaviour {
         }
     }
     #region main variables
+
     public Transform pauseMenuContainer;
 
     /// <summary>
@@ -80,7 +81,9 @@ public class PauseMenuManager : MonoBehaviour {
 
     public void OnQuitGameButtonPressed()
     {
-
+        Time.timeScale = 1;
+        GameOverseer.Instance.QuitGameAndReturnToMainMenu();
+        
     }
 
     public void OnOptionsButtonPressed()

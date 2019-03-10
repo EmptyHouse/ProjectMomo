@@ -735,6 +735,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114001928237962252, guid: 7c3cd240a9a716240b763757f61d05cb,
+        type: 2}
+      propertyPath: sceneToLoadOnQuitGame.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 1eea09c493139a8448b63df6879669e9,
+        type: 3}
+    - target: {fileID: 114001928237962252, guid: 7c3cd240a9a716240b763757f61d05cb,
+        type: 2}
+      propertyPath: sceneToLoadOnQuitGame.sceneName
+      value: Scenes/MenuScenes/SplashScreen
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c3cd240a9a716240b763757f61d05cb, type: 2}
   m_IsPrefabAsset: 0

@@ -33,6 +33,7 @@ public class GameOverseer : MonoBehaviour {
     #endregion static variables
 
     #region main variables
+    public Utilities.SceneField sceneToLoadOnQuitGame;
     public PlayerCharacterStats playerCharacterStats;
     public GameState currentGameState { get; private set; }
     public Dictionary<CustomTime.TimeLayer, List<TimeManagedObject>> allTimeMangedObjectDictionary { get; private set; }
@@ -156,5 +157,11 @@ public class GameOverseer : MonoBehaviour {
         {
             Destroy(objectToDestroy);
         }
+    }
+
+    public void QuitGameAndReturnToMainMenu()
+    {
+        DestroyAllGameObjectsInDontDestroyOnLoad();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoadOnQuitGame);
     }
 }
