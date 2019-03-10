@@ -21,8 +21,8 @@ public class SplashScreenCursor : MonoBehaviour {
 
     private void Update()
     {
-        cursorRight.rectTransform.position = Vector3.Lerp(cursorRight.rectTransform.position, GetGoalPositionRight(), CustomTime.DeltaTime * lerpSpeed);
-        cursorLeft.rectTransform.position = Vector3.Lerp(cursorLeft.rectTransform.position, GetGoalPositionLeft(), CustomTime.DeltaTime * lerpSpeed);
+        cursorRight.rectTransform.position = Vector3.Lerp(cursorRight.rectTransform.position, GetGoalPositionRight(), CustomTime.UnscaledDeltaTime * lerpSpeed);
+        cursorLeft.rectTransform.position = Vector3.Lerp(cursorLeft.rectTransform.position, GetGoalPositionLeft(), CustomTime.UnscaledDeltaTime * lerpSpeed);
     }
 
     /// <summary>

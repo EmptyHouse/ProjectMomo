@@ -124,7 +124,7 @@ public class GameOverseer : MonoBehaviour {
     {
         if (gameStateToSet == this.currentGameState)
         {
-            Debug.LogWarning("You are set the state " + gameStateToSet.ToString() + " when it is already the current state");
+            Debug.LogWarning("You have set the state " + gameStateToSet.ToString() + " when it is already the current state");
             return;
         }
         this.currentGameState = gameStateToSet;

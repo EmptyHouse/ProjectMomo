@@ -4,27 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SplashScreenManager : SelectableUIManager {
-#if UNITY_EDITOR
-    public UnityEditor.SceneAsset sceneToLoadOnStartGame;
 
-    private void OnValidate()
-    {
-        sceneToLoadOnStartGameString = sceneToLoadOnStartGame.name;
-    }
-#endif
-
-    /// <summary>
-    /// Strnig name of the scene that we will load
-    /// </summary>
-    private string sceneToLoadOnStartGameString;
+    public Utilities.SceneField sceneToLoadOnStartGame;
 
     
-
+    /// <summary>
+    /// Call this method when you press the start game button in the splash screen
+    /// </summary>
     public void OnStartGameButtonPressed()
     {
-        SceneManager.LoadScene(sceneToLoadOnStartGameString);
+        SceneManager.LoadScene(sceneToLoadOnStartGame);
     }
 
+
+    /// <summary>
+    /// Call this method when you press the quit game button in the splash screen
+    /// </summary>
     public void OnExitGameButtonPressed()
     {
         Application.Quit();

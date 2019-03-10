@@ -34,7 +34,7 @@ public class SelectableUIManager : MonoBehaviour {
 
     #region monobehaviour methods
 
-    private void Start()
+    private void Awake()
     {
         SetNextSelectableUIOption(initiallySelectedUI);
     }
@@ -47,7 +47,6 @@ public class SelectableUIManager : MonoBehaviour {
         }
         float verticalInput = Input.GetAxisRaw("Vertical");
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-
         if (Mathf.Abs(verticalInput) > JOYSTICK_THRESHOLD)
         {
             StartCoroutine(BeginAutoScrollingVertical(verticalInput));
@@ -98,10 +97,12 @@ public class SelectableUIManager : MonoBehaviour {
         SelectableUI nextOption = GetNextOption(direction < 0 ? SelectableUI.UIDirection.South : SelectableUI.UIDirection.North);
         if (nextOption != null)
         {
-            currentlySelectedUI = nextOption;
+            SetNextSelectableUIOption(nextOption);
         }
         while (timeThatHasPassed < timeBeforeAutoScrolling)
         {
+            
+
             if (direction * Input.GetAxisRaw("Vertical") < JOYSTICK_THRESHOLD)
             {
                 this.isCurrentlyAutoScrolling = false;
@@ -121,7 +122,7 @@ public class SelectableUIManager : MonoBehaviour {
                 nextOption = GetNextOption(direction < 0 ? SelectableUI.UIDirection.South : SelectableUI.UIDirection.North);
                 if (nextOption != null)
                 {
-                    currentlySelectedUI = nextOption;
+                    SetNextSelectableUIOption(nextOption);
                 }
             }
 
