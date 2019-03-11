@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour {
     #region const inputs
+    public const string PAUSE_GAME_INPUT = "Pause";
+
     private const string HORIZONTAL_INPUT_ANIMATOR_PARENTER = "HorizontalInput";
     private const string VERTICAL_INPUT_ANIMATOR_PARAMETER = "VerticalInput";
 
@@ -37,7 +39,16 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     private void LateUpdate()
     {
-        
+        if (GameOverseer.Instance.currentGameState != GameOverseer.GameState.GamePlaying)
+        {
+            return;
+        }
+        if (Input.GetButtonUp(PAUSE_GAME_INPUT))
+        {
+            PauseMenuManager.Instance.OpenPauseMenu();
+            return;
+        }
+
         characterStats.movementMechanics.SetHorizontalInput(Input.GetAxisRaw(HorizontalInput));
         characterStats.movementMechanics.SetVerticalInput(Input.GetAxisRaw(VerticalInput));
 

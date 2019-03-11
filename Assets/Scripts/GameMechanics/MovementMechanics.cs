@@ -423,4 +423,12 @@ public class MovementMechanics : MonoBehaviour {
     }
     #endregion dashing methods
 
+    private IEnumerator LoseUpwardMomentumFromJump()
+    {
+        if (rigid.velocity.y < 0)
+        {
+            yield break;
+        }
+    }
+
 }

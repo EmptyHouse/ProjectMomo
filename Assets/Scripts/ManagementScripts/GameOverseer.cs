@@ -33,6 +33,7 @@ public class GameOverseer : MonoBehaviour {
     #endregion static variables
 
     #region main variables
+    public Utilities.SceneField sceneToLoadOnQuitGame;
     public PlayerCharacterStats playerCharacterStats;
     public GameState currentGameState { get; private set; }
     public Dictionary<CustomTime.TimeLayer, List<TimeManagedObject>> allTimeMangedObjectDictionary { get; private set; }
@@ -124,7 +125,7 @@ public class GameOverseer : MonoBehaviour {
     {
         if (gameStateToSet == this.currentGameState)
         {
-            Debug.LogWarning("You are set the state " + gameStateToSet.ToString() + " when it is already the current state");
+            Debug.LogWarning("You have set the state " + gameStateToSet.ToString() + " when it is already the current state");
             return;
         }
         this.currentGameState = gameStateToSet;
@@ -156,5 +157,11 @@ public class GameOverseer : MonoBehaviour {
         {
             Destroy(objectToDestroy);
         }
+    }
+
+    public void QuitGameAndReturnToMainMenu()
+    {
+        DestroyAllGameObjectsInDontDestroyOnLoad();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoadOnQuitGame);
     }
 }
