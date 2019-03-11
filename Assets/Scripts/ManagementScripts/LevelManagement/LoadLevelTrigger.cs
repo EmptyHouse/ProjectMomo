@@ -21,7 +21,11 @@ public class LoadLevelTrigger : MonoBehaviour {
 
     #region monobehaviour methods
     
-
+    /// <summary>
+    /// When you enter a trigger area that transports you to an new level we will call the LevelManager to open
+    /// a new scene
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.GetComponent<PlayerCharacterStats>())

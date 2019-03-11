@@ -71,7 +71,12 @@ public class MovementMechanics : MonoBehaviour {
     /// If this value is set to true, we will act as if all inputs are set to 0. If there is an action that should occur where the character
     /// should not move, mark this value as true
     /// </summary>
-    public bool ignoreInputs;
+    public bool ignoreJoystickInputs;
+    [HideInInspector]
+    /// <summary>
+    /// Ignores inputs related to the jump function
+    /// </summary>
+    public bool ignoreJumpButton;
     private int currentJumpsAvailable;
 
     private MovementState currentMovementState = MovementState.FreeMovement;
@@ -174,7 +179,7 @@ public class MovementMechanics : MonoBehaviour {
     /// <param name="horizontalInput"></param>
     public void SetHorizontalInput(float horizontalInput)
     {
-        if (this.ignoreInputs)
+        if (this.ignoreJoystickInputs)
         {
             horizontalInput = 0;
         }
@@ -192,7 +197,7 @@ public class MovementMechanics : MonoBehaviour {
     /// <param name="verticalInput"></param>
     public void SetVerticalInput(float verticalInput)
     {
-        if(this.ignoreInputs)
+        if(this.ignoreJoystickInputs)
         {
             verticalInput = 0;
         }
@@ -312,6 +317,7 @@ public class MovementMechanics : MonoBehaviour {
     /// <returns></returns>
     public bool Jump()
     {
+        if (ignoreJumpButton) return false;
         if (!rigid.isInAir)
         {
             

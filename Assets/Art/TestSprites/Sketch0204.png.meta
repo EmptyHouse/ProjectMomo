@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 4dc7236ce73adfe4b89a0db4883241f2
+guid: d37446d4079ceea4ba456379807bd30f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Idle_00
-    21300002: Attack
-    21300004: AirAttack
-    21300006: DownAirAttack
+    21300000: Attack_01
+    21300002: Attack_02
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -67,7 +65,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -78,7 +76,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -88,81 +86,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_00
+      name: Attack_01
       rect:
         serializedVersion: 2
-        x: 14
-        y: 9
-        width: 242
-        height: 296
+        x: 0
+        y: 76
+        width: 408
+        height: 283
       alignment: 9
-      pivot: {x: 0.408005, y: 0.010979089}
+      pivot: {x: 0.46883982, y: 0.05932175}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54aea0c0912fd2a47aaf4fa41b657980
+      spriteID: 2813bd81154ab644c85142ca5a441c17
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack
+      name: Attack_02
       rect:
         serializedVersion: 2
-        x: 266
-        y: 21
-        width: 346
-        height: 345
+        x: 477
+        y: 43
+        width: 451
+        height: 387
       alignment: 9
-      pivot: {x: 0.4070596, y: 0.041918017}
+      pivot: {x: 0.6288651, y: 0.14333165}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c8fa286839eab47af8937042069667
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AirAttack
-      rect:
-        serializedVersion: 2
-        x: 646
-        y: 39
-        width: 377
-        height: 268
-      alignment: 9
-      pivot: {x: 0.6990285, y: 0.016962735}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ac0bbeba75117e4fbb6b6d5db1bf56c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DownAirAttack
-      rect:
-        serializedVersion: 2
-        x: 1071
-        y: 39
-        width: 319
-        height: 297
-      alignment: 9
-      pivot: {x: 0.43882632, y: 0.15666969}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f83fb2bc7ea5b9148abc0ef705dd561f
+      spriteID: 58aadd80dbcebd94d9e10884c37370a3
       vertices: []
       indices: 
       edges: []
@@ -170,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8d0f71382547eca49871d675fc2b645e
+    spriteID: 54abe1b2d6e67414ea86a3ad10d6b14e
     vertices: []
     indices: 
     edges: []
