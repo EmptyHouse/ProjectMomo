@@ -297,15 +297,15 @@ public class MovementMechanics : MonoBehaviour {
         this.isFacingRight = spriteFacingright;
         if (spriteFacingright)
         {
-            Vector3 currentScale = spriteRenderer.transform.localScale;
+            Vector3 currentScale = spriteRenderer.transform.parent.localScale;
             currentScale.x = Mathf.Abs(currentScale.x);
-            spriteRenderer.transform.localScale = currentScale;
+            spriteRenderer.transform.parent.localScale = currentScale;
         }
         else
         {
-            Vector3 currentScale = spriteRenderer.transform.localScale;
+            Vector3 currentScale = spriteRenderer.transform.parent.localScale;
             currentScale.x = -Mathf.Abs(currentScale.x); ;
-            spriteRenderer.transform.localScale = currentScale;
+            spriteRenderer.transform.parent.localScale = currentScale;
         }
     }
 

@@ -10,7 +10,7 @@ public class TileCollider : MonoBehaviour {
     private Collider2D tileCollider;
 
     #region monobehaviour methods
-    private void Start()
+    protected virtual void Start()
     {
         tileCollider = GetComponent<Collider2D>();
     }
@@ -63,21 +63,6 @@ public class TileCollider : MonoBehaviour {
     #endregion get point methods
 
     #region trigger methods
-    /// <summary>
-    /// Whenever a tile object as been entered, we should call this method
-    /// </summary>
-    /// <param name="collider"></param>
-    public virtual void OnTileEntered(CustomCollider2D collider)
-    {
-    }
-
-    /// <summary>
-    /// Whenever a custom collider object exits this tile, this method should be called
-    /// </summary>
-    /// <param name="collider"></param>
-    public virtual void OnTileExited(CustomCollider2D collider)
-    {
-
-    }
+    
     #endregion trigger methods
 }
