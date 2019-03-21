@@ -894,8 +894,9 @@ MonoBehaviour:
   targetOffset: {x: 0, y: 0}
   smoothTime: 0.3
   velocityThresholdBeforeHover: 0.6
-  hoverMagnitude: 0.07
+  hoverMagnitude: 0.03
   hoverSpeed: 0.7
+  companionSpriteRenderer: {fileID: 212393082272396346}
 --- !u!114 &114390689616739576
 MonoBehaviour:
   m_ObjectHideFlags: 1

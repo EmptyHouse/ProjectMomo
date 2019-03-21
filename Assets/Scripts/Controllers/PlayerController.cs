@@ -55,13 +55,9 @@ public class PlayerController : MonoBehaviour {
         anim.SetFloat(VERTICAL_INPUT_ANIMATOR_PARAMETER, characterStats.movementMechanics.GetVerticalInput());
         anim.SetFloat(HORIZONTAL_INPUT_ANIMATOR_PARENTER, characterStats.movementMechanics.GetHorizontalInput());
 
-        if (Input.GetButtonDown(PROJECTILE_INPUT))
-        {
-            characterStats.combatMechanics.FireArrowAnimation();
-        }
+        
         if (Input.GetButtonDown(MELEE_INPUT))
         {
-            characterStats.combatMechanics.PerformMeleeAnimation();
         }
         if (Input.GetButtonDown(JUMP_INPUT))
         {

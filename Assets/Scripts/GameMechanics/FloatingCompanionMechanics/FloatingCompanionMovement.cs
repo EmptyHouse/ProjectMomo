@@ -23,6 +23,9 @@ public class FloatingCompanionMovement : MonoBehaviour {
     [Tooltip("The speed at which out companion will float")]
     public float hoverSpeed = 1;
     private Vector3 offsetForHover = Vector3.zero;
+
+    public SpriteRenderer companionSpriteRenderer;
+    public bool isFacingRight { get; private set; }
     #endregion main variables
 
     #region monobehaviour methods 
@@ -30,6 +33,14 @@ public class FloatingCompanionMovement : MonoBehaviour {
     {
         this.transform.SetParent(null);
         this.transform.position = targetTransform.position;
+
+        
+
+    }
+
+    private void Start()
+    {
+        SetDirectionOfCompanion(IsTargetToTheRight());
     }
 
     private void Update()
@@ -58,6 +69,11 @@ public class FloatingCompanionMovement : MonoBehaviour {
         offsetForHover = CalculateOffsetFromHover();
 
         this.transform.position = updatedPosition + offsetForHover;
+        bool checkCompanionFacingRight = IsTargetToTheRight();
+        if (checkCompanionFacingRight ^ isFacingRight)
+        {
+            SetDirectionOfCompanion(checkCompanionFacingRight);
+        }
     }
     #endregion monobehaviour methods
 
@@ -66,5 +82,33 @@ public class FloatingCompanionMovement : MonoBehaviour {
         timeThatHasPassed += CustomTime.DeltaTime;
         return Vector3.up * Mathf.Sin(timeThatHasPassed * hoverSpeed) * hoverMagnitude;
 
+    }
+
+    /// <summary>
+    /// This checks if the target position is to the right of the Floating companion object.
+    /// This is a helper method to determine what direction our floating companion should face.
+    /// </summary>
+    /// <returns></returns>
+    private bool IsTargetToTheRight()
+    {
+        Vector3 offsetFromTarget = GameOverseer.Instance.playerCharacterStats.transform.position - this.transform.position;
+        return offsetFromTarget.x > 0;
+    }
+
+    public void SetDirectionOfCompanion(bool setDirectionRight)
+    {
+        float xScale = companionSpriteRenderer.transform.localScale.x;
+        Vector3 currentScale = companionSpriteRenderer.transform.localScale;
+
+        if (setDirectionRight)
+        {
+            currentScale.x = xScale;
+        }
+        else
+        {
+            currentScale.x = -xScale;
+        }
+        companionSpriteRenderer.transform.localScale = currentScale;
+        isFacingRight = setDirectionRight;
     }
 }

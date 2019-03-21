@@ -32,8 +32,7 @@ public class CharacterStats : MonoBehaviour {
     #endregion statistics variables
 
     public MovementMechanics movementMechanics { get; set; }
-    public CombatMechanics combatMechanics { get; set; }
-    public MeleeMechanics associatedHitboxManager { get; set; }
+    
     public CustomPhysics2D customPhysics { get; set; }
     public TimeManagedObject timeManagedObject { get; set; }
     public Animator characterAnimator { get; set; }
@@ -45,8 +44,6 @@ public class CharacterStats : MonoBehaviour {
         healthSlider = GetComponentInChildren<UnityEngine.UI.Slider>();
         
         movementMechanics = GetComponent<MovementMechanics>();
-        combatMechanics = GetComponent<CombatMechanics>();
-        associatedHitboxManager = GetComponent<MeleeMechanics>();
         timeManagedObject = GetComponent<TimeManagedObject>();
         if (timeManagedObject != null)
         {
@@ -54,10 +51,6 @@ public class CharacterStats : MonoBehaviour {
         }
         characterAnimator = GetComponent<Animator>();
 
-        if (associatedHitboxManager)
-        {
-            associatedHitboxManager.associatedCharacterStats = this;
-        }
         customPhysics = GetComponent<CustomPhysics2D>();
         if (customPhysics != null)
         {

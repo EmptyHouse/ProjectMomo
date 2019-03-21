@@ -61,7 +61,6 @@ public class SelectableUIManager : MonoBehaviour {
 
     private SelectableUI GetNextOption(SelectableUI.UIDirection directionToCheck)
     {
-        List<SelectableUI> currentlyCheckedOptions = new List<SelectableUI>();
         SelectableUI optionToCheck = currentlySelectedUI.GetUIInDirection(directionToCheck);
         return optionToCheck;
         //while (optionToCheck != null && !currentlyCheckedOptions.Contains(optionToCheck))
