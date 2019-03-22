@@ -16,6 +16,8 @@ public class Hurtbox : MonoBehaviour
     {
         this.associatedCharacterStats = GetComponentInParent<CharacterStats>();
         this.associatedCollider = GetComponent<Collider2D>();
+        associatedCollider.isTrigger = true;
+        this.gameObject.layer = LayerMask.NameToLayer("Hitbox");
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

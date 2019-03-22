@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+[RequireComponent(typeof(Collider2D))]
 /// <summary>
 /// Script that handles any type of hitbox functionality. This will check for interactions with hitboxes or hurtboxes
 /// </summary>
 public class Hitbox : MonoBehaviour
 {
     public CharacterStats associatedCharacterStats { get; set; }
+    public Collider2D associatedCollider { get; private set; }
     public UnityEvent<Hurtbox> onHurtboxEnteredEvent = new HitboxOnHurtboxEvent();
     public UnityEvent<Hitbox> onHitboxEnteredEvent = new HitboxOnHitboxEvent();
     public UnityEvent<Collider2D> onCollisionEvent = new HitboxOnCollider2DEvent();
 
     #region monobehaviour methods
+    private void Awake()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Hitbox");
+        associatedCollider = GetComponent<Collider2D>();
+        associatedCollider.isTrigger = true;
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
