@@ -23,22 +23,22 @@ public class Hitbox : MonoBehaviour
 
         if (hitbox != null)
         {
-            if (hitbox.associatedCharacterStats == null)
-            {
-                Debug.LogError(hitbox.name + " contains a null associated CharacterStats reference");
-                return;
-            }
+            //if (hitbox.associatedCharacterStats == null)
+            //{
+            //    Debug.LogError(hitbox.name + " contains a null associated CharacterStats reference");
+            //    return;
+            //}
             if (hitbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
             onHitboxEnteredEvent.Invoke(hitbox);
             return;
         }
         if (hurtbox != null)
         {
-            if (hurtbox.associatedCharacterStats == null)
-            {
-                Debug.LogError(hurtbox.name + " contains a null associated CharacterStats reference");
-                return;
-            }
+            //if (hurtbox.associatedCharacterStats == null)
+            //{
+            //    Debug.LogError(hurtbox.name + " contains a null associated CharacterStats reference");
+            //    return;
+            //}
             if (hurtbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
             onHurtboxEnteredEvent.Invoke(hurtbox);
             return;

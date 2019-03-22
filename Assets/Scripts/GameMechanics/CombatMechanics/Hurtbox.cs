@@ -25,19 +25,25 @@ public class Hurtbox : MonoBehaviour
 
         if (hitbox != null)
         {
-            if (hitbox.associatedCharacterStats == null)
-            {
-                Debug.LogError(hitbox.name + ": Hitbox missing an associated character stats reference");
-            }
+            //if (hitbox.associatedCharacterStats == null)
+            //{
+            //    Debug.LogError(hitbox.name + ": Hitbox missing an associated character stats reference");
+            //    return;
+            //}
+            if (hitbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
             onHitboxEnteredEvent.Invoke(hitbox);
             return;
         }
         if (hurtbox != null)
         {
-            if (hurtbox.associatedCharacterStats == null)
-            {
-                Debug.LogError(hurtbox.name + ": Hurtbox missing associated character stats reference");
-            }
+            //if (hurtbox.associatedCharacterStats == null)
+            //{
+            //    Debug.LogError(hurtbox.name + ": Hurtbox missing associated character stats reference");
+            //    return;
+            //}
+            if (hurtbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
+            onHurtboxEnteredEvent.Invoke(hurtbox);
+            return;
         }
     }
 
