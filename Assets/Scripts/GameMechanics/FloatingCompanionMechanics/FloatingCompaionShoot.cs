@@ -71,7 +71,7 @@ public class FloatingCompaionShoot : MonoBehaviour {
                 isArrowActive = false;
                 StartCoroutine(FadeOutArrow());
             }
-            if (!isFiring)
+            if (!isFiring)//If the player releases the right stick it will continue to fire in the same direction until the player stops shooting
                 currentDirectionToFire = new Vector2(movement.isFacingRight ? 1 : -1, 0);
         }
     }
