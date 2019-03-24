@@ -11,7 +11,7 @@ public class MeleeMechanics : MonoBehaviour
     /// This is a timer that is used to deactivate an attack trigger if it has been longer than the attackBufferedTime.
     /// </summary>
     private float bufferedAttackTriggerTimer = .2f;
-    public CharacterStats associatedCharacterStats;
+    public CharacterStats associatedCharacterStats { get; set; }
     public Hitbox[] allConnectedHitboxes;
     private List<CharacterStats> characterStatsThatHaveBeenHitSinceAttackAnimation;
     public float damageToInflictOnEnemy = 5;

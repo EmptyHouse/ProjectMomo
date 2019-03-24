@@ -1,25 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1591789507409908}
-  m_IsPrefabAsset: 1
 --- !u!1 &1591789507409908
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4051573666533890}
   - component: {fileID: 114001928237962252}
+  - component: {fileID: 488198417}
+  - component: {fileID: 8998735763661514948}
   m_Layer: 0
   m_Name: GameOverseer
   m_TagString: Untagged
@@ -29,9 +21,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4051573666533890
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591789507409908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.28702, y: 0.8558023, z: 0.42452407}
@@ -42,13 +35,41 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114001928237962252
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591789507409908}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fa5b6d1b3a71c247bb37dbc4cf3f9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoadOnQuitGame:
+    sceneAsset: {fileID: 102900000, guid: 1eea09c493139a8448b63df6879669e9, type: 3}
+    sceneName: Scenes/MenuScenes/SplashScreen
   playerCharacterStats: {fileID: 0}
+--- !u!114 &488198417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591789507409908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b9652b6a8bf274e961f4874093c693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8998735763661514948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591789507409908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0bfc8f3bcd1eb40b8399e8c48f6841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

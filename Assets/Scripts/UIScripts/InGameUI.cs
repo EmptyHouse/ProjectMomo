@@ -31,6 +31,9 @@ public class InGameUI : MonoBehaviour {
 
     [Tooltip("The animator object that will be called when loading into a new level")]
     public Animator levelTransitionUIAnimator;
+
+    [Header("Important Prefab References")]
+    public CharacterDamageText damageTextPrefab;
     #endregion main variables
 
     #region monbehaviour methods

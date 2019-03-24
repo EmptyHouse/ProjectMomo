@@ -19,6 +19,9 @@ public class CharacterStats : MonoBehaviour {
     }
     #endregion enums
     #region statistics variables
+    [Header("UI Elements")]
+    public Transform canvasElementTransform;
+    public Transform damageTextSpawnPoint;
     [Tooltip("The health bar slider that indicates the remaining health of our character")]
     private UnityEngine.UI.Slider healthSlider;
     [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
@@ -101,6 +104,10 @@ public class CharacterStats : MonoBehaviour {
         {
             OnCharacterKilled();
         }
+        CharacterDamageText damageText = Instantiate<CharacterDamageText>(InGameUI.Instance.damageTextPrefab);
+        damageText.transform.SetParent(canvasElementTransform);
+        damageText.SetupDamageText(CharacterDamageText.DamageTextType.DamageTakenText, damageToTake, damageTextSpawnPoint.localPosition);
+
     }
 
     /// <summary>
