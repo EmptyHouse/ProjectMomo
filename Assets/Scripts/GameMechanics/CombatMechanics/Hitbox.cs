@@ -23,6 +23,10 @@ public class Hitbox : MonoBehaviour
         associatedCollider.isTrigger = true;
     }
 
+    /// <summary>
+    /// Sets off the appropritate triggers when our hitboxes enter a hitbox, hurtbox or generic collider2D
+    /// </summary>
+    /// <param name="collider"></param>
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         Hitbox hitbox = collider.GetComponent<Hitbox>();
@@ -35,7 +39,7 @@ public class Hitbox : MonoBehaviour
             //    Debug.LogError(hitbox.name + " contains a null associated CharacterStats reference");
             //    return;
             //}
-            if (hitbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
+            if (hitbox.associatedCharacterStats.hitboxLayer != this.associatedCharacterStats.hitboxLayer) { return; }
             onHitboxEnteredEvent.Invoke(hitbox);
             return;
         }
@@ -46,7 +50,7 @@ public class Hitbox : MonoBehaviour
             //    Debug.LogError(hurtbox.name + " contains a null associated CharacterStats reference");
             //    return;
             //}
-            if (hurtbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
+            if (hurtbox.associatedCharacterStats.hitboxLayer != this.associatedCharacterStats.hitboxLayer) { return; }
             onHurtboxEnteredEvent.Invoke(hurtbox);
             return;
         }

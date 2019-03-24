@@ -32,7 +32,7 @@ public class Hurtbox : MonoBehaviour
             //    Debug.LogError(hitbox.name + ": Hitbox missing an associated character stats reference");
             //    return;
             //}
-            if (hitbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
+            if (hitbox.associatedCharacterStats.hitboxLayer != this.associatedCharacterStats.hitboxLayer) { return; }
             onHitboxEnteredEvent.Invoke(hitbox);
             return;
         }
@@ -43,7 +43,7 @@ public class Hurtbox : MonoBehaviour
             //    Debug.LogError(hurtbox.name + ": Hurtbox missing associated character stats reference");
             //    return;
             //}
-            if (hurtbox.associatedCharacterStats == this.associatedCharacterStats) { return; }
+            if (hurtbox.associatedCharacterStats.hitboxLayer != this.associatedCharacterStats.hitboxLayer) { return; }
             onHurtboxEnteredEvent.Invoke(hurtbox);
             return;
         }
