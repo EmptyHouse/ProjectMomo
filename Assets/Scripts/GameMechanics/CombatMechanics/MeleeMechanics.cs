@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeMechanics : MonoBehaviour
 {
-    public const string ATTACK_TRIGGER = "Attack";
+    public const string MELEE_TRIGGER = "MeleeTrigger";
     [Tooltip("This is the leeway time we will give our player to use the attack functionality. For example if we set a 1 second buffer, the player will then have 1 whole second to activate an attack animation after they press the attack button.")]
     public float attackBufferedTime;
     /// <summary>
@@ -23,8 +23,24 @@ public class MeleeMechanics : MonoBehaviour
         }
     }
     #region monobehaviour methods
+    private void Awake()
+    {
+        associatedCharacterStats = GetComponent<CharacterStats>();
+        foreach (Hitbox hitbox in allConnectedHitboxes)
+        {
+            hitbox.onHurtboxEnteredEvent.AddListener(EnemyHit);
+        }
+    }
 
+    private void OnDestroy()
+    {
+        foreach(Hitbox hitbox in allConnectedHitboxes)
+        {
+            hitbox.onHurtboxEnteredEvent.RemoveListener(EnemyHit);
+        }
+    }
     #endregion monobehaviuor methods
+
 
 
     /// <summary>
