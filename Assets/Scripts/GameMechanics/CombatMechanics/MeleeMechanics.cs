@@ -30,6 +30,7 @@ public class MeleeMechanics : MonoBehaviour
         foreach (Hitbox hitbox in allConnectedHitboxes)
         {
             hitbox.onHurtboxEnteredEvent.AddListener(EnemyHit);
+            hitbox.associatedCharacterStats = associatedCharacterStats;
         }
     }
 

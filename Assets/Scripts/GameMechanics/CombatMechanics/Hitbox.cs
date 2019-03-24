@@ -39,7 +39,7 @@ public class Hitbox : MonoBehaviour
             //    Debug.LogError(hitbox.name + " contains a null associated CharacterStats reference");
             //    return;
             //}
-            if (hitbox.associatedCharacterStats.hitboxLayer != this.associatedCharacterStats.hitboxLayer) { return; }
+            if (hitbox.associatedCharacterStats.hitboxLayer == this.associatedCharacterStats.hitboxLayer) { return; }
             onHitboxEnteredEvent.Invoke(hitbox);
             return;
         }
@@ -50,7 +50,7 @@ public class Hitbox : MonoBehaviour
             //    Debug.LogError(hurtbox.name + " contains a null associated CharacterStats reference");
             //    return;
             //}
-            if (hurtbox.associatedCharacterStats.hitboxLayer != this.associatedCharacterStats.hitboxLayer) { return; }
+            if (hurtbox.associatedCharacterStats.hitboxLayer == this.associatedCharacterStats.hitboxLayer) { return; }
             onHurtboxEnteredEvent.Invoke(hurtbox);
             return;
         }
