@@ -36,7 +36,7 @@ public class CharacterStats : MonoBehaviour {
     public CustomPhysics2D customPhysics { get; set; }
     public TimeManagedObject timeManagedObject { get; set; }
     public Animator characterAnimator { get; set; }
-
+    public MeleeMechanics meleeMechanics { get; set; }
 
     #region monobehaivour methods
     protected virtual void Awake()
@@ -55,6 +55,11 @@ public class CharacterStats : MonoBehaviour {
         if (customPhysics != null)
         {
             customPhysics.associatedCharacterStats = this;
+        }
+        meleeMechanics = GetComponent<MeleeMechanics>();
+        if (meleeMechanics != null)
+        {
+            meleeMechanics.associatedCharacterStats = this;
         }
 
         currentHealth = maxHealth;

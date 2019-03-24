@@ -10,10 +10,11 @@ public class MeleeMechanics : MonoBehaviour
     /// <summary>
     /// This is a timer that is used to deactivate an attack trigger if it has been longer than the attackBufferedTime.
     /// </summary>
-    private float bufferedAttackTriggerTimer;
+    private float bufferedAttackTriggerTimer = .2f;
     public CharacterStats associatedCharacterStats;
     public Hitbox[] allConnectedHitboxes;
     private List<CharacterStats> characterStatsThatHaveBeenHitSinceAttackAnimation;
+    public float damageToInflictOnEnemy = 5;
 
     private Animator anim
     {
@@ -48,11 +49,14 @@ public class MeleeMechanics : MonoBehaviour
     /// </summary>
     public void AttackButtonPressed()
     {
-        if (bufferedAttackTriggerTimer <= 0)
+        float previousBufferedTime = bufferedAttackTriggerTimer;
+        bufferedAttackTriggerTimer = attackBufferedTime;
+        anim.SetTrigger(MELEE_TRIGGER);
+        if (previousBufferedTime <= 0)
         {
-            bufferedAttackTriggerTimer = attackBufferedTime;
             StartCoroutine(DeactivateAttackTriggerAfterBufferedTimeHasPassed());
         }
+        
     }
 
     /// <summary>
@@ -61,10 +65,7 @@ public class MeleeMechanics : MonoBehaviour
     /// <param name="hurtboxOfEnemy"></param>
     public void EnemyHit(Hurtbox hurtboxOfEnemy)
     {
-        if (hurtboxOfEnemy.associatedCharacterStats.hitboxLayer != associatedCharacterStats.hitboxLayer)
-        {
-
-        }
+        hurtboxOfEnemy.associatedCharacterStats.TakeDamage(damageToInflictOnEnemy);
     }
 
     /// <summary>

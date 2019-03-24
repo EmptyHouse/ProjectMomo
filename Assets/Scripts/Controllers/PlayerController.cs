@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour {
         
         if (Input.GetButtonDown(MELEE_INPUT))
         {
+            characterStats.meleeMechanics.AttackButtonPressed();
         }
         if (Input.GetButtonDown(JUMP_INPUT))
         {
