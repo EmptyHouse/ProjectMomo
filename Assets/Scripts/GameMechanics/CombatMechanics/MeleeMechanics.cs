@@ -14,7 +14,9 @@ public class MeleeMechanics : MonoBehaviour
     public CharacterStats associatedCharacterStats { get; set; }
     public Hitbox[] allConnectedHitboxes;
     private List<CharacterStats> characterStatsThatHaveBeenHitSinceAttackAnimation;
-    public float damageToInflictOnEnemy = 5;
+    public MeleeAttackInformation[] meleeAttackInformation = new MeleeAttackInformation[1];
+    [Tooltip("This will be the attack index that we will use ")]
+    private int currentSelectedMeleeAttackID;
 
     private Animator anim
     {
@@ -34,6 +36,14 @@ public class MeleeMechanics : MonoBehaviour
         }
     }
 
+    private void OnValidate()
+    {
+        if (meleeAttackInformation.Length < 1)
+        {
+            meleeAttackInformation = new MeleeAttackInformation[1];
+        }
+    }
+
     private void OnDestroy()
     {
         foreach(Hitbox hitbox in allConnectedHitboxes)
@@ -43,7 +53,19 @@ public class MeleeMechanics : MonoBehaviour
     }
     #endregion monobehaviuor methods
 
-
+    /// <summary>
+    /// This will set what attack information to use from our MeleeAttackInformation list.
+    /// </summary>
+    /// <param name="meleeAttackID"></param>
+    public void OnSetMeleeAttackInformationToUse(int meleeAttackID)
+    {
+        if (meleeAttackID < 0 || meleeAttackID >= meleeAttackInformation.Length)
+        {
+            meleeAttackID = 0;
+            Debug.LogError("Melee Attack ID was set out of range from our attack information list");
+        }
+        currentSelectedMeleeAttackID = meleeAttackID;
+    }
 
     /// <summary>
     /// This will set an attack trigger if the player has pressed the attack button
@@ -66,7 +88,7 @@ public class MeleeMechanics : MonoBehaviour
     /// <param name="hurtboxOfEnemy"></param>
     public void EnemyHit(Hurtbox hurtboxOfEnemy)
     {
-        hurtboxOfEnemy.associatedCharacterStats.TakeDamage(damageToInflictOnEnemy);
+        hurtboxOfEnemy.associatedCharacterStats.TakeDamage(meleeAttackInformation[currentSelectedMeleeAttackID].baseDamageToDeal);
     }
 
     /// <summary>
@@ -86,5 +108,23 @@ public class MeleeMechanics : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    /// <summary>
+    /// This will contain all the information for any given attack type
+    /// </summary>
+    [System.Serializable]
+    public class MeleeAttackInformation
+    {
+        [Tooltip("A reference to the ID of this attack information. Can also be used as the index")]
+        private int attackID;
+        [Tooltip("The damage that will be dealt to an enemy that is hit during this attack animation")]
+        public int baseDamageToDeal = 5;
+        [Tooltip("The direction that we will hit enemies when they are hit by a specific attack")]
+        public Vector2 directionOfAttack;
+        [Tooltip("The launch force that we will send our enemy upon being hit")]
+        public float forceOfAttack;
+        [Tooltip("The amount of time that our enemy will be in hit stun. During this time, they can not make any moves and can be comboed")]
+        public float timeInHitStun = 0;
     }
 }
