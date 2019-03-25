@@ -19,11 +19,7 @@ public class CharacterStats : MonoBehaviour {
     }
     #endregion enums
     #region statistics variables
-    [Header("UI Elements")]
-    public Transform canvasElementTransform;
-    public Transform damageTextSpawnPoint;
-    [Tooltip("The health bar slider that indicates the remaining health of our character")]
-    private UnityEngine.UI.Slider healthSlider;
+    public CharacterWorldUI characterWorldUI;
     [Tooltip("The layer of our hitbox. This will be used to make sure that our hitbox does not hit other hitboxes that are on the same team")]
     public HitboxLayer hitboxLayer;
     [Tooltip("The maximum health that this character will have. Upon starting up, this character will begin with this health")]
@@ -31,7 +27,7 @@ public class CharacterStats : MonoBehaviour {
     /// <summary>
     /// The player's current Health
     /// </summary>
-    protected float currentHealth;
+    public float currentHealth { get; protected set; }
     #endregion statistics variables
 
     public MovementMechanics movementMechanics { get; set; }
@@ -44,8 +40,7 @@ public class CharacterStats : MonoBehaviour {
     #region monobehaivour methods
     protected virtual void Awake()
     {
-        healthSlider = GetComponentInChildren<UnityEngine.UI.Slider>();
-        
+        characterWorldUI.associatedCharacterStats = this;
         movementMechanics = GetComponent<MovementMechanics>();
         timeManagedObject = GetComponent<TimeManagedObject>();
         if (timeManagedObject != null)
@@ -105,9 +100,9 @@ public class CharacterStats : MonoBehaviour {
             OnCharacterKilled();
         }
         CharacterDamageText damageText = Instantiate<CharacterDamageText>(InGameUI.Instance.damageTextPrefab);
-        damageText.transform.SetParent(canvasElementTransform);
-        damageText.SetupDamageText(CharacterDamageText.DamageTextType.DamageTakenText, damageToTake, damageTextSpawnPoint.localPosition);
-
+        damageText.transform.SetParent(characterWorldUI.characterWorldCanvasReference);
+        damageText.SetupDamageText(CharacterDamageText.DamageTextType.DamageTakenText, damageToTake, characterWorldUI.damageTextSpawnPoint.localPosition);
+        UpdateHealthBarSlider();
     }
 
     /// <summary>
@@ -117,6 +112,7 @@ public class CharacterStats : MonoBehaviour {
     public virtual void AddHealth(float healthToAdd)
     {
         this.currentHealth = Mathf.Min(maxHealth, currentHealth + healthToAdd);
+        UpdateHealthBarSlider();
     }
 
     /// <summary>
@@ -136,10 +132,7 @@ public class CharacterStats : MonoBehaviour {
     /// </summary>
     private void UpdateHealthBarSlider()
     {
-        if (healthSlider != null)
-        {
-            healthSlider.value = currentHealth / maxHealth;
-        }
+        characterWorldUI.UpdateHealthBarToReflectCurrentHealth();
     }
     #endregion health methods
 
