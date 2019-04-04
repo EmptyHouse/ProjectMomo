@@ -8,6 +8,7 @@ using UnityEngine.Events;
 /// </summary>
 public abstract class Hitbox : MonoBehaviour
 {
+    public const string HITBOX_LAYER = "Hitbox";
     public CharacterStats associatedCharacterStats { get; set; }
     public UnityEvent<Hurtbox> onHurtboxEnteredEvent = new HitboxOnHurtboxEvent();
     public UnityEvent<Hitbox> onHitboxEnteredEvent = new HitboxOnHitboxEvent();
@@ -16,7 +17,7 @@ public abstract class Hitbox : MonoBehaviour
     #region monobehaviour methods
     protected virtual void Awake()
     {
-        this.gameObject.layer = LayerMask.NameToLayer("Hitbox");
+        this.gameObject.layer = LayerMask.NameToLayer(HITBOX_LAYER);
     }
 
     
