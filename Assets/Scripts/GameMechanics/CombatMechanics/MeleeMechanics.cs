@@ -13,7 +13,7 @@ public class MeleeMechanics : MonoBehaviour
     private float bufferedAttackTriggerTimer = .2f;
     public CharacterStats associatedCharacterStats { get; set; }
     public Hitbox[] allConnectedHitboxes;
-    private List<CharacterStats> characterStatsThatHaveBeenHitSinceAttackAnimation;
+    private List<CharacterStats> characterStatsThatHaveBeenHitSinceAttackAnimation = new List<CharacterStats>();
     public MeleeAttackInformation[] meleeAttackInformation = new MeleeAttackInformation[1];
     [Tooltip("This will be the attack index that we will use ")]
     private int currentSelectedMeleeAttackID;
@@ -54,11 +54,21 @@ public class MeleeMechanics : MonoBehaviour
     #endregion monobehaviuor methods
 
     /// <summary>
+    /// This method should be called any time we set the melee attack information, but you may also call this
+    /// if there is a multi hit move in an attack animation.
+    /// </summary>
+    private void OnResetMeleeAttack()
+    {
+        characterStatsThatHaveBeenHitSinceAttackAnimation.Clear();
+    }
+
+    /// <summary>
     /// This will set what attack information to use from our MeleeAttackInformation list.
     /// </summary>
     /// <param name="meleeAttackID"></param>
     public void OnSetMeleeAttackInformationToUse(int meleeAttackID)
     {
+        OnResetMeleeAttack();
         if (meleeAttackID < 0 || meleeAttackID >= meleeAttackInformation.Length)
         {
             meleeAttackID = 0;
@@ -88,6 +98,11 @@ public class MeleeMechanics : MonoBehaviour
     /// <param name="hurtboxOfEnemy"></param>
     public void EnemyHit(Hurtbox hurtboxOfEnemy)
     {
+        if (characterStatsThatHaveBeenHitSinceAttackAnimation.Contains(hurtboxOfEnemy.associatedCharacterStats))
+        {
+            return;
+        }
+        characterStatsThatHaveBeenHitSinceAttackAnimation.Add(hurtboxOfEnemy.associatedCharacterStats);
         hurtboxOfEnemy.associatedCharacterStats.TakeDamage(meleeAttackInformation[currentSelectedMeleeAttackID].baseDamageToDeal);
     }
 
