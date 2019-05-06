@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,12 +16,27 @@ public class SelectableUIManager : MonoBehaviour {
     /// as an input in our settings manager
     /// </summary>
     protected const float JOYSTICK_THRESHOLD = .65f;
+    public const string HORIZONTAL_AXIS = "Horizontal";
+    public const string VERTICAL_AXIS = "Vertical";
+
+    public const string SELECT_BUTTON = "Select";
+    public const string CANCEL_BUTTON = "Cancel";
+
+    /// <summary>
+    /// This is the time before we begin autoscrolling in our menu. We will always move to a new item immediately,
+    /// but we may want a delay before scrolling to different optins automatically
+    /// </summary>
+    public const float TIME_BEFORE_AUTO_SCROLLING = .4f;
+    /// <summary>
+    /// The time between selecting the next item when we begin autoscrolling.
+    /// </summary>
+    public const float TIME_BETWEEN_AUTO_SCROLL_ITEM = .1f;
+
+
     #endregion const variables
     #region main variables
-    [Tooltip("This is the time before we begin autoscrolling in our menu. We will always move to a new item immediately, but we may want a delay before scrolling to different optins automatically")]
-    public float timeBeforeAutoScrolling = .4f;
-    [Tooltip("The time between selecting the next item when we begin autoscrolling.")]
-    public float timeToScrollToNextOption = .1f;
+    [Tooltip("All connected selectable UI elements")]
+    public SelectableUI[] allSelectableUI;
     [Tooltip("The menu item that we will select upon opening the menu. If resetToInitialUIUponOpening is set to false, we will remain on the previous menu option whenever this menu is opened again")]
     public SelectableUI initiallySelectedUI;
     [Tooltip("This will make it so that we begin our menu on the initiallySelectedUI object whenever we open our menu")]
@@ -28,9 +44,22 @@ public class SelectableUIManager : MonoBehaviour {
     //[Tooltip("The transform parent that contains all the UI elements related to this menu")]
     
     #endregion main variables
-
+    
+    
     public SelectableUI currentlySelectedUI { get; private set; }
-    private bool isCurrentlyAutoScrolling;
+    /// <summary>
+    /// 
+    /// </summary>
+    protected bool isCurrentlyAutoScrolling
+    {
+        get
+        {
+            return isAutoScrollingHorizontally || isAutoScrollingVertically;
+        }
+    }
+
+    private bool isAutoScrollingVertically;
+    private bool isAutoScrollingHorizontally;
 
     #region monobehaviour methods
 
@@ -38,7 +67,7 @@ public class SelectableUIManager : MonoBehaviour {
     {
         SetNextSelectableUIOption(initiallySelectedUI);
     }
-
+    
     private void Update()
     {
         if (isCurrentlyAutoScrolling)
@@ -56,9 +85,73 @@ public class SelectableUIManager : MonoBehaviour {
 
         }
     }
+
+    protected virtual void OnEnable()
+    {
+        isAutoScrollingHorizontally = false;
+        isAutoScrollingVertically = false;
+    }
     #endregion monobehaviour methods
 
+    #region input methods
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public bool SelectButtonDown()
+    {
+        return Input.GetButtonDown(SELECT_BUTTON);
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public bool CancelButtonDown()
+    {
+        return Input.GetButtonDown(CANCEL_BUTTON);
+    }
+
+    /// <summary>
+    /// Returns the vertical axis
+    /// </summary>
+    /// <returns></returns>
+    public float VerticalAxis()
+    {
+        return Input.GetAxisRaw(VERTICAL_AXIS);
+    }
+
+    /// <summary>
+    /// Returns the horizontal axis
+    /// </summary>
+    /// <returns></returns>
+    public float HorizontalAxis()
+    {
+        return Input.GetAxisRaw(HORIZONTAL_AXIS);
+    }
+
+    /// <summary>
+    /// Returns whether or not the axis value that is passed in is above the threhold
+    /// </summary>
+    /// <param name="axisInput"></param>
+    /// <returns></returns>
+    protected bool JoystickAboveThreshold(float axisInput)
+    {
+        return Mathf.Abs(axisInput) > JOYSTICK_THRESHOLD;
+    }
+
+    /// <summary>
+    /// Returns whether or not our joystick is above the joystick threshold based on its original sign. This
+    /// is primarily used strictly 
+    /// </summary>
+    /// <param name="axisInput"></param>
+    /// <param name="originalSign"></param>
+    /// <returns></returns>
+    protected bool JoystickAboveThresholdSign(float axisInput, float originalSign)
+    {
+        return (originalSign * axisInput) > JOYSTICK_THRESHOLD;
+    }
+    #endregion input methods
     private SelectableUI GetNextOption(SelectableUI.UIDirection directionToCheck)
     {
         SelectableUI optionToCheck = currentlySelectedUI.GetUIInDirection(directionToCheck);
@@ -85,50 +178,74 @@ public class SelectableUIManager : MonoBehaviour {
     /// </summary>
     /// <param name="initialVerticalInput"></param>
     /// <returns></returns>
-    private IEnumerator BeginAutoScrollingVertical(float initialVerticalInput)
+    private IEnumerator BeginAutoScrollingVertical(float verticalInput)
     {
-        isCurrentlyAutoScrolling = true;
-        float direction = Mathf.Sign(initialVerticalInput);
-
+        int direction = (int)Mathf.Sign(verticalInput);
+        isAutoScrollingVertically = true;
         float timeThatHasPassed = 0;
-
-        ///TO-DO Add code that will change to the next item in the ui menu
-        SelectableUI nextOption = GetNextOption(direction < 0 ? SelectableUI.UIDirection.South : SelectableUI.UIDirection.North);
-        if (nextOption != null)
+        while (timeThatHasPassed > TIME_BEFORE_AUTO_SCROLLING)
         {
-            SetNextSelectableUIOption(nextOption);
-        }
-        while (timeThatHasPassed < timeBeforeAutoScrolling)
-        {
-            
-
-            if (direction * Input.GetAxisRaw("Vertical") < JOYSTICK_THRESHOLD)
+            if (JoystickAboveThresholdSign(VerticalAxis(), direction))
             {
-                this.isCurrentlyAutoScrolling = false;
+                isAutoScrollingVertically = false;
                 yield break;
             }
-            timeThatHasPassed += Time.unscaledDeltaTime;
+
+            timeThatHasPassed += CustomTime.UnscaledDeltaTime;
             yield return null;
         }
+
 
         timeThatHasPassed = 0;
-        while (direction * Input.GetAxisRaw("Vertical") > JOYSTICK_THRESHOLD)
+        while (JoystickAboveThresholdSign(VerticalAxis(), direction))
         {
-            if (timeThatHasPassed > timeToScrollToNextOption)
+            if (timeThatHasPassed > TIME_BETWEEN_AUTO_SCROLL_ITEM)
             {
                 timeThatHasPassed = 0;
-                ///TO-DO Add code that will change to the next item in the ui menu
-                nextOption = GetNextOption(direction < 0 ? SelectableUI.UIDirection.South : SelectableUI.UIDirection.North);
-                if (nextOption != null)
-                {
-                    SetNextSelectableUIOption(nextOption);
-                }
+
+            }
+        }
+        isAutoScrollingVertically = false;
+    }
+
+    private IEnumerator BeginAutoScrollingHorizontal(float horizontalInput)
+    {
+        int direction = (int)Mathf.Sign(horizontalInput);
+        isAutoScrollingHorizontally = true;
+        float timeThatHasPassed = 0;
+        while (timeThatHasPassed > TIME_BEFORE_AUTO_SCROLLING)
+        {
+            if (JoystickAboveThresholdSign(HorizontalAxis(), direction))
+            {
+                isAutoScrollingHorizontally = false;
+                yield break;
             }
 
-            timeThatHasPassed += Time.unscaledDeltaTime;
+            timeThatHasPassed += CustomTime.UnscaledDeltaTime;
             yield return null;
         }
-        this.isCurrentlyAutoScrolling = false;
-        yield break;
+
+
+        timeThatHasPassed = 0;
+        while (JoystickAboveThresholdSign(HorizontalAxis(), direction))
+        {
+            if (timeThatHasPassed > TIME_BETWEEN_AUTO_SCROLL_ITEM)
+            {
+                timeThatHasPassed = 0;
+
+            }
+        }
+        isAutoScrollingHorizontally = false;
+    }
+
+    /// <summary>
+    /// Due to a lot of UI menus opening immediately and using similar button presses to perform actions, it is a good idea to
+    /// allow a one frame buffer between opening menus to allow button down inputs to clear
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator PerformActionAfterOneFrame(Action actionToPerformAfterOneFrame)
+    {
+        yield return null;
+        actionToPerformAfterOneFrame.Invoke();
     }
 }

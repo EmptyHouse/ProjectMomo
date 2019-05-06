@@ -48,15 +48,18 @@ public class SelectableUI : MonoBehaviour {
     public SelectableUI westSelectableUI;
     [Tooltip("A reference to the text field that contains the title of the UI Element")]
     public Text uiTitleText;
+    [Tooltip("Mark this value true if the selectable ui item is disabled")]
+    public bool isDisabled;
 
 
     private void Awake()
     {
-        this.enabled = false;
+        this.enabled = false;//Every item should begin as disabled. Activate the selectable UI by enabling it through the UI manager
     }
 
     public SelectableUI GetUIInDirection(UIDirection direction)
     {
+
         switch (direction)
         {
             case UIDirection.North:
