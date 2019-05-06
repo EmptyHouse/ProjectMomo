@@ -42,7 +42,7 @@ public class SelectableUIManager : MonoBehaviour {
     [Tooltip("This will make it so that we begin our menu on the initiallySelectedUI object whenever we open our menu")]
     public bool resetToInitialUIUponOpening;
     //[Tooltip("The transform parent that contains all the UI elements related to this menu")]
-    
+    public bool allowMenuToWrap = false;
     #endregion main variables
     
     
@@ -66,6 +66,7 @@ public class SelectableUIManager : MonoBehaviour {
     private void Awake()
     {
         SetNextSelectableUIOption(initiallySelectedUI);
+        ConnectSelectableUIElements();
     }
     
     private void Update()
@@ -92,6 +93,25 @@ public class SelectableUIManager : MonoBehaviour {
         isAutoScrollingVertically = false;
     }
     #endregion monobehaviour methods
+
+    protected virtual void ConnectSelectableUIElements()
+    {
+        if (allSelectableUI.Length <= 1) return;
+        for (int i = 1; i < allSelectableUI.Length; i++)
+        {
+            if (allSelectableUI[i - 1] != null)
+                allSelectableUI[i - 1].southSelectableUI = allSelectableUI[i];
+            if (allSelectableUI[i] != null)
+                allSelectableUI[i].northSelectableUI = allSelectableUI[i - 1];
+        }
+        if (allowMenuToWrap)
+        {
+            if (allSelectableUI[0] != null) 
+                allSelectableUI[0].northSelectableUI = allSelectableUI[allSelectableUI.Length - 1];
+            if (allSelectableUI[allSelectableUI.Length - 1])
+                allSelectableUI[allSelectableUI.Length - 1].southSelectableUI = allSelectableUI[0];
+        }
+    }
 
     #region input methods
     /// <summary>
@@ -160,6 +180,27 @@ public class SelectableUIManager : MonoBehaviour {
         //{
 
         //}
+    }
+
+    protected virtual void SelectSettingsUIElementInDirection(int x, int y)
+    {
+        if (x > 0)
+        {
+
+        }
+        else if (x < 0)
+        {
+
+        }
+
+        if (y > 0)
+        {
+
+        }
+        else if (y < 0)
+        {
+
+        }
     }
 
     private void SetNextSelectableUIOption(SelectableUI selectableUI)
